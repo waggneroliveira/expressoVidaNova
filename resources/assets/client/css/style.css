@@ -21,6 +21,9 @@
     z-index: 9999;
     transition: transform .15s ease, filter .15s ease, box-shadow .15s ease;
 }
+.h-60{
+    height: 60px;
+}
 /* Calendário básico */
 .day-number {
     font-weight: bold;
@@ -486,37 +489,26 @@
  }
 
  .site-navigation.ul li a {
-     position: relative;
+    position: relative;
  }
-
- .site-navigation.ul li a::after {
-     content: "";
-     position: absolute;
-     left: 0;
-     bottom: -2px;
-     width: 100%;
-     height: 3px;
-     background-color: var(--background-red);
-     transform: scaleX(0);
-     transform-origin: left;
-     transition: transform 0.3s ease-in-out;
+ .site-navigation.ul li{
+    transition: all 0.3s ease;
  }
- .site-navigation.ul li .dropdown-item:active{
-    background: var(--background-blue);
- }
+.site-navigation.ul li:hover{
+    background-color: var(--cta-background-color);
+    transition: all 0.3s ease;
+}
+.site-navigation.ul li:hover a{
+    color: #000;
+    transition: all 0.3s ease;
+}
 .site-navigation.ul li:nth-of-type(2) a::after,
 .site-navigation.ul li:nth-of-type(3) a::after,
 .site-navigation.ul li:nth-of-type(4) a::after{
     display: none;
 }
- .site-navigation.ul li a.active::after {
-     width: 100%;
-     background-color: var(--background-red);
- }
-
- .site-navigation ul li a:hover::after,
- .site-navigation ul li a.active::after {
-     transform: scaleX(1);
+ .site-navigation.ul li .dropdown-item:active{
+    background: var(--cta-background-color);
  }
 
  .project-list-item img,
@@ -751,7 +743,7 @@
     --text-color: #6c757d;
     --text-color-blog-inner: #6c757d;
     --title-color-blue: #31404B;
-    --cta-background-color: #091DFF;
+    --cta-background-color: #BBD3F2;
     --nav-hover-color: #ffffff;
     --background-color-white: #ffffff;
     --background-color-grey: #F8F9FC;
@@ -1227,8 +1219,8 @@
  }
 
  .redes-sociais ul li img {
-     width: 25px;
-     height: 25px;
+    width: 18px;
+    height: 18px;
  }
 
  .carousel-trust-whi .swiper-slide-active {
@@ -1464,8 +1456,7 @@
  }
 
  .header-color {
-     background: var(--background-blue);
-     border-bottom: 5px solid var(--background-red);
+    background: var(--background-blue);
  }
 
  .swiper-container-wrapper {

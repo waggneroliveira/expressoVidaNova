@@ -1,10 +1,10 @@
 {{-- Carrossel para MOBILE --}}
 <div class="col-12 d-block d-sm-none">
-    <div class="swiper announcement-mobile w-75">
+    <div class="swiper announcement-mobile w-100">
         <div class="swiper-wrapper">
             @foreach ($announcements->where('exhibition', 'mobile') as $announcement)
-                <div class="swiper-slide py-5">
-                    <div class="image rounded-3 overflow-hidden">
+                <div class="swiper-slide py-0">
+                    <div class="image rounded-0overflow-hidden">
                         @if (!empty($announcement->link))
                             <a href="{{ $announcement->link }}" target="_blank" rel="nofollow noopener noreferrer">
                                 <img src="{{ asset('storage/' . $announcement->path_image) }}"
@@ -23,11 +23,11 @@
 
 {{-- Carrossel para DESKTOP --}}
 <div class="col-12 d-none d-sm-block">
-    <div class="swiper announcement-desktop w-75">
+    <div class="swiper announcement-desktop w-100">
         <div class="swiper-wrapper">
             @foreach ($announcements->where('exhibition', 'horizontal') as $announcement)
-                <div class="swiper-slide py-5">
-                    <div class="image rounded-3 overflow-hidden">
+                <div class="swiper-slide py-0">
+                    <div class="image rounded-0overflow-hidden">
                         @if (!empty($announcement->link))
                             <a href="{{ $announcement->link }}" target="_blank" rel="nofollow noopener noreferrer">
                                 <img src="{{ asset('storage/' . $announcement->path_image) }}"

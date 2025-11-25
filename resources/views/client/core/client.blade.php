@@ -145,9 +145,59 @@
 <body>
     <div id="organization" hidden></div>
     <header id="header" class="w-100 d-flex flex-column position p-0">   
-        <div class="w-100 py-2 py-sm-2 header-color">
+        <div class="w-100 py-0">
+            <div class="header-top py-2 mb-3 header-color">
+                <div class="container d-flex justify-content-between align-items-center">
+                    <p class="dropdown-item montserrat-medium text-start font-15 mb-0">Lauro de Freitas, BA | Quinta-feira, 30 de outubro de 2025</p>
+                    <div class="col-6 sc">
+                        <div class="d-flex flex-wrap justify-content-center align-items-center gap-3 flex-column">
+                            <div class="dark-background rounded-3 p-0 m-auto me-0">
+                                <nav class="site-navigation position-relative text-end w-25 redes-sociais">
+                                    <ul class="p-0 d-flex justify-content-start gap-3 flex-row mb-0">
+                                        @if (isset($contact) && $contact->link_insta)
+                                            <li class="li d-flex justify-content-start align-items-center rounded-circle">
+                                                <a href="{{$contact->link_insta}}" rel="nofollow noopener noreferrer" target="_blank">
+                                                    <img src="{{asset('build/client/images/insta.svg')}}" alt="Instagram">
+                                                </a>
+                                            </li>
+                                        @endif
+                                        @if (isset($contact) && $contact->link_x)
+                                            <li class="li d-flex justify-content-start align-items-center rounded-circle">
+                                                <a href="{{$contact->link_x}}" rel="nofollow noopener noreferrer" target="_blank">
+                                                    <img src="{{asset('build/client/images/x.svg')}}" alt="X">
+                                                </a>
+                                            </li>
+                                        @endif
+                                        @if (isset($contact) && $contact->link_youtube)
+                                            <li class="li d-flex justify-content-start align-items-center rounded-circle">
+                                                <a href="{{$contact->link_youtube}}" rel="nofollow noopener noreferrer" target="_blank">
+                                                    <img src="{{asset('build/client/images/youtube.svg')}}" alt="Youtube">
+                                                </a>
+                                            </li>
+                                        @endif
+                                        @if (isset($contact) && $contact->link_face)
+                                            <li class="li d-flex justify-content-start align-items-center rounded-circle">
+                                                <a href="{{$contact->link_face}}" rel="nofollow noopener noreferrer" target="_blank">
+                                                    <img src="{{asset('build/client/images/face.svg')}}" alt="Facebook">
+                                                </a>
+                                            </li>
+                                        @endif
+                                        @if (isset($contact) && $contact->link_tik_tok)
+                                            <li class="li d-flex justify-content-start align-items-center rounded-circle">
+                                                <a href="{{$contact->link_tik_tok}}a" rel="nofollow noopener noreferrer" target="_blank">
+                                                    <img src="{{asset('build/client/images/tiktok.svg')}}" alt="Tiktok">
+                                                </a>
+                                            </li>
+                                        @endif
+                                    </ul> 
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="container m-auto d-flex align-items-center justify-content-between flex-column">
-                <div class="d-flex col-12 col-lg-11 justify-content-end align-items-start wrap-logo-and-login">
+                <div class="d-flex col-12 justify-content-between align-items-center wrap-logo-and-login">
                     <div class="logo-img px-0 py-2 rounded-2 d-flex justify-content-start align-items-center w-auto">
                         <a href="{{route('index')}}">
                             <img src="{{asset('build/client/images/expressovidadnova.png')}}" alt="Instituto Baiano de Medicina Desportivao" title="Instituto Baiano de Medicina Desportivao" class="img-fluid">
@@ -155,145 +205,149 @@
                     </div>
 
                     @if ($announcements->count())                        
-                        <div class="mb-3">
+                        <div class="mb-0 col-8">
                             @include('client.includes.announcement')
                         </div>
                     @endif
-                    {{-- <div class="d-flex justify-content-center align-items-center gap-2 mt-3 login-desktop" style="width: 23%;">                        
-                        @if (!Auth::guard('client')->check())                            
-                            <div class="d-flex justify-content-start align-items-center gap-2">
-                                <svg width="20" height="20" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M46.793 8.62893C44.5547 8.62893 42.7344 6.81253 42.7344 4.57423C42.7344 2.33593 44.5547 0.519531 46.793 0.519531L80.57 0.503906C88.8044 0.503906 95.5 7.20311 95.5 15.4339V80.5789C95.5 88.8055 88.8008 95.5089 80.57 95.5089H46.793C44.5469 95.5089 42.7266 93.6847 42.7266 91.4386C42.7266 89.1886 44.5469 87.3683 46.793 87.3683H80.57C84.3083 87.3683 87.3591 84.3136 87.3591 80.5831V15.4311C87.3591 11.7006 84.3083 8.63031 80.57 8.63031L46.793 8.62893ZM49.6914 68.2459L66.5504 51.0619C67.398 50.3158 67.9332 49.2181 67.9332 47.9994C67.9332 46.7807 67.398 45.683 66.5504 44.9408L49.6914 27.7568C48.1133 26.1591 45.543 26.1357 43.9492 27.71C42.3515 29.2803 42.3281 31.8545 43.9062 33.4522L54.1792 43.9322L4.5742 43.9283C2.3281 43.9283 0.5 45.7525 0.5 47.9986C0.5 50.2486 2.3281 52.0689 4.5742 52.0689H54.1762L43.9032 62.5459C42.3251 64.1436 42.3524 66.7138 43.9462 68.288C45.5439 69.8583 48.1103 69.8389 49.6884 68.2412L49.6914 68.2459Z" fill="white"/>
-                                </svg>
+                </div>       
+            </div>
+            <div class="container-fluid header-color mt-3 h-60 d-flex align-items-center py-0">
+                <div class="container d-flex justify-content-between align-items-center h-100">
+                    <div class="social-links d-flex justify-content-center align-items-center gap-4 text-center">
+                        <nav class="none site-navigation ul position-relative text-end width-75 h-60">
+                            <ul class="d-flex flex-row justify-content-start align-items-center gap-3 mb-0 list-unstyled h-100">
+                                <li class="h-100 d-flex align-items-center px-2"><a href="{{route('index')}}" class="nav-link montserrat-bold text-center font-12 text-uppercase">Principal</a></li>                                                   
+                                <li class="nav-item dropdown h-100 d-flex align-items-center px-2">
+                                    <a class="nav-link dropdown-toggle montserrat-bold text-center font-12 text-uppercase" 
+                                    href="{{route('about')}}" 
+                                    id="sobreNosDropdown" 
+                                    role="button" 
+                                    data-bs-toggle="dropdown" 
+                                    aria-expanded="false">
+                                        Quem Somos
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="sobreNosDropdown">
+                                        @if (isset($abouts) && $abouts->count() > 0) 
+                                            @foreach ($abouts as $about)                                        
+                                                <li><a class="dropdown-item montserrat-medium text-start font-15" href="{{route('about')}}#{{$about->slug}}">{{$about->title}}</a></li>
+                                            @endforeach
+                                        @endif
+                                    </ul>
+                                </li>
+                                @if ($blogCategories->count())
+                                    @foreach ($blogCategories as $category)
+                                        <li class="h-100 d-flex align-items-center px-2">
+                                            <a href="{{ route('blog', ['category' => $category->slug]) }}#news"
+                                            class="nav-link montserrat-bold text-center font-12 text-uppercase
+                                            {{ (request()->routeIs('blog-inner') && isset($blogInner) && $blogInner->category->id === $category->id) ||
+                                                (request()->routeIs('blog') && request()->route('category') === $category->slug)
+                                                ? 'active' : '' }}">
+                                                {{ $category->title }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                @endif
+                                <li class="h-100 d-flex align-items-center px-2"><a href="{{route('contact')}}" class="nav-link montserrat-bold text-center font-12 text-uppercase {{ request()->routeIs('contact') ? 'active' : '' }}">Contato</a></li>
+                            </ul>                      
+                        </nav>
 
-                                <h2 class="off-login m-0 montserrat-medium font-14 text-start" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#loginModal">Login</h2>
-                            </div>
-                        @else
-                            @php
-                                $user = Auth::guard('client')->user();
-                                $defaultImage = $user && $user->path_image ? url($user->path_image) : '';
-                            @endphp
-                            <div class="image-profile">
-                                <picture>
-                                    <source srcset="{{ isset($defaultImage) && $defaultImage <> null ?$defaultImage:asset('build/client/images/user.jpg') }}" type="image/svg+xml">
-                                    <img src="{{ isset($defaultImage) && $defaultImage <> null ?$defaultImage:asset('build/client/images/user.jpg') }}"
-                                        alt="Imagem de Login"
-                                        class="img-fluid rounded-circle">
-                                </picture>
-                            </div>
-                            <div class="d-flex flex-column align-items-start gap-1">
-                                <div class="d-flex justify-content-start align-items-center gap-2 lh-0">
-                                    <h2 class="loginOn m-0 montserrat-medium font-14 text-start">Bem vindo,</h2>   
-                                    <h3 class="m-0 montserrat-medium font-14 text-start">{{$names = collect(explode(' ', Auth::guard('client')->user()->name))->slice(0, 1)->implode(' ')}}!</h3>      
-                                    <a class="nav-link waves-effect waves-light" href="#" data-bs-toggle="modal" data-bs-target="#editClientModal-{{Auth::guard('client')->user()->id}}">
-                                        <i class="bi bi-gear font-18"></i>
-                                    </a>                 
-                                </div>  
-                                <a href="{{route('client.user.logout')}}" class="d-flex justify-content-start align-items-center gap-2 text-decoration-none lh-0">
-                                    <i class="bi bi-box-arrow-right font-18"></i>
-                                    <h4 class="montserrat-medium font-12 m-0">Sair</h4>
-                                </a>                                               
-                            </div>
-                        @endif
-                    </div> --}}
-                </div>
-        
-                <div class="social-links d-flex justify-content-center align-items-center gap-4 mb-2 mt-3 text-center col-12">
-                    <nav class="none site-navigation ul position-relative text-end width-75">
-                        <ul class="d-flex flex-row justify-content-start align-items-center gap-4 mb-0 list-unstyled">
-                            <li><a href="{{route('index')}}" class="nav-link montserrat-medium text-center font-18">Home</a></li>                                                   
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle montserrat-medium text-center font-18" 
-                                href="{{route('about')}}" 
-                                id="sobreNosDropdown" 
-                                role="button" 
-                                data-bs-toggle="dropdown" 
-                                aria-expanded="false">
-                                    Sobre Nós <i class="bi bi-chevron-down"></i>
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="sobreNosDropdown">
-                                    @if (isset($abouts) && $abouts->count() > 0) 
-                                        @foreach ($abouts as $about)                                        
-                                            <li><a class="dropdown-item montserrat-medium text-start font-15" href="{{route('about')}}#{{$about->slug}}">{{$about->title}}</a></li>
-                                        @endforeach
-                                    @endif
-                                    @if (isset($directions) && $directions > 0)                                        
-                                        <li><a class="dropdown-item montserrat-medium text-start font-15" href="{{route('about')}}#board">Equipe</a></li>
-                                    @endif
-                                    @if (isset($statute) && $statute > 0)                                        
-                                        <li><a class="dropdown-item montserrat-medium text-start font-15" href="{{route('about')}}#statute">Estatuto</a></li>
-                                    @endif
-                                </ul>
-                            </li>
-
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle montserrat-medium text-center font-18" 
-                                href="{{route('unionized')}}" 
-                                id="servicosDropdown" 
-                                role="button" 
-                                data-bs-toggle="dropdown" 
-                                aria-expanded="false">
-                                    Serviços ao sindicalizados <i class="bi bi-chevron-down"></i>
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="servicosDropdown">
-                                    @if (isset($agreement) && $agreement > 0)                                
-                                        <li><a class="dropdown-item montserrat-medium text-start font-15" href="{{route('unionized')}}#partnes">Convênios</a></li>
-                                    @endif
-                                    @if (isset($directions) && $directions > 0)                                
-                                        <li><a class="dropdown-item montserrat-medium text-start font-15" href="{{route('unionized')}}#benefit">Benefícios</a></li>
-                                    @endif
-                                    @if (isset($report) && $report > 0)                                
-                                        <li><a class="dropdown-item montserrat-medium text-start font-15" href="{{route('unionized')}}#complaint">Denuncias</a></li>
-                                    @endif
-                                </ul>
-                            </li>
-
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle montserrat-medium text-center font-18" 
-                                href="{{route('juridico')}}" 
-                                id="juridicoDropdown" 
-                                role="button" 
-                                data-bs-toggle="dropdown" 
-                                aria-expanded="false">
-                                    Jurídico <i class="bi bi-chevron-down"></i>
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="juridicoDropdown">
-                                    <li><a class="dropdown-item montserrat-medium text-start font-15" href="{{ route('juridico', ['legal' => 'leis']) }}">Leis</a></li>
-                                    <li><a class="dropdown-item montserrat-medium text-start font-15" href="{{ route('juridico', ['legal' => 'decretos']) }}">Decretos</a></li>
-                                    <li><a class="dropdown-item montserrat-medium text-start font-15" href="{{ route('juridico', ['legal' => 'portaria']) }}">Portaria</a></li>
-                                </ul>
-
-                            </li>
-
-                            <li><a href="{{route('regional')}}" class="nav-link montserrat-medium text-center font-18">Regionais</a></li>
-                            <li><a href="{{route('blog')}}" class="nav-link montserrat-medium text-center font-18 {{ request()->routeIs('blog') ? 'active' : '' }} {{ request()->routeIs('blog-inner') ? 'active' : '' }}">Notícias</a></li>
-                            <li><a href="{{route('noticies')}}" class="nav-link montserrat-medium text-center font-18 {{ request()->routeIs('noticies') ? 'active' : '' }}">Editais</a></li>
-                            <li><a href="{{route('contact')}}" class="nav-link montserrat-medium text-center font-18 {{ request()->routeIs('contact') ? 'active' : '' }}">Contato</a></li>
-                        </ul>                      
-                    </nav>
-                    
-                    @if (isset($benefitTopics) && $benefitTopics > 0)                        
-                        <div class="btn-filie-se">
-                            <a href="{{route('unionized')}}#benefit" class="badge badge-primary montserrat-medium font-14 text-uppercase me-2 background-red rounded-4 font-weight-semi-bold py-2 px-3 px-sm-5">Filie-se</a>
+                        <div class="d-flex justify-content-between gap-3 flex-wrap align-items-center d-lg-none">
+                           <form action="{{route('blog-search')}}#news" class="search col-12 col-lg-10" method="post">
+                              @csrf
+                              <div class="input-group input-group-lg">
+                                 <input type="search" name="search" class="rounded-0 form-control border-end-0 text-color montserrat-regular bg-white py-0" placeholder="Pesquise aqui">
+                                 <button type="submit" title="search" class="btn-reset input-group-text bg-white border rounded-0">
+                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.99989 0C3.13331 0 0 3.13427 0 6.99979C0 10.8663 3.13351 14.0004 6.99989 14.0004C8.49916 14.0004 9.88877 13.5285 11.0281 12.7252L15.9512 17.6491C16.4199 18.117 17.1798 18.117 17.6485 17.6491C18.1172 17.1804 18.1172 16.4205 17.6485 15.9518L12.7254 11.0288C13.5279 9.88936 13.9998 8.4997 13.9998 6.99983C13.9998 3.13411 10.8655 0 6.99989 0ZM2.39962 6.99979C2.39962 4.45981 4.45907 2.40019 6.99989 2.40019C9.54072 2.40019 11.6002 4.45961 11.6002 6.99979C11.6002 9.54058 9.54072 11.6 6.99989 11.6C4.45907 11.6 2.39962 9.54058 2.39962 6.99979Z" fill="#31404B"/>
+                                    </svg>                                    
+                                 </button>
+                              </div>
+                           </form>
+                           {{-- {{dd(Route::currentRouteName())}} --}}
+                           @if (Route::currentRouteName() == 'blog-search')
+                              <a href="{{ route('blog') }}#news" class="btn background-red text-white montserrat-medium py-2 font-15">Limpar</a>
+                           @endif
                         </div>
-                    @endif
+                        <!-- Botão menu sandwich -->
+                        <button id="menu-toggle" class="d-lg-none btn btn-link p-0 ms-2" aria-label="Abrir menu" type="button">
+                            <span class="menu-icon" style="display:inline-block;width:32px;height:32px;">
+                                <span class="d-block w-100 rounded-1" style="height:4px;background:#FFF;margin:6px 0;"></span>
+                                <span class="d-block w-100 rounded-1" style="height:4px;background:#FFF;margin:6px 0;"></span>
+                                <span class="d-block w-100 rounded-1" style="height:4px;background:#FFF;margin:6px 0;"></span>
+                            </span>
+                        </button>
+                        <div class="d-none justify-content-center align-items-center gap-2 mt-0 login-middle-mobile">                        
+                            @if (!Auth::guard('client')->check())                            
+                                <div class="d-flex justify-content-start align-items-center gap-2">
+                                    <svg width="20" height="20" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M46.793 8.62893C44.5547 8.62893 42.7344 6.81253 42.7344 4.57423C42.7344 2.33593 44.5547 0.519531 46.793 0.519531L80.57 0.503906C88.8044 0.503906 95.5 7.20311 95.5 15.4339V80.5789C95.5 88.8055 88.8008 95.5089 80.57 95.5089H46.793C44.5469 95.5089 42.7266 93.6847 42.7266 91.4386C42.7266 89.1886 44.5469 87.3683 46.793 87.3683H80.57C84.3083 87.3683 87.3591 84.3136 87.3591 80.5831V15.4311C87.3591 11.7006 84.3083 8.63031 80.57 8.63031L46.793 8.62893ZM49.6914 68.2459L66.5504 51.0619C67.398 50.3158 67.9332 49.2181 67.9332 47.9994C67.9332 46.7807 67.398 45.683 66.5504 44.9408L49.6914 27.7568C48.1133 26.1591 45.543 26.1357 43.9492 27.71C42.3515 29.2803 42.3281 31.8545 43.9062 33.4522L54.1792 43.9322L4.5742 43.9283C2.3281 43.9283 0.5 45.7525 0.5 47.9986C0.5 50.2486 2.3281 52.0689 4.5742 52.0689H54.1762L43.9032 62.5459C42.3251 64.1436 42.3524 66.7138 43.9462 68.288C45.5439 69.8583 48.1103 69.8389 49.6884 68.2412L49.6914 68.2459Z" fill="white"/>
+                                    </svg>
 
-                    <!-- Botão menu sandwich -->
-                    <button id="menu-toggle" class="d-lg-none btn btn-link p-0 ms-2" aria-label="Abrir menu" type="button">
-                        <span class="menu-icon" style="display:inline-block;width:32px;height:32px;">
-                            <span class="d-block w-100 rounded-1" style="height:4px;background:#FFF;margin:6px 0;"></span>
-                            <span class="d-block w-100 rounded-1" style="height:4px;background:#FFF;margin:6px 0;"></span>
-                            <span class="d-block w-100 rounded-1" style="height:4px;background:#FFF;margin:6px 0;"></span>
-                        </span>
-                    </button>
-                    <div class="d-none justify-content-center align-items-center gap-2 mt-0 login-middle-mobile">                        
+                                    <h2 class="off-login m-0 montserrat-medium font-14 text-start" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#loginModal">Login</h2>
+                                </div>
+                            @else
+                                @php
+                                    $user = Auth::guard('client')->user();
+                                    $defaultImage = $user && $user->path_image ? url($user->path_image) : '';
+                                @endphp
+                                <div class="image-profile">
+                                    <picture>
+                                        <source srcset="{{ isset($defaultImage) && $defaultImage <> null ?$defaultImage:asset('build/client/images/user.jpg') }}" type="image/svg+xml">
+                                        <img src="{{ isset($defaultImage) && $defaultImage <> null ?$defaultImage:asset('build/client/images/user.jpg') }}"
+                                            alt="Imagem de Login"
+                                            class="img-fluid rounded-circle">
+                                    </picture>
+                                </div>
+                                <div class="d-flex flex-column align-items-start gap-1">
+                                    <div class="d-flex justify-content-start align-items-center gap-2 lh-0">
+                                        <h2 class="loginOn m-0 montserrat-medium font-14 text-start">Bem vindo,</h2>   
+                                        <h3 class="m-0 montserrat-medium font-14 text-start">{{$names = collect(explode(' ', Auth::guard('client')->user()->name))->slice(0, 1)->implode(' ')}}!</h3>      
+                                        <a class="nav-link waves-effect waves-light" href="#" data-bs-toggle="modal" data-bs-target="#editClientModal-{{Auth::guard('client')->user()->id}}">
+                                            <i class="bi bi-gear font-18"></i>
+                                        </a>                 
+                                    </div>  
+                                    <a href="{{route('client.user.logout')}}" class="d-flex justify-content-start align-items-center gap-2 text-decoration-none lh-0">
+                                        <i class="bi bi-box-arrow-right font-18"></i>
+                                        <h4 class="montserrat-medium font-12 m-0">Sair</h4>
+                                    </a>                                               
+                                </div>
+                            @endif
+                        </div>
+                        
+                    </div>
+
+                    <div class="d-flex justify-content-center align-items-center gap-2 login-desktop col-6">   
+                        <div class="d-flex justify-content-between gap-3 flex-wrap align-items-center col-8">
+                           <form action="{{route('blog-search')}}#news" class="search col-12" method="post">
+                              @csrf
+                              <div class="input-group input-group-lg">
+                                 <input type="search" name="search" class="rounded-0 form-control border-end-0 text-color montserrat-regular bg-white py-0" placeholder="Pesquise aqui">
+                                 <button type="submit" title="search" class="btn-reset input-group-text bg-white border rounded-0">
+                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.99989 0C3.13331 0 0 3.13427 0 6.99979C0 10.8663 3.13351 14.0004 6.99989 14.0004C8.49916 14.0004 9.88877 13.5285 11.0281 12.7252L15.9512 17.6491C16.4199 18.117 17.1798 18.117 17.6485 17.6491C18.1172 17.1804 18.1172 16.4205 17.6485 15.9518L12.7254 11.0288C13.5279 9.88936 13.9998 8.4997 13.9998 6.99983C13.9998 3.13411 10.8655 0 6.99989 0ZM2.39962 6.99979C2.39962 4.45981 4.45907 2.40019 6.99989 2.40019C9.54072 2.40019 11.6002 4.45961 11.6002 6.99979C11.6002 9.54058 9.54072 11.6 6.99989 11.6C4.45907 11.6 2.39962 9.54058 2.39962 6.99979Z" fill="#31404B"/>
+                                    </svg>                                    
+                                 </button>
+                              </div>
+                           </form>
+                           {{-- {{dd(Route::currentRouteName())}} --}}
+                           @if (Route::currentRouteName() == 'blog-search')
+                              <a href="{{ route('blog') }}#news" class="btn background-red text-white montserrat-medium py-2 font-15">Limpar</a>
+                           @endif
+                        </div>                     
                         @if (!Auth::guard('client')->check())                            
-                            <div class="d-flex justify-content-start align-items-center gap-2">
-                                <svg width="20" height="20" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M46.793 8.62893C44.5547 8.62893 42.7344 6.81253 42.7344 4.57423C42.7344 2.33593 44.5547 0.519531 46.793 0.519531L80.57 0.503906C88.8044 0.503906 95.5 7.20311 95.5 15.4339V80.5789C95.5 88.8055 88.8008 95.5089 80.57 95.5089H46.793C44.5469 95.5089 42.7266 93.6847 42.7266 91.4386C42.7266 89.1886 44.5469 87.3683 46.793 87.3683H80.57C84.3083 87.3683 87.3591 84.3136 87.3591 80.5831V15.4311C87.3591 11.7006 84.3083 8.63031 80.57 8.63031L46.793 8.62893ZM49.6914 68.2459L66.5504 51.0619C67.398 50.3158 67.9332 49.2181 67.9332 47.9994C67.9332 46.7807 67.398 45.683 66.5504 44.9408L49.6914 27.7568C48.1133 26.1591 45.543 26.1357 43.9492 27.71C42.3515 29.2803 42.3281 31.8545 43.9062 33.4522L54.1792 43.9322L4.5742 43.9283C2.3281 43.9283 0.5 45.7525 0.5 47.9986C0.5 50.2486 2.3281 52.0689 4.5742 52.0689H54.1762L43.9032 62.5459C42.3251 64.1436 42.3524 66.7138 43.9462 68.288C45.5439 69.8583 48.1103 69.8389 49.6884 68.2412L49.6914 68.2459Z" fill="white"/>
+                            <div class="d-flex justify-content-start align-items-center gap-2 col-3 ms-3">
+                                <svg width="24" height="28" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M23.5294 27.2432C23.5294 27.657 23.2026 28 22.7994 28H0.72999C0.332619 28 0 27.6612 0 27.2432C0 20.5561 5.26724 15.1351 11.7647 15.1351C18.2622 15.1351 23.5294 20.5561 23.5294 27.2432ZM11.7647 13.6216C8.10988 13.6216 5.14706 10.5723 5.14706 6.81081C5.14706 3.0493 8.10988 0 11.7647 0C15.4195 0 18.3824 3.0493 18.3824 6.81081C18.3824 10.5723 15.4195 13.6216 11.7647 13.6216Z" fill="white"/>
                                 </svg>
 
-                                <h2 class="off-login m-0 montserrat-medium font-14 text-start" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#loginModal">Login</h2>
+                                <div class="d-flex gap-1 flex-column">
+                                    <h2 class="off-login m-0 montserrat-medium font-14 text-start" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                        Acesse sua conta
+                                    </h2>
+                                    <h3 class="off-login m-0 montserrat-medium font-14 text-start" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                        <a href="#" class="text-decoration-none montserrat-medium" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerModal">Cadastre-se</a>
+                                    </h3>
+                                </div>
                             </div>
                         @else
                             @php
@@ -322,84 +376,10 @@
                                 </a>                                               
                             </div>
                         @endif
-                    </div>
-                </div>         
+                    </div>   
+                </div>
             </div>
         </div>     
-        @if ($blogCategories->count())
-            <div class="header--category w-100 grey-medium-background social-links">
-                <div class="container d-flex justify-content-center align-items-center">
-                    {{-- Versão Mobile (com Swiper) --}}
-                    <nav class="d-block d-sm-none position-relative col-12">
-                        <div class="swiper carrossel-mobile category-swiper">
-                            <div class="swiper-wrapper">
-                                @foreach ($blogCategories as $category)
-                                    <div class="swiper-slide">
-                                        <a href="{{ route('blog', ['category' => $category->slug]) }}#news"
-                                        class="carrossel title-blue montserrat-semiBold font-14 d-inline-block px-2
-                                        {{ (request()->routeIs('blog-inner') && isset($blogInner) && $blogInner->category->id === $category->id) ||
-                                            (request()->routeIs('blog') && request()->route('category') === $category->slug)
-                                            ? 'active' : '' }}">
-                                            {{ $category->title }}
-                                        </a>
-                                    </div>
-                                @endforeach
-                            </div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-button-next"></div>
-                        </div>
-                    </nav>
-    
-                    {{-- Versão Desktop (sem Swiper) --}}
-                    <nav class="d-none d-sm-block">
-                        <ul class="list-unstyled d-flex justify-content-center flex-wrap gap-x-1rem px-0 py-2 mb-0">
-                            @foreach ($blogCategories as $category)
-                                <li>
-                                    <a href="{{ route('blog', ['category' => $category->slug]) }}#news"
-                                    class="title-blue montserrat-semiBold font-14 d-inline-block px-0
-                                    {{ (request()->routeIs('blog-inner') && isset($blogInner) && $blogInner->category->id === $category->id) ||
-                                        (request()->routeIs('blog') && request()->route('category') === $category->slug)
-                                        ? 'active' : '' }}">
-                                        {{ $category->title }}
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        @endif
-        <script>
-            let swiperInstance = null;
-
-            function initCategorySwiper() {
-                if (window.innerWidth < 576 && !swiperInstance) {
-                    swiperInstance = new Swiper('.category-swiper', {
-                        slidesPerView: 3,
-                        spaceBetween: 10,
-                        freeMode: true,
-                        navigation: {
-                            nextEl: '.swiper-button-next',
-                            prevEl: '.swiper-button-prev',
-                        },
-                        breakpoints: {
-                            0: {
-                                slidesPerView: 2,
-                            },
-                            476: {
-                                slidesPerView: 3.2,
-                            },
-                        }
-                    });
-                } else if (window.innerWidth >= 576 && swiperInstance) {
-                    swiperInstance.destroy(true, true);
-                    swiperInstance = null;
-                }
-            }
-
-            window.addEventListener('load', initCategorySwiper);
-            window.addEventListener('resize', initCategorySwiper);
-        </script>
         
         @include('client/includes/lgpd/lgpd')
         
@@ -643,7 +623,7 @@
                         role="button" 
                         data-bs-toggle="dropdown" 
                         aria-expanded="false">
-                            Sobre Nós <i class="bi bi-chevron-down"></i>
+                            Quem Somos
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="sobreNosDropdown">
                             @if (isset($abouts) && $abouts->count() > 0) 

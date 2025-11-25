@@ -1,63 +1,6 @@
 @extends('client.core.client')
 @section('content')
 
-@if (!empty($slides) && $slides->count() > 0)
-    <section id="hero" class="hero position-relative d-flex flex-column section dark-background overflow-hidden">
-        <div class="swiper hero-swiper">
-            <div class="swiper-wrapper">
-                @foreach ($slides as $slide)
-                    <div class="swiper-slide">
-                        <picture class="d-flex">
-                            <source srcset="{{ asset('storage/' . $slide->path_image_mobile) }}" media="(max-width: 885px)">
-                            <img src="{{ asset('storage/' . $slide->path_image) }}" alt="Banner Hero" title="Banner Hero" class="image-hero w-100">
-                        </picture>
-                        <div class="w-100 d-flex justify-content-center flex-column align-items-center position-absolute description" style="z-index: 6;">
-                            <div class="max-width container">
-                                <h1 class="text-white mb-2 rethink-sans-bold">{!!$slide->title!!}</h1>
-                                <div class="description text-white mb-5 montserrat-regular d-flex no-wrap align-items-center">
-                                    {!!$slide->description!!}
-                                </div>
-                                @if (!empty($slide->link))
-                                    <a href="{{$slide->link}}" target=_blank rel="noopener noreferrer" class="montserrat-medium font-15 px-3 rounded-5 col-12 col-lg-2 py-2 text-white background-red d-flex justify-content-center align-items-center">
-                                    Saiba mais
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-            <!-- Paginação opcional -->
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div> 
-        </div>
-    </section>
-@endif
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const heroSwiper = new Swiper('.hero-swiper', {
-            loop: false, // Loop infinito
-            autoplay: {
-                delay: 5000, // Troca de slide a cada 5s
-                disableOnInteraction: false, // Continua autoplay após interação
-            },
-            speed: 800, // Velocidade da transição
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            slidesPerView: 1,
-            spaceBetween: 0,
-            effect: 'slide',
-            breakpoints: {
-                0: { slidesPerView: 1 },
-                885: { slidesPerView: 1 }
-            }
-        });
-    });
-</script>
-
 @if (isset($topics) && $topics->count() > 0)
     <section id="topic" class="topic">
         <div class="container py-5">
@@ -84,193 +27,76 @@
 @endif
 
 @if (isset($blogSuperHighlights) && $blogSuperHighlights <> null)
-    <section class="blog mb-0">
-        <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-7 p-0">
-                <!-- Swiper Main Carousel -->
-                <div class="swiper main-swiper">
-                    <div class="swiper-wrapper">
-                    @foreach($blogSuperHighlights as $blogSuperHighlight)
-                        @php
-                            \Carbon\Carbon::setLocale('pt_BR');
-                            $dataFormatada = \Carbon\Carbon::parse($blogSuperHighlight->date)->translatedFormat('d \d\e F \d\e Y');
-                        @endphp
-                        <div class="swiper-slide">
-                            <article>
-                            <div class="position-relative overflow-hidden" style="height: 500px;">
-                                <img class="img-fluid h-100 w-100"
-                                src="{{ $blogSuperHighlight->path_image_thumbnail ? asset('storage/'.$blogSuperHighlight->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=montserrat' }}"
-                                alt="{{ $blogSuperHighlight->path_image_thumbnail ? 'Notícia super destaque' : 'Sem imagem'}}"
-                                style="object-fit: cover; aspect-ratio: 1.91/1;">
-
-                                <div class="overlay">
-                                    <div class="mb-2 d-flex justify-content-center align-items-center gap-1 flex-wrap">
-                                        <span class="badge background-red montserrat-semiBold font-12 text-uppercase py-2 px-2 me-2">{{$blogSuperHighlight->category->title}}</span>
-                                        <p class="text-white mb-0 montserrat-regular font-15">{{$dataFormatada}}</p>
-                                    </div>
-                                    <a href="{{route('blog-inner', ['slug' => $blogSuperHighlight->slug])}}">
-                                        <h1 class="h2 m-0 text-white text-uppercase montserrat-bold font-32 d-block">{{$blogSuperHighlight->title}}</h1>
-                                    </a>
-                                </div>
-                            </div>
-                            </article>
-                        </div>
-                    @endforeach                    
-                    </div>
-                    <!-- Swiper pagination & navigation (optional) -->
-                    <div class="swiper-pagination news"></div>
-                </div>
-            </div>
-            @if ($blogHighlights->count())            
-                <div class="col-lg-5 p-0">
-                <div class="row g-0">
-                    <!-- Static small boxes as before -->
-                    @foreach($blogHighlights as $blogHighlight)
-                        @php
-                            \Carbon\Carbon::setLocale('pt_BR');
-                            $dataFormatada = \Carbon\Carbon::parse($blogHighlight->date)->translatedFormat('d \d\e F \d\e Y');
-                        @endphp
-                        <div class="col-md-6 box-small">
-                            <article>
-                            <div class="position-relative overflow-hidden" style="height: 250px;">
-                                <img class="img-fluid h-100 w-100"
-                                src="{{ $blogHighlight->path_image_thumbnail ? asset('storage/'.$blogHighlight->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=montserrat' }}"
-                                alt="{{ $blogHighlight->title ? $blogHighlight->title : 'Sem imagem'}}"
-                                style="object-fit: cover; aspect-ratio: 1 / 1;">
-                                <div class="overlay">
-                                    <div class="mb-2 d-flex justify-content-start align-items-center gap-1 flex-wrap">
-                                        <span class="badge background-red text-uppercase montserrat-semiBold font-12 py-2 px-2 me-2">{{$blogHighlight->category->title}}</span>
-                                        <p class="text-white mb-0 montserrat-regular font-12">{{$dataFormatada}}</p>
-                                    </div>
-                                    <a href="{{route('blog-inner', ['slug' => $blogHighlight->slug])}}">                              
-                                        <h2 class="h6 m-0 text-white text-uppercase montserrat-bold font-16 d-block">{{$blogHighlight->title}}</h2>
-                                    </a>
-                                </div>
-                            </div>
-                            </article>
-                        </div>
-                    @endforeach
-                </div>
-                </div>
-            @endif
-            </div>
-        </div>
-    </section>
-@endif
-
-@if (isset($about) && $about <> null || isset($partners) && $partners->count() > 0)
-    <section class="aboutt">
+    <section class="blog mb-0 mt-5">
         <div class="container">
-            @if ($about <> null)                
-                <div id="about-1" class="d-flex justify-content-between align-items-start about flex-wrap w-100 pt-3 pb-3 pt-lg-5">
-                    <div class="col-12 col-lg-7 animate-on-scroll full" data-animation="animate__fadeInLeft">
-                        <div class="border-bottom mb-0">
-                            <h2 class="section-title rounded-top-left d-table px-4 w-auto m-0 montserrat-bold font-18 title-blue">{{$about->title}}</h2>
-                        </div>
-                
-                        <div class="description mt-4 text-blog-inner montserrat-medium font-16">
-                            {!! $about->text !!}
-                        </div>
+            <div class="row g-3 g-lg-4">
+                <div class="col-lg-8 pe-0">
+                    <!-- Swiper Main Carousel -->
+                    <div class="swiper main-swiper">
+                        <div class="swiper-wrapper">
+                            @foreach($blogSuperHighlights as $blogSuperHighlight)
+                                @php
+                                    \Carbon\Carbon::setLocale('pt_BR');
+                                    $dataFormatada = \Carbon\Carbon::parse($blogSuperHighlight->date)->translatedFormat('d \d\e F \d\e Y');
+                                @endphp
+                                <div class="swiper-slide">
+                                    <article>
+                                        <div class="position-relative overflow-hidden" style="height: 500px;">
+                                            <img class="img-fluid h-100 w-100"
+                                            src="{{ $blogSuperHighlight->path_image_thumbnail ? asset('storage/'.$blogSuperHighlight->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=montserrat' }}"
+                                            alt="{{ $blogSuperHighlight->path_image_thumbnail ? 'Notícia super destaque' : 'Sem imagem'}}"
+                                            style="object-fit: cover; aspect-ratio: 1.91/1;">
 
-                        <div class="btn-about my-4">
-                            <a href="{{route('about')}}#{{$about->slug}}" class="background-red montserrat-semiBold font-15 py-2 px-4 rounded-4">Saiba mais</a>
+                                            <div class="overlay">
+                                                <div class="mb-2 d-flex justify-content-center align-items-center gap-1 flex-wrap">
+                                                    <span class="badge background-red montserrat-semiBold font-12 text-uppercase py-2 px-2 me-2">{{$blogSuperHighlight->category->title}}</span>
+                                                    <p class="text-white mb-0 montserrat-regular font-15">{{$dataFormatada}}</p>
+                                                </div>
+                                                <a href="{{route('blog-inner', ['slug' => $blogSuperHighlight->slug])}}">
+                                                    <h1 class="h2 m-0 text-white text-uppercase montserrat-bold font-32 d-block">{{$blogSuperHighlight->title}}</h1>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                            @endforeach                    
                         </div>
+                        <!-- Swiper pagination & navigation (optional) -->
+                        <div class="swiper-pagination news"></div>
                     </div>
-                    @if ($about->path_image <> null)                        
-                        <div class="col-11 col-lg-4 animate-on-scroll mb-3" data-animation="animate__fadeInRight">
-                            <div class="image d-flex justify-content-end">
-                                <img src="{{asset('storage/' . $about->path_image)}}" loading="lazy" alt="About" class="w-100 h-100 about-image d-sm-block" loading="lazy">
-                            </div>
-                        </div>
-                        @else
-                        <style>
-                            .full{
-                                width: 100%
-                            }
-                        </style>
-                    @endif
-                </div>     
-            @endif
-            
-            @include('client.includes.partner')
-        </div>
-    </section>
-@endif
-
-@include('client.includes.benefit')
-
-@if ($announcements->count())                        
-    <div class="mb-3">
-        @include('client.includes.announcement')
-    </div>
-@endif
-
-@if (!empty($videos) && $videos->count() > 0)
-    <section class="video">
-        <div class="container-fluid p-0">
-            <div class="content-video d-flex justify-content-center align-items-center bg-black">
-                <!-- Lista -->
-                <div class="left col-5 dark-background h-100 d-flex justify-content-center align-items-end flex-column position-relative">
-                    <div class="swiper mySwiper position-relative">
-                        <div class="swiper-wrapper py-4 flex-column align-items-start justify-content-start m-auto position-relative">
-                            @foreach($videos as $video)
-                                <div class="swiper-slide align-items-center mb-3 justify-content-start"
-                                    data-video="{{ $video->link }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="external-icon" viewBox="0 0 28.57 20" focusable="false" style="pointer-events: none; display: block; width: 35px; height: auto;">
-                                        <svg viewBox="0 0 28.57 20" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-                                            <g>
-                                                <path d="M27.9727 3.12324C27.6435 1.89323 26.6768 0.926623 25.4468 0.597366C23.2197 2.24288e-07 14.285 0 14.285 0C14.285 0 5.35042 2.24288e-07 3.12323 0.597366C1.89323 0.926623 0.926623 1.89323 0.597366 3.12324C2.24288e-07 5.35042 0 10 0 10C0 10 2.24288e-07 14.6496 0.597366 16.8768C0.926623 18.1068 1.89323 19.0734 3.12323 19.4026C5.35042 20 14.285 20 14.285 20C14.285 20 23.2197 20 25.4468 19.4026C26.6768 19.0734 27.6435 18.1068 27.9727 16.8768C28.5701 14.6496 28.5701 10 28.5701 10C28.5701 10 28.5677 5.35042 27.9727 3.12324Z" fill="#FF0000"></path>
-                                                <path d="M11.4253 14.2854L18.8477 10.0004L11.4253 5.71533V14.2854Z" fill="white"></path>
-                                            </g>
-                                        </svg>
-                                    </svg>
-                                    <h3 class="title montserrat-medium font-16 mb-0 col-10">
-                                        {{ $video->title ?? 'Vídeo' }}
-                                    </h3>
+                </div>
+                @if ($blogHighlights->count())            
+                    <div class="col-lg-4 ps-2">
+                        <div class="row g-2">
+                            <!-- Static small boxes as before -->
+                            @foreach($blogHighlights as $blogHighlight)
+                                @php
+                                    \Carbon\Carbon::setLocale('pt_BR');
+                                    $dataFormatada = \Carbon\Carbon::parse($blogHighlight->date)->translatedFormat('d \d\e F \d\e Y');
+                                @endphp
+                                <div class="col-md-12 box-small">
+                                    <article>
+                                        <div class="position-relative overflow-hidden" style="height: 246px;">
+                                            <img class="img-fluid h-100 w-100"
+                                            src="{{ $blogHighlight->path_image_thumbnail ? asset('storage/'.$blogHighlight->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=montserrat' }}"
+                                            alt="{{ $blogHighlight->title ? $blogHighlight->title : 'Sem imagem'}}"
+                                            style="object-fit: cover; aspect-ratio: 1 / 1;">
+                                            <div class="overlay">
+                                                <div class="mb-2 d-flex justify-content-start align-items-center gap-1 flex-wrap">
+                                                    <span class="badge background-red text-uppercase montserrat-semiBold font-12 py-2 px-2 me-2">{{$blogHighlight->category->title}}</span>
+                                                    <p class="text-white mb-0 montserrat-regular font-12">{{$dataFormatada}}</p>
+                                                </div>
+                                                <a href="{{route('blog-inner', ['slug' => $blogHighlight->slug])}}">                              
+                                                    <h2 class="h6 m-0 text-white text-uppercase montserrat-bold font-16 d-block">{{$blogHighlight->title}}</h2>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </article>
                                 </div>
                             @endforeach
                         </div>
                     </div>
-                    <div class="nav-video position-absolute d-flex flex-column align-items-end me-5">
-                        <div class="swiper-button-up">▲</div>
-                        <div class="swiper-button-down">▼</div>
-                    </div>
-                </div>
-
-                <!-- Player -->
-                <div class="right col-7 bg-black d-flex justify-content-center align-items-center">
-                    <iframe id="videoPlayer" class="w-100 h-100"
-                            src=""
-                            title="Vídeo"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-    </section>
-@endif
-
-@if (isset($trendingCategories) && $trendingCategories->count() > 0)
-    <section class="category-blog-home py-0 mt-5">
-        <div class="container-fluid p-0">
-            <div class="row g-3 justify-content-start">
-                @foreach($trendingCategories as $trendingCategory)                
-                    <div class="col-6 col-sm-4 col-md-2 d-flex justify-content-center p-0 mt-0">
-                        <div class="box-category text-center w-100 position-relative overflow-hidden">
-                            @if (isset($trendingCategory->path_image) && $trendingCategory->path_image <> null)
-                                <img src="{{asset('storage/' . $trendingCategory->path_image)}}" alt="" class="w-100 img-fluid mx-auto">
-                                @else
-                                <img src="{{asset('build/client/images/category-blog.png')}}" alt="" class="w-100 img-fluid mx-auto">
-                            @endif
-                            <div class="overlay">
-                                <a href="{{ route('blog', ['category' => $trendingCategory->slug]) }}#news" class="w-100 text-center">
-                                    <h4 class="title montserrat-semiBold font-18 text-white mt-2">{{$trendingCategory->title}}</h4>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+                @endif
             </div>
         </div>
     </section>
@@ -354,6 +180,82 @@
                         </div>
                     </div>
                 @endif
+            </div>
+        </div>
+    </section>
+@endif
+
+@if ($announcements->count())                        
+    <div class="mb-3">
+        @include('client.includes.announcement')
+    </div>
+@endif
+
+@if (!empty($videos) && $videos->count() > 0)
+    <section class="video">
+        <div class="container-fluid p-0">
+            <div class="content-video d-flex justify-content-center align-items-center bg-black">
+                <!-- Lista -->
+                <div class="left col-5 dark-background h-100 d-flex justify-content-center align-items-end flex-column position-relative">
+                    <div class="swiper mySwiper position-relative">
+                        <div class="swiper-wrapper py-4 flex-column align-items-start justify-content-start m-auto position-relative">
+                            @foreach($videos as $video)
+                                <div class="swiper-slide align-items-center mb-3 justify-content-start"
+                                    data-video="{{ $video->link }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="external-icon" viewBox="0 0 28.57 20" focusable="false" style="pointer-events: none; display: block; width: 35px; height: auto;">
+                                        <svg viewBox="0 0 28.57 20" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+                                            <g>
+                                                <path d="M27.9727 3.12324C27.6435 1.89323 26.6768 0.926623 25.4468 0.597366C23.2197 2.24288e-07 14.285 0 14.285 0C14.285 0 5.35042 2.24288e-07 3.12323 0.597366C1.89323 0.926623 0.926623 1.89323 0.597366 3.12324C2.24288e-07 5.35042 0 10 0 10C0 10 2.24288e-07 14.6496 0.597366 16.8768C0.926623 18.1068 1.89323 19.0734 3.12323 19.4026C5.35042 20 14.285 20 14.285 20C14.285 20 23.2197 20 25.4468 19.4026C26.6768 19.0734 27.6435 18.1068 27.9727 16.8768C28.5701 14.6496 28.5701 10 28.5701 10C28.5701 10 28.5677 5.35042 27.9727 3.12324Z" fill="#FF0000"></path>
+                                                <path d="M11.4253 14.2854L18.8477 10.0004L11.4253 5.71533V14.2854Z" fill="white"></path>
+                                            </g>
+                                        </svg>
+                                    </svg>
+                                    <h3 class="title montserrat-medium font-16 mb-0 col-10">
+                                        {{ $video->title ?? 'Vídeo' }}
+                                    </h3>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="nav-video position-absolute d-flex flex-column align-items-end me-5">
+                        <div class="swiper-button-up">▲</div>
+                        <div class="swiper-button-down">▼</div>
+                    </div>
+                </div>
+
+                <!-- Player -->
+                <div class="right col-7 bg-black d-flex justify-content-center align-items-center">
+                    <iframe id="videoPlayer" class="w-100 h-100"
+                            src=""
+                            title="Vídeo"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+@endif
+
+@if (isset($trendingCategories) && $trendingCategories->count() > 0)
+    <section class="category-blog-home py-0 mt-5">
+        <div class="container-fluid p-0">
+            <div class="row g-3 justify-content-start">
+                @foreach($trendingCategories as $trendingCategory)                
+                    <div class="col-6 col-sm-4 col-md-2 d-flex justify-content-center p-0 mt-0">
+                        <div class="box-category text-center w-100 position-relative overflow-hidden">
+                            @if (isset($trendingCategory->path_image) && $trendingCategory->path_image <> null)
+                                <img src="{{asset('storage/' . $trendingCategory->path_image)}}" alt="" class="w-100 img-fluid mx-auto">
+                                @else
+                                <img src="{{asset('build/client/images/category-blog.png')}}" alt="" class="w-100 img-fluid mx-auto">
+                            @endif
+                            <div class="overlay">
+                                <a href="{{ route('blog', ['category' => $trendingCategory->slug]) }}#news" class="w-100 text-center">
+                                    <h4 class="title montserrat-semiBold font-18 text-white mt-2">{{$trendingCategory->title}}</h4>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
