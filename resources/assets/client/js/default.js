@@ -168,13 +168,17 @@
         });
     });
 
-    if (document.getElementById('socialLinks')) {
-        document.getElementById('shareBtn').addEventListener('click', function() {
-            const links = document.getElementById('socialLinks');
-            links.classList.toggle('opacity-0');
+    document.querySelectorAll('[id^="shareBtn-"]').forEach(button => {
+        button.addEventListener('click', function() {
+            const itemId = this.id.replace('shareBtn-', '');
+            const links = document.getElementById('socialLinks-' + itemId);
+            if (links) {
+                links.classList.toggle('opacity-0');
+            }
         });
-    }
+    });
 
+    
     //Menu mobile
     const s = document.getElementById("menu-toggle"),
         a = document.getElementById("menu-mobile"),

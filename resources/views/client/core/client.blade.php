@@ -961,5 +961,34 @@
             }, document.body.appendChild(o)
         }))
     </script>
+    <script>
+        document.addEventListener('click', function(event) {
+            // Verifica TODOS os botões share, independente do padrão
+            const btn = event.target.closest('[id^="btnShare"]');
+            if (!btn) return;
+
+            console.log('Botão clicado:', btn.id);
+            
+            let itemId, linksId;
+            
+            // Detecta o padrão do ID e constrói o ID correspondente dos links
+            if (btn.id.startsWith('btnShare-filter-')) {
+                itemId = btn.id.replace('btnShare-filter-', '');
+                linksId = 'socialLinks-filter-' + itemId;
+            } else if (btn.id.startsWith('btnShare-')) {
+                itemId = btn.id.replace('btnShare-', '');
+                linksId = 'socialLinks-' + itemId;
+            }
+            
+            console.log('Procurando links com ID:', linksId);
+            const links = document.getElementById(linksId);
+            console.log('Links encontrados:', links);
+
+            if (links) {
+                links.classList.toggle('opacity-0');
+                console.log('Toggle realizado!');
+            }
+        });
+    </script>
 </body>
 </html>

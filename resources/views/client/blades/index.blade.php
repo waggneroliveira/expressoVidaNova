@@ -1,31 +1,6 @@
 @extends('client.core.client')
 @section('content')
 
-@if (isset($topics) && $topics->count() > 0)
-    <section id="topic" class="topic">
-        <div class="container py-5">
-            <div class="row g-3 justify-content-center">
-                @foreach($topics as $topic)                
-                    <div class="col-12 col-sm-4 col-md-2 d-flex justify-content-center position-relative">
-                        @if (isset($topic->link) && $topic->link <> null)                            
-                            <a href="{{$topic->link}}" class="position-absolute top-0 left-0 w-100 h-100" rel="noopener noreferrer"></a>
-                        @endif
-                        <div class="partner-card {{isset($topics) ? $topic->color : 'dark-background'}} border rounded-2 d-flex flex-column justify-content-center align-items-start gap-3 p-3 w-100">
-                            @if ($topic->path_image <> null)                                
-                                <img src="{{ asset('storage/' . $topic->path_image) }}" 
-                                    alt="Logo do parceiro" 
-                                    class="img-fluid" 
-                                    loading="lazy"/>
-                            @endif
-                            <h2 class="montserrat-bold montserrat-bold font-18  mb-0 title-blue text-uppercase mb-0 text-white">{{$topic->title}}</h2>                            
-                        </div>                        
-                    </div>                                      
-                @endforeach
-            </div>
-        </div>
-    </section>
-@endif
-
 @if (isset($blogSuperHighlights) && $blogSuperHighlights <> null)
     <section class="blog mb-0 mt-5">
         <div class="container">
@@ -48,13 +23,33 @@
                                             style="object-fit: cover; aspect-ratio: 1.91/1;">
 
                                             <div class="overlay">
-                                                <div class="mb-2 d-flex justify-content-center align-items-center gap-1 flex-wrap">
-                                                    <span class="badge rounded-0 background-red montserrat-semiBold font-12 text-uppercase py-2 px-2 me-2">{{$blogSuperHighlight->category->title}}</span>
-                                                    <p class="text-white mb-0 montserrat-regular font-15">{{$dataFormatada}}</p>
+                                                <div class="mb-3 d-flex justify-content-center align-items-center gap-1 flex-wrap">
+                                                    <span class="badge rounded-0 background-red montserrat-semiBold font-12 text-uppercase py-2 px-2 me-2">{{$blogSuperHighlight->category->title}}</span>                                   
                                                 </div>
                                                 <a href="{{route('blog-inner', ['slug' => $blogSuperHighlight->slug])}}">
-                                                    <h1 class="h2 m-0 text-white text-uppercase montserrat-bold font-32 d-block">{{$blogSuperHighlight->title}}</h1>
+                                                    <h1 class="h2 m-0 text-white montserrat-bold font-32 d-block">{{$blogSuperHighlight->title}}</h1>
                                                 </a>
+                                                <div class="description-blog mt-2">{!!substr(strip_tags($blogSuperHighlight->text), 0, 400)!!}...</div>
+
+                                                <div class="d-flex justify-content-between gap-2 align-items-center w-100">
+                                                    <p class="text-white mt-3 montserrat-regular font-15 col-8 col-lg-10">{{$dataFormatada}}</p>
+
+                                                    <div id="socialLinks-{{$blogSuperHighlight->id}}" class="social-links home opacity-0">
+                                                        <div class="d-flex gap-2">
+                                                            <a href="https://api.whatsapp.com/send?text={{ urlencode($blogSuperHighlight->title . ' ' . url()->current()) }}" target="_blank" class="rounded-circle btn btn-sm bg-whatsapp bg-transparent p-0"><i class="fab fa-whatsapp text-white"></i></a>    
+                                                            <a href="https://twitter.com/intent/tweet?url={{ urlencode(url()->current()) }}&text={{ urlencode($blogSuperHighlight->title) }}" target="_blank" class="rounded-circle btn btn-sm btn-twiter bg-transparent p-0"><i class="fab fa-x-twitter text-white"></i></a>
+                                                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}" target="_blank" class="rounded-circle btn btn-facebook btn-sm bg-transparent p-0"><i class="fab fa-facebook-f text-white"></i></a>
+                                                        </div>
+                                                    </div>  
+
+                                                    <button id="shareBtn-{{$blogSuperHighlight->id}}" 
+                                                            data-target="socialLinks-{{$blogSuperHighlight->id}}"
+                                                            class="share-button d-flex">
+                                                        <svg width="24" height="26" viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M4.28845 8.58841C1.92459 8.58841 0 10.5692 0 13.002C0 15.4348 1.92459 17.4155 4.28845 17.4155C5.68567 17.4155 6.92779 16.7195 7.70969 15.6506L15.6837 20.0897C15.5186 20.5571 15.4231 21.0603 15.4231 21.5864C15.4231 24.0193 17.3477 26 19.7115 26C22.0754 26 24 24.0193 24 21.5864C24 19.1536 22.0754 17.1729 19.7115 17.1729C18.3143 17.1729 17.0722 17.8689 16.2903 18.9378L8.31633 14.4987C8.48136 14.0313 8.57691 13.5281 8.57691 12.9982C8.57691 12.4682 8.47516 11.9356 8.3002 11.4554L16.2033 6.94346C16.9789 8.08134 18.262 8.82714 19.71 8.82714C22.0739 8.82714 23.9985 6.84639 23.9985 4.41357C23.9985 1.98074 22.0739 0 19.71 0C17.3462 0 15.4216 1.98074 15.4216 4.41357C15.4216 4.88736 15.4973 5.34584 15.6313 5.77367L7.67731 10.3151C6.89306 9.26915 5.66339 8.58848 4.28466 8.58848L4.28845 8.58841ZM19.7148 18.4846C21.3788 18.4846 22.7326 19.8779 22.7326 21.5905C22.7326 23.303 21.3788 24.6963 19.7148 24.6963C18.0508 24.6963 16.697 23.303 16.697 21.5905C16.697 21.0605 16.8273 20.5611 17.0556 20.1231C17.0556 20.1231 17.0594 20.1167 17.0618 20.1167C17.0618 20.1129 17.0618 20.1065 17.068 20.1039C17.583 19.1397 18.5732 18.4859 19.7136 18.4859L19.7148 18.4846ZM19.7148 1.30799C21.3788 1.30799 22.7326 2.70127 22.7326 4.41383C22.7326 6.12639 21.3788 7.51967 19.7148 7.51967C18.0508 7.51967 16.697 6.12639 16.697 4.41383C16.697 2.70127 18.0508 1.30799 19.7148 1.30799ZM4.28845 16.1081C2.62444 16.1081 1.27065 14.7149 1.27065 13.0023C1.27065 11.2897 2.62444 9.89646 4.28845 9.89646C5.95247 9.89646 7.30626 11.2897 7.30626 13.0023C7.30626 13.5348 7.17596 14.0355 6.94393 14.4735C6.94393 14.4735 6.94393 14.4773 6.94021 14.4799C6.94021 14.4799 6.94021 14.4863 6.93648 14.4863C6.42524 15.4504 5.42758 16.1081 4.28724 16.1081L4.28845 16.1081Z" fill="white"/>
+                                                        </svg>
+                                                    </button>   
+                                                </div>
                                             </div>
                                         </div>
                                     </article>
@@ -84,11 +79,29 @@
                                             <div class="overlay">
                                                 <div class="mb-2 d-flex justify-content-start align-items-center gap-1 flex-wrap">
                                                     <span class="badge rounded-0 background-red text-uppercase montserrat-semiBold font-12 py-2 px-2 me-2">{{$blogHighlight->category->title}}</span>
-                                                    <p class="text-white mb-0 montserrat-regular font-12">{{$dataFormatada}}</p>
                                                 </div>
                                                 <a href="{{route('blog-inner', ['slug' => $blogHighlight->slug])}}">                              
-                                                    <h2 class="h6 m-0 text-white text-uppercase montserrat-bold font-16 d-block">{{$blogHighlight->title}}</h2>
+                                                    <h2 class="h6 m-0 text-white montserrat-bold font-20 d-block">{{$blogHighlight->title}}</h2>
                                                 </a>
+                                                <div class="d-flex justify-content-between align-items-center w-100">
+                                                    <p class="text-white mt-3 montserrat-regular font-14 col-8">{{$dataFormatada}}</p>
+                                                    
+                                                    <div id="socialLinks-{{$blogHighlight->id}}" class="social-links home opacity-0">
+                                                        <div class="d-flex gap-2">
+                                                            <a href="https://api.whatsapp.com/send?text={{ urlencode($blogHighlight->title . ' ' . url()->current()) }}" target="_blank" class="rounded-circle btn btn-sm bg-whatsapp bg-transparent p-0"><i class="fab fa-whatsapp text-white"></i></a>    
+                                                            <a href="https://twitter.com/intent/tweet?url={{ urlencode(url()->current()) }}&text={{ urlencode($blogHighlight->title) }}" target="_blank" class="rounded-circle btn btn-sm btn-twiter bg-transparent p-0"><i class="fab fa-x-twitter text-white"></i></a>
+                                                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}" target="_blank" class="rounded-circle btn btn-facebook btn-sm bg-transparent p-0"><i class="fab fa-facebook-f text-white"></i></a>
+                                                        </div>
+                                                    </div>  
+
+                                                    <button id="shareBtn-{{$blogHighlight->id}}" 
+                                                            data-target="socialLinks-{{$blogHighlight->id}}"
+                                                            class="share-button d-flex">
+                                                        <svg width="18" height="20" viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M4.28845 8.58841C1.92459 8.58841 0 10.5692 0 13.002C0 15.4348 1.92459 17.4155 4.28845 17.4155C5.68567 17.4155 6.92779 16.7195 7.70969 15.6506L15.6837 20.0897C15.5186 20.5571 15.4231 21.0603 15.4231 21.5864C15.4231 24.0193 17.3477 26 19.7115 26C22.0754 26 24 24.0193 24 21.5864C24 19.1536 22.0754 17.1729 19.7115 17.1729C18.3143 17.1729 17.0722 17.8689 16.2903 18.9378L8.31633 14.4987C8.48136 14.0313 8.57691 13.5281 8.57691 12.9982C8.57691 12.4682 8.47516 11.9356 8.3002 11.4554L16.2033 6.94346C16.9789 8.08134 18.262 8.82714 19.71 8.82714C22.0739 8.82714 23.9985 6.84639 23.9985 4.41357C23.9985 1.98074 22.0739 0 19.71 0C17.3462 0 15.4216 1.98074 15.4216 4.41357C15.4216 4.88736 15.4973 5.34584 15.6313 5.77367L7.67731 10.3151C6.89306 9.26915 5.66339 8.58848 4.28466 8.58848L4.28845 8.58841ZM19.7148 18.4846C21.3788 18.4846 22.7326 19.8779 22.7326 21.5905C22.7326 23.303 21.3788 24.6963 19.7148 24.6963C18.0508 24.6963 16.697 23.303 16.697 21.5905C16.697 21.0605 16.8273 20.5611 17.0556 20.1231C17.0556 20.1231 17.0594 20.1167 17.0618 20.1167C17.0618 20.1129 17.0618 20.1065 17.068 20.1039C17.583 19.1397 18.5732 18.4859 19.7136 18.4859L19.7148 18.4846ZM19.7148 1.30799C21.3788 1.30799 22.7326 2.70127 22.7326 4.41383C22.7326 6.12639 21.3788 7.51967 19.7148 7.51967C18.0508 7.51967 16.697 6.12639 16.697 4.41383C16.697 2.70127 18.0508 1.30799 19.7148 1.30799ZM4.28845 16.1081C2.62444 16.1081 1.27065 14.7149 1.27065 13.0023C1.27065 11.2897 2.62444 9.89646 4.28845 9.89646C5.95247 9.89646 7.30626 11.2897 7.30626 13.0023C7.30626 13.5348 7.17596 14.0355 6.94393 14.4735C6.94393 14.4735 6.94393 14.4773 6.94021 14.4799C6.94021 14.4799 6.94021 14.4863 6.93648 14.4863C6.42524 15.4504 5.42758 16.1081 4.28724 16.1081L4.28845 16.1081Z" fill="white"/>
+                                                        </svg>
+                                                    </button>                                                                                                      
+                                                </div>
                                             </div>
                                         </div>
                                     </article>
@@ -117,14 +130,14 @@
                         </div>
                         <nav class="mt-3">
                             <ul class="list-unstyled d-flex flex-row flex-wrap gap-2 gap-md-3 justify-content-start mb-0">
-                                <li class="py-1 py-sm-2 px-2 px-sm-3 text-uppercase montserrat-semiBold font-14 text-white background-red active">
+                                <li class="py-1 py-sm-2 px-2 px-sm-3 text-uppercase montserrat-semiBold font-14 text-white bg-blue-light background-red active">
                                     <a href="javascript:void(0)" class="text-decoration-none text-white category-filter" data-category="todas">
                                         Todas
                                     </a>
                                 </li>
                                 
                                 @foreach($recentCategories as $index => $category)
-                                    <li class="py-2 px-1 px-sm-3 text-uppercase montserrat-semiBold font-14 text-black">
+                                    <li class="py-2 px-1 px-sm-3 text-uppercase montserrat-semiBold font-14 text-black bg-blue-light">
                                         <a href="javascript:void(0)" class="text-decoration-none text-black category-filter" data-category="{{ $category->slug }}">
                                             {{ $category->title }}
                                         </a>
@@ -133,9 +146,8 @@
                             </ul>
                         </nav>
 
-                        <div id="news-container" class="mt-5">
+                        <div id="news-container" class="mt-5 border p-5 bg-white rounded-2">
                             @include('client.ajax.filter-blog-homePage', [
-                                'featuredNews' => $featuredNews,
                                 'latestNews' => $latestNews
                             ])
                         </div>
