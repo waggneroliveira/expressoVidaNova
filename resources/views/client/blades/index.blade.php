@@ -247,31 +247,6 @@
     </section>
 @endif
 
-@if (isset($trendingCategories) && $trendingCategories->count() > 0)
-    <section class="category-blog-home py-0 mt-5">
-        <div class="container-fluid p-0">
-            <div class="row g-3 justify-content-start">
-                @foreach($trendingCategories as $trendingCategory)                
-                    <div class="col-6 col-sm-4 col-md-2 d-flex justify-content-center p-0 mt-0">
-                        <div class="box-category text-center w-100 position-relative overflow-hidden">
-                            @if (isset($trendingCategory->path_image) && $trendingCategory->path_image <> null)
-                                <img src="{{asset('storage/' . $trendingCategory->path_image)}}" alt="" class="w-100 img-fluid mx-auto">
-                                @else
-                                <img src="{{asset('build/client/images/category-blog.png')}}" alt="" class="w-100 img-fluid mx-auto">
-                            @endif
-                            <div class="overlay">
-                                <a href="{{ route('blog', ['category' => $trendingCategory->slug]) }}#news" class="w-100 text-center">
-                                    <h4 class="title montserrat-semiBold font-18 text-white mt-2">{{$trendingCategory->title}}</h4>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-@endif
-
 @include('client.includes.complaint')
 
 @include('client.includes.social')
