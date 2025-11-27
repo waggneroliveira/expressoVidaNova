@@ -234,19 +234,30 @@
                                         @endif
                                     </ul>
                                 </li>
-                                @if ($blogCategories->count())
-                                    @foreach ($blogCategories as $category)
-                                        <li class="h-100 d-flex align-items-center px-2">
-                                            <a href="{{ route('blog', ['category' => $category->slug]) }}#news"
-                                            class="nav-link montserrat-bold text-center font-12 text-uppercase
-                                            {{ (request()->routeIs('blog-inner') && isset($blogInner) && $blogInner->category->id === $category->id) ||
-                                                (request()->routeIs('blog') && request()->route('category') === $category->slug)
-                                                ? 'active' : '' }}">
-                                                {{ $category->title }}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                @endif
+                                <li class="nav-item dropdown h-100 d-flex align-items-center px-2">
+                                    <a class="nav-link dropdown-toggle montserrat-bold text-center font-12 text-uppercase" 
+                                        href="{{ route('blog') }}" 
+                                        id="noticiasDropdown" 
+                                        role="button" 
+                                        data-bs-toggle="dropdown" 
+                                        aria-expanded="false">
+                                        Notícias
+                                    </a>
+
+                                    <ul class="dropdown-menu" aria-labelledby="noticiasDropdown">
+                                        @if ($blogCategories->count())
+                                            @foreach ($blogCategories as $category)
+                                                <li>
+                                                    <a class="dropdown-item montserrat-medium text-start font-15" 
+                                                    href="{{ route('blog', ['category' => $category->slug]) }}#news">
+                                                        {{ $category->title }}
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                        @endif
+                                    </ul>
+                                </li>
+
                                 <li class="h-100 d-flex align-items-center px-2"><a href="{{route('contact')}}" class="nav-link montserrat-bold text-center font-12 text-uppercase {{ request()->routeIs('contact') ? 'active' : '' }}">Contato</a></li>
                             </ul>                      
                         </nav>
