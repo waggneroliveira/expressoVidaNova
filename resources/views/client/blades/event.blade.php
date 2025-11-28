@@ -54,7 +54,7 @@
 <div class="d-flex justify-content-start gap-2 align-items-start flex-nowrap mt-5 mb-3">
     <span class="firula-contact mt-2"></span>
     <div class="description">
-        <h1 class="montserrat-bold font-30 mb-0 title-blue text-uppercase">Agenda</h1>
+        <h1 class="montserrat-bold font-30 mb-0 title-blue text-uppercase">Eventos</h1>
     </div>
 </div>
 

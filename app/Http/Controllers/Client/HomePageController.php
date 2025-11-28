@@ -105,6 +105,13 @@ class HomePageController extends Controller
         ->get();
 
         $blogCategories = BlogCategory::whereHas('blogs')->active()->sorting()->get();
+
+        $startOfWeek = Carbon::now()->startOfWeek(Carbon::SUNDAY); // começa no domingo
+        $endOfWeek   = Carbon::now()->endOfWeek(Carbon::SATURDAY); // termina no sábado
+        $events = Event::active()
+        ->whereBetween('date', [$startOfWeek, $endOfWeek])
+        ->orderBy('date', 'asc')
+        ->get();
         
         return view('client.blades.index', compact(
             'latestNews', 
@@ -123,6 +130,7 @@ class HomePageController extends Controller
             'blogRelacionados', 
             'announcementVerticals', 
             'blogCategories', 
+            'events', 
             'topics')
         );
     }
