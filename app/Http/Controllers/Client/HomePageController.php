@@ -29,6 +29,7 @@ class HomePageController extends Controller
         $blogSuperHighlights = Blog::whereHas('category', function($active){
             $active->where('active', 1);
         })->superHighlightOnly()->active()->sorting()->limit(6)->get();
+
         $blogHighlights = Blog::whereHas('category', function($active){
             $active->where('active', 1);
         })->highlightOnly()->active()->sorting()->limit(2)->get();
@@ -77,6 +78,7 @@ class HomePageController extends Controller
             }])
             ->orderBy('created_at', 'DESC')
             ->active()
+            ->limit(10)
             ->get();
 
         // Pegando os IDs para excluir
@@ -86,7 +88,7 @@ class HomePageController extends Controller
             ->whereNotIn('blog_category_id', $excludedIds)
             ->active()
             ->sorting()
-            ->take(4)
+            ->take(10)
             ->get();
 
         $announcementVerticals = Announcement::select(
@@ -102,6 +104,8 @@ class HomePageController extends Controller
         ->sorting()
         ->get();
 
+        $blogCategories = BlogCategory::whereHas('blogs')->active()->sorting()->get();
+        
         return view('client.blades.index', compact(
             'latestNews', 
             'recentCategories', 
@@ -118,6 +122,7 @@ class HomePageController extends Controller
             'announcements', 
             'blogRelacionados', 
             'announcementVerticals', 
+            'blogCategories', 
             'topics')
         );
     }
@@ -129,7 +134,8 @@ class HomePageController extends Controller
                 $active->where('active', 1);
             })
             ->with(['category'])
-            ->active();
+            ->active()
+            ->limit(10);
 
             // Se uma categoria específica for selecionada
             if ($categorySlug && $categorySlug !== 'todas') {

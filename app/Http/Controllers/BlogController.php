@@ -58,7 +58,7 @@ class BlogController extends Controller
         }
 
         // Paginação
-        $blogs = $blogsQuery->orderBy('date', 'desc')->paginate(10)->withQueryString();
+        $blogs = $blogsQuery->orderBy('date', 'desc')->paginate(60)->withQueryString();
 
         // Contagem de comentários pendentes
         $commentCount = Blog::with(['comments' => function ($query) {
