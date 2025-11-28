@@ -297,9 +297,130 @@
         </div>
     </section>
 @endif
+<section id="no-bairro">
+    @if ($latestNews->count() > 0) 
+        <div class="container border-bottom news mb-0 pe-0">
+            <div class="px-0 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
+                <h2 class="section-title d-table p-0 w-auto m-0 mb-3 montserrat-bold font-28 title-blue">
+                    No Bairro
+                </h2>
+
+                <!-- Navegação EXTERNA -->
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="swiper-button-prev-one text-center">
+                        <svg width="17" height="25" viewBox="0 0 17 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.6671 0L0.000387192 12.5L12.6671 25L16.2617 21.4526L7.18705 12.5L16.2617 3.54737L12.6671 0Z" fill="black"/>
+                        </svg>
+                    </div>
+                    <div class="swiper-button-next-one text-center">
+                        <svg width="17" height="25" viewBox="0 0 17 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.59467 25L16.2613 12.5L3.59467 0L0 3.54737L9.07467 12.5L0 21.4526L3.59467 25Z" fill="black"/>
+                        </svg>             
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid m-auto me-0 mt-5 pe-0" style="padding-left: 100px;">
+            <div class="swiper myNewsSwiper">            
+                <div class="swiper-wrapper">
+                    @foreach($latestNews as $news)
+                        @php
+                            \Carbon\Carbon::setLocale('pt_BR');
+                            $dataFormatada = \Carbon\Carbon::parse($news->date)->translatedFormat('d \d\e F \d\e Y');
+                        @endphp
+                        
+                        <div class="swiper-slide">
+                            <article class="col-12">
+                                <div class="d-flex flex-column align-items-center bg-white mb-4 overflow-hidden position-relative">
+
+                                    <div class="position-absolute mt-2 start-0">
+                                        <span class="badge rounded-0 badge-primary montserrat-semiBold font-10 text-uppercase py-2 px-2 mr-2 background-red">
+                                            {{ $news->category->title }}
+                                        </span>
+                                    </div>
+
+                                    <img loading="lazy" class="img-fluid w-100 rounded-1"
+                                    src="{{ $news->path_image_thumbnail ? asset('storage/' . $news->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=montserrat' }}"
+                                    alt="{{ $news->title }}"
+                                    style="height: 232px;aspect-ratio:1/1;object-fit: cover;">
+
+                                    <div class="col-12 my-3 h-100 px-0 d-flex flex-column justify-content-center position-relative">                        
+                                        <a href="{{ route('blog-inner', $news->slug) }}" class="underline">
+                                            <h3 class="h6 m-0 montserrat-bold font-14 title-blue">
+                                                {{ Str::limit($news->title, 60) }}
+                                            </h3>
+                                        </a>
+
+                                        <p class="text-color my-3 montserrat-regular font-15">
+                                            {!! substr(strip_tags($news->text), 0, 200) !!}...
+                                        </p>
+
+                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                            <p class="text-color mb-0 montserrat-regular font-12 col-8">{{$dataFormatada}}</p>
+
+                                            <div id="socialLinks-filter-{{$news->id}}" class="social-links home opacity-0">
+                                                <div class="d-flex gap-2">
+                                                    <a href="https://api.whatsapp.com/send?text={{ urlencode($news->title . ' ' . url()->current()) }}" class="rounded-circle btn btn-sm bg-transparent p-0"><i class="fab fa-whatsapp text-dark"></i></a>    
+                                                    <a href="https://twitter.com/intent/tweet?url={{ urlencode(url()->current()) }}&text={{ urlencode($news->title) }}" class="rounded-circle btn btn-sm bg-transparent p-0"><i class="fab fa-x-twitter text-dark"></i></a>
+                                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}" class="rounded-circle btn btn-sm bg-transparent p-0"><i class="fab fa-facebook-f text-dark"></i></a>
+                                                </div>
+                                            </div>  
+
+                                            <button id="btnShare-filter-{{$news->id}}" 
+                                                    data-target="socialLinks-filter-{{$news->id}}"
+                                                    class="share-button d-flex">
+                                                <svg width="18" height="20" viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M4.28845 8.58841C1.92459 8.58841 0 10.5692 0 13.002C0 15.4348 1.92459 17.4155 4.28845 17.4155C5.68567 17.4155 6.92779 16.7195 7.70969 15.6506L15.6837 20.0897C15.5186 20.5571 15.4231 21.0603 15.4231 21.5864C15.4231 24.0193 17.3477 26 19.7115 26C22.0754 26 24 24.0193 24 21.5864C24 19.1536 22.0754 17.1729 19.7115 17.1729C18.3143 17.1729 17.0722 17.8689 16.2903 18.9378L8.31633 14.4987C8.48136 14.0313 8.57691 13.5281 8.57691 12.9982C8.57691 12.4682 8.47516 11.9356 8.3002 11.4554L16.2033 6.94346C16.9789 8.08134 18.262 8.82714 19.71 8.82714C22.0739 8.82714 23.9985 6.84639 23.9985 4.41357C23.9985 1.98074 22.0739 0 19.71 0C17.3462 0 15.4216 1.98074 15.4216 4.41357C15.4216 4.88736 15.4973 5.34584 15.6313 5.77367L7.67731 10.3151C6.89306 9.26915 5.66339 8.58848 4.28466 8.58848L4.28845 8.58841Z" fill="#282828"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>    
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    @endif
+</section>
+<style>
+.swiper-button-prev-one,
+.swiper-button-next-one {
+    position: relative; /* mantém o botão no topo, onde você colocou */
+    color: #003366;
+    width: 32px;
+    height: 32px;
+    z-index: 10;
+}
+
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        if (typeof Swiper === 'undefined') {
+            console.error('Swiper não carregado');
+            return;
+        }
+
+        const newsSwiper = new Swiper('.myNewsSwiper', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            navigation: {
+            nextEl: ".swiper-button-next-one",
+            prevEl: ".swiper-button-prev-one",
+            },
+            breakpoints: {
+            576: { slidesPerView: 1.2 },
+            768: { slidesPerView: 2.5 },
+            1200: { slidesPerView: 4.5 }
+            }
+        });
+    });
+</script>
 
 @if (!empty($videos) && $videos->count() > 0)
-    <section class="video">
+    <section class="video mt-5">
         <div class="container p-0">
             <div class="border-bottom news mb-4 col-lg-8 col-12">
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-end">
@@ -377,10 +498,10 @@
             </div>
         </div>
 
-        <div class="bg-white py-3 mt-5 d-flex justify-content-start align-items-center gap-2 flex-wrap">      
+        <div class="py-3 mt-5 d-flex justify-content-start align-items-center gap-2 flex-wrap">      
             @foreach($events as $event)                        
                 <article class="col-12 col-sm-6 col-lg-3">
-                    <div class="d-flex align-items-center bg-white mb-3 overflow-hidden" style="height: 80px;">
+                    <div class="d-flex align-items-center bg-white mb-3 overflow-hidden shadow-video-current" style="height: 80px;">
                         <div class="background-red date col-4 h-100 d-flex justify-content-center align-items-center">
                             <span class="montserrat-bold col-9 h-100 d-flex justify-content-center align-items-center font-20 text-white">
                                 {{ \Carbon\Carbon::parse($event->date)->format('d') }}
