@@ -435,7 +435,4 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-@include('client.includes.complaint')
-
-@include('client.includes.social')
 @endsection

@@ -258,6 +258,7 @@
                                     </ul>
                                 </li>
 
+                                <li class="h-100 d-flex align-items-center px-2"><a href="{{route('client.event')}}" class="nav-link montserrat-bold text-center font-12 text-uppercase {{ request()->routeIs('client.event') ? 'active' : '' }}">Eventos</a></li>
                                 <li class="h-100 d-flex align-items-center px-2"><a href="{{route('contact')}}" class="nav-link montserrat-bold text-center font-12 text-uppercase {{ request()->routeIs('contact') ? 'active' : '' }}">Contato</a></li>
                             </ul>                      
                         </nav>

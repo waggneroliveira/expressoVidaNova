@@ -106,10 +106,20 @@ class HomePageController extends Controller
 
         $blogCategories = BlogCategory::whereHas('blogs')->active()->sorting()->get();
 
-        $startOfWeek = Carbon::now()->startOfWeek(Carbon::SUNDAY); // começa no domingo
-        $endOfWeek   = Carbon::now()->endOfWeek(Carbon::SATURDAY); // termina no sábado
+        $blogNoBairros = Blog::whereHas('category', function($query) {
+                $query->where('id', 1)
+                ->where('active', 1);
+            })
+            ->with(['category' => function($query) {
+                $query->select('id', 'title', 'slug');
+            }])
+            ->orderBy('created_at', 'DESC')
+            ->active()
+            ->limit(10)
+            ->get();
+            
         $events = Event::active()
-        ->whereBetween('date', [$startOfWeek, $endOfWeek])
+        ->whereMonth('date', now()->month)
         ->orderBy('date', 'asc')
         ->get();
         
@@ -131,6 +141,7 @@ class HomePageController extends Controller
             'announcementVerticals', 
             'blogCategories', 
             'events', 
+            'blogNoBairros', 
             'topics')
         );
     }

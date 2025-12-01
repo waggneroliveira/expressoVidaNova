@@ -91,7 +91,7 @@ Route::match(['get', 'post'], 'regionais/filter-municipalities', [RegionPageCont
 ->name('client.filter.municipalities');
 
 
-Route::get('agenda', [EventPageController::class, 'index'])->name('client.event');
+Route::get('eventos', [EventPageController::class, 'index'])->name('client.event');
 Route::get('blog/filter/{category?}', [HomePageController::class, 'filterByCategory'])
     ->name('blog.filter');
 
