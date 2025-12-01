@@ -6,7 +6,7 @@
     <div class="input-group mb-2" style="width: 100%;">
         <input type="text" name="email" id="email" class="form-control form-control-lg montserrat-regular text-color font-14" placeholder="Seu e-mail" required>
         <div class="input-group-append">
-            <button type="submit" class="btn background-red text-white montserrat-semiBold font-16 px-3 h-100 rounded-3">
+            <button type="submit" class="btn background-red text-white montserrat-medium font-15 px-2 h-100 rounded-3">
                 Enviar
             </button>
         </div>
