@@ -422,7 +422,7 @@
 @if (!empty($videos) && $videos->count() > 0)
     <section class="video mt-5">
         <div class="container p-0">
-            <div class="border-bottom news m-auto mb-4 col-lg-8 col-11">
+            <div class="border-bottom news m-auto ms-0 mb-4 col-lg-8 col-11">
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-end">
                     <h2 class="section-title d-table p-0 w-auto m-0 mb-3 montserrat-bold font-28 title-blue">
                         Novidades em vídeo
