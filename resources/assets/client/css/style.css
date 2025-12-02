@@ -589,6 +589,9 @@
  .font-16 {
      font-size: 1rem;
  }
+ .font-17 {
+     font-size: 1.063rem;
+ }
 
  .font-18 {
      font-size: 1.125rem;
@@ -1194,9 +1197,9 @@
     margin-right: 8px;
     vertical-align: middle;
  }
- .about:nth-of-type(even){
+#about .about-item:nth-child(even) .about {
     flex-direction: row-reverse !important;
- }
+}
 .about .image{
     aspect-ratio: 1/1;
     max-width: 450px;

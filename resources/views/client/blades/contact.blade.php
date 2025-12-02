@@ -156,7 +156,7 @@
                                         Aceito os termos descritos na Política de Privacidade
                                     </label>
                                 </div>
-                                <button type="submit" class="montserrat-semiBold font-15 btn btn-danger rounded-3 ms-auto px-4">Enviar</button>
+                                <button type="submit" class="montserrat-semiBold font-15 btn background-red text-white rounded-3 ms-auto px-4">Enviar</button>
                             </div>
                         </div>
                     </form>
@@ -177,9 +177,6 @@
                 @endif
             </div>
         </div>
-
-        @include('client.includes.social')
-
     </section>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

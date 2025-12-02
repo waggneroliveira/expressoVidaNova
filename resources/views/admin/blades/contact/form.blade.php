@@ -42,17 +42,7 @@
             <h4 class="page-title">Informações das redes sociais</h4>
             <div class="card card-body">
                 <div class="row g-3">
-                    <div class="col-12 col-md-8">
-                        <label for="name_section_social_media" class="form-label">Nome da sessão</label>
-                        <input type="text" name="name_section_social_media" class="form-control" id="name_section_social_media"
-                            value="{{ $contact->name_section_social_media ?? '' }}" placeholder="Nome da sessão">
-                    </div>
-                    <div class="col-12 col-md-2">
-                        <label for="mention" class="form-label">Menção</label>
-                        <input type="text" name="mention" class="form-control" id="mention"
-                            value="{{ $contact->mention ?? '' }}" placeholder="Menção">
-                    </div>
-                    <div class="col-12 col-md-2">
+                    <div class="col-12 col-md-6">
                         <label for="whatsapp" class="form-label">Whatsapp</label>
                         <input type="text" name="whatsapp" class="form-control" id="whatsapp"
                             value="{{ $contact->whatsapp ?? '' }}" placeholder="Whatsapp">
@@ -91,36 +81,20 @@
 
         {{-- Filiais --}}
         <div class="col-12 mb-4">
-            <h4 class="page-title">Informações das Filiais</h4>
-            <div class="row g-4">
-                @foreach (['one', 'two', 'three'] as $i)
-                    <div class="col-12 col-lg-4">
-                        <div class="card card-body h-100">
-                            <div class="mb-3">
-                                <label for="name_{{ $i }}" class="form-label">Nome da filial {{ $i }}</label>
-                                <input type="text" name="name_{{ $i }}" class="form-control" id="name_{{ $i }}"
-                                    value="{{ $contact->{'name_'.$i} ?? '' }}" placeholder="Título">
-                            </div>
-                            <div class="row g-3 mb-3">
-                                <div class="col-12 col-md-7">
-                                    <label for="opening_hours_{{ $i }}" class="form-label">Horário de funcionamento</label>
-                                    <input type="text" name="opening_hours_{{ $i }}" class="form-control" id="opening_hours_{{ $i }}"
-                                        value="{{ $contact->{'opening_hours_'.$i} ?? '' }}" placeholder="Horário">
-                                </div>
-                                <div class="col-12 col-md-5">
-                                    <label for="phone_{{ $i }}" class="form-label">Telefone</label>
-                                    <input type="text" name="phone_{{ $i }}" class="form-control" id="phone_{{ $i }}"
-                                        value="{{ $contact->{'phone_'.$i} ?? '' }}" placeholder="Telefone">
-                                </div>
-                            </div>
-                            <div>
-                                <label for="address_{{ $i }}" class="form-label">Endereço</label>
-                                <textarea name="address_{{ $i }}" id="address_{{ $i }}" placeholder="Texto" class="form-control ckeditor" rows="5">{!! $contact->{'address_'.$i} ?? '' !!}</textarea>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
+            <h4 class="page-title">Informações de contato</h4>
+
+            <div class="row">
+                <div class="mb-3 col-lg-6 col-12">
+                    <label for="name_one" class="form-label">E-mail</label>
+                    <input type="text" name="name_one" class="form-control" id="name_one"
+                        value="{{ $contact->name_one }}" placeholder="Título">
+                </div>
+                <div class="mb-3 col-lg-6 col-12">
+                    <label for="phone_one" class="form-label">Telefone</label>
+                    <input type="text" name="phone_one" class="form-control" id="phone_one"
+                        value="{{ $contact->phone_one }}" placeholder="Telefone">
+                </div>
+            </div> 
         </div>
     </div>
 </div>
