@@ -28,10 +28,6 @@ export default defineConfig({
                     dest: 'client'
                 },
                 {
-                    src: 'resources/assets/client/css/typed.js',
-                    dest: 'client'
-                },
-                {
                     src: 'resources/assets/client/images',
                     dest: 'client'
                 },                

@@ -947,14 +947,6 @@
 .btn-title, .btn-title-filter{
     color: var(--background-blue);
 }
-.btn.btn-title.btn-juridico:hover{
-    background-color: var(--background-blue);
-    color: var(--color-white);
-}
-.juridico .btn.btn-juridico.btn-title-filter:hover, .btn-title-filter.active{
-    background-color: var(--background-color-grey-medium);
-    color: var(--background-blue);
-}
 
 .btn-region {
     background: #fff;
@@ -992,13 +984,7 @@
 .municipios li:hover::before {
     transform: scale(1.3);
 }
-.regional input::placeholder{
-    font-size: 0.938rem;
-}
 
-.regional .btn:hover{
-    background: var(--background-blue);
-}
  .complaint a{
     color: var(--background-red);
     height: 40px;
@@ -1736,9 +1722,6 @@
      .montserrat-bold.font-30.mb-0.title-blue.text-uppercase{
         font-size: 1.125rem;
      }
-     .regional .btn-region{
-        font-size: 0.75rem;
-     }
     .hero h1 {
         font-size:  1.375rem;
     }
@@ -2047,9 +2030,7 @@
      .d-flex.align-items-center.bg-white.mb-3.overflow-hidden{
         height: 90px !important;
      }
-     .juridico .btn-juridico, .text-color.mb-0.montserrat-regular.font-15, #events-list p {
-        font-size: 0.75rem !important;
-     }
+
      .mb-3.title-blue.montserrat-bold.font-32.text-uppercase{
         font-size: 0.938rem;
      }

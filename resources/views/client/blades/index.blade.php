@@ -152,7 +152,7 @@
                                 </li>
                                 
                                 @foreach($recentCategories as $index => $category)
-                                    <li class="py-0 px-1 px-sm-3 montserrat-semiBold font-14 text-black bg-blue-light">
+                                    <li class="py-0 px-1 px-sm-3 montserrat-semiBold font-14 text-black bg-blue-light d-flex align-items-center justify-content-center">
                                         <a href="javascript:void(0)" class="text-decoration-none text-black category-filter font-15 font-mob" data-category="{{ $category->slug }}">
                                             {{ $category->title }}
                                         </a>

@@ -25,7 +25,6 @@ class HomePageController extends Controller
 {
     public function index()
     {
-        $slides = Slide::active()->sorting()->get();
         $blogSuperHighlights = Blog::whereHas('category', function($active){
             $active->where('active', 1);
         })->superHighlightOnly()->active()->sorting()->limit(6)->get();
@@ -46,12 +45,8 @@ class HomePageController extends Controller
         ->active()
         ->sorting()
         ->get();
-        $topics = Topic::active()->sorting()->get();
         $about = About::active()->first();
-        $partners = Partner::active()->sorting()->get();
         $videos = Video::active()->sorting()->get();
-        $unionized = Unionized::active()->first();
-        $benefitTopics = BenefitTopic::active()->sorting()->get();
         $report = Report::active()->first();
         $contact = Contact::first();
 
@@ -126,14 +121,9 @@ class HomePageController extends Controller
         return view('client.blades.index', compact(
             'latestNews', 
             'recentCategories', 
-            'contact', 
-            'report',
-            'benefitTopics', 
-            'unionized', 
-            'videos', 
-            'partners', 
+            'contact',   
+            'videos',  
             'about', 
-            'slides', 
             'blogSuperHighlights', 
             'blogHighlights', 
             'announcements', 
@@ -141,8 +131,7 @@ class HomePageController extends Controller
             'announcementVerticals', 
             'blogCategories', 
             'events', 
-            'blogNoBairros', 
-            'topics')
+            'blogNoBairros')
         );
     }
 
