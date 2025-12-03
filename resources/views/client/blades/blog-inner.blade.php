@@ -53,7 +53,7 @@
                             </div>                        
                         </article>
 
-                        <div class="d-flex justify-content-between align-items-center">      
+                        <div class="d-flex justify-content-between align-items-start">      
                             <a href="{{route('blog')}}" class="montserrat-semiBold font-16 d-flex justify-content-start align-items-center gap-2 mb-3 text-black col-2">
                                 <svg width="15" height="15" viewBox="0 0 17 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M14.1926 2.20441L2.32113 10.6069C2.05923 10.7927 2.05923 11.2059 2.32113 11.3917L14.1926 19.7941C14.4739 19.9924 14.8716 19.8011 14.8716 19.4017V2.59536C14.8716 2.19742 14.4725 2.00613 14.1926 2.20441ZM1.09904 8.87649L12.9705 0.474006C14.6832 -0.737844 17 0.519764 17 2.59681V19.4032C17 21.4803 14.6831 22.7378 12.9705 21.526L1.09904 13.1221C-0.365655 12.085 -0.367038 9.91502 1.09904 8.87649Z" fill="black"/>
@@ -61,7 +61,7 @@
                                 Voltar
                             </a>                     
                             <div class="position-relative d-flex justify-content-center align-items-end flex-column">
-                                <button class="montserrat-semiBold font-16 d-flex justify-content-around align-items-center btn pt-2 px-0 text-black rounded-0">
+                                <button class="montserrat-semiBold font-16 d-flex justify-content-around align-items-center btn pt-0 px-0 text-black rounded-0">
                                     Compartilhe aqui
                                 </button>
                                 <div class="mt-0">

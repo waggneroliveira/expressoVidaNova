@@ -213,6 +213,7 @@
 .event-item a {
     color: var(--background-blue);
     text-decoration: underline;
+    word-break: break-word;
 }
  .popup {
      display: none;
@@ -271,9 +272,8 @@
  }
 
  .menu-mobile-down {
-     background-color: #00000066;
-     z-index: 12;
-     height: 35px;
+    z-index: 12;
+    height: 17px;
  }
 
  .nav-mob-center {
@@ -415,7 +415,7 @@
      height: 100%;
      background: var(--background-blue);
      z-index: 10 !important;
-     padding: 2rem;
+     padding: 1rem;
      flex-direction: column;
      justify-content: center;
      align-items: center;
@@ -1753,7 +1753,8 @@
         font-size: 0.938rem;
     }
     #calendar .header span, .montserrat-bold.font-30.mb-0.title-blue, .blog .h2.m-0.text-white.montserrat-bold.font-32.d-block,
-    .box-small h2 {
+    .box-small h2, .border-bottom.news.mb-0 h2, .section-title.d-table.p-0.w-auto.m-0.mb-3.montserrat-bold.font-28.title-blue,
+    .m-0.montserrat-bold.font-25.title-blue {
         font-size: 1.125rem;
     }
     #calendar .header button{
@@ -1761,13 +1762,23 @@
         width: 30px;
         height: 30px;
     }
+    .d-flex.justify-content-between.align-items-center.flex-column.flex-md-row{
+        margin-bottom: 30px;
+    }
+    .wrap-logo-and-login{
+        padding: 15px 0;
+    }
  }
 
  @media (max-width:476px) {
+    .logo-img .img-fluid{
+        width: 100px;
+    }
     .overlay{
         padding: 10px 15px;
     }
-    .description-blog, .text-white.mt-3.montserrat-regular.font-15.col-8.col-lg-10{
+    .description-blog, .text-white.mt-3.montserrat-regular.font-15.col-8.col-lg-10, .font-mob,
+    .text-color.my-3.montserrat-regular.font-15, #activeVideoTitle{
         font-size: 0.75rem;
     }
     #about .section-title {
@@ -1869,12 +1880,17 @@
      .footer ul {
         margin: 0 !important;
         text-align: center !important;
-     }
+        gap: 0px !important;
+    }
      .site-navigation.position-relative.text-end.w-25.redes-sociais,
      .p-0.d-flex.justify-content-start.gap-5.flex-row.mb-0 {
-         width: 100% !important;
-         justify-content: center !important;
-         gap: 35px !important;
+        width: 100% !important;
+        justify-content: center !important;
+        gap: 35px !important;
+     }
+     .footer .site-navigation ul{
+        gap: 15px !important;
+        margin-bottom: 15px !important;
      }
      .dark-background.rounded-3.px-5.py-4 {
          padding: 20px 11px !important;
@@ -1886,7 +1902,8 @@
          width: 100%;
      }
      .sitemap {
-         margin-bottom: 35px !important;
+        margin-bottom: 0 !important;
+        gap: 0 !important;
      }
      .credits img {
          width: 85px;
@@ -2030,8 +2047,14 @@
      .d-flex.align-items-center.bg-white.mb-3.overflow-hidden{
         height: 90px !important;
      }
-     .juridico .btn-juridico{
+     .juridico .btn-juridico, .text-color.mb-0.montserrat-regular.font-15, #events-list p {
         font-size: 0.75rem !important;
+     }
+     .mb-3.title-blue.montserrat-bold.font-32.text-uppercase{
+        font-size: 0.938rem;
+     }
+     .term.montserrat-regular.text-color.font-12.text-start{
+         font-size: 0.563rem;
      }
  }
 
@@ -2047,6 +2070,9 @@
      }
  }
   @media (max-width:376px) {
+    .text-blog-inner p{
+        font-size: 0.75rem !important;
+     }
     .news-home nav ul li{
         font-size: 0.5rem;
     }

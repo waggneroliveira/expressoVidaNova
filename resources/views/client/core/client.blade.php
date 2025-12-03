@@ -7,10 +7,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="theme-color" content="#0d0d0d">
-    <meta name="description" content="O Sindacs Bahia é o sindicato que representa os Agentes Comunitários de Saúde (ACS) e Agentes de Combate às Endemias (ACE) da Bahia, lutando por direitos, valorização profissional e melhores condições de trabalho.">
-    <meta name="keywords" content="Sindacs Bahia, Sindicato Bahia, agentes comunitários de saúde, agentes de combate às endemias, ACS Bahia, ACE Bahia, sindicato ACS ACE, saúde pública Bahia, trabalhadores da saúde Bahia, direitos dos agentes de saúde, sindicato saúde Bahia, categoria ACS ACE, luta sindical Bahia, representação sindical saúde, agentes comunitários Bahia, agentes endemias Bahia, sindicato dos agentes Bahia">
+    <meta name="description" content="Expresso Vida Nova é o portal de notícias locais de Vida Nova e Lauro de Freitas. Informações do bairro, segurança, eventos e atualizações da região.">
+    <meta name="keywords" content="Expresso Vida Nova, Sindicato Bahia, agentes comunitários de saúde, agentes de combate às endemias, ACS Bahia, ACE Bahia, sindicato ACS ACE, saúde pública Bahia, trabalhadores da saúde Bahia, direitos dos agentes de saúde, sindicato saúde Bahia, categoria ACS ACE, luta sindical Bahia, representação sindical saúde, agentes comunitários Bahia, agentes endemias Bahia, sindicato dos agentes Bahia">
     <meta name="google-site-verification" content="-bUd4PZJ-3xvnf7cOkcmNLV7jzTk5106hfB0mPtvhqE" />
-    <title>Sindacs Bahia</title>
+    <title>Expresso Vida Nova</title>
     @if(isset($blogInner))
         <meta property="og:url" content="{{ url()->current() }}">
         <meta property="og:type" content="article">
@@ -26,14 +26,14 @@
     @else
         <meta property="og:url" content="{{ url()->current() }}">
         <meta property="og:type" content="website">
-        <meta property="og:title" content="Sindacs Bahia - Sindicato dos ACS e ACE da Bahia">
-        <meta property="og:description" content="O Sindacs Bahia representa os Agentes Comunitários de Saúde (ACS) e Agentes de Combate às Endemias (ACE) da Bahia, lutando por direitos e valorização.">
+        <meta property="og:title" content="Expresso Vida Nova">
+        <meta property="og:description" content="Portal de notícias de Vida Nova e Lauro de Freitas. Expresso Vida Nova cobre segurança, eventos, serviços públicos e tudo o que acontece no bairro.">
         <meta property="og:image" content="{{asset('build/client/images/compartilhamento.png')}}">
 
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:url" content="{{ url()->current() }}">
-        <meta name="twitter:title" content="Sindacs Bahia - Sindicato dos ACS e ACE da Bahia">
-        <meta name="twitter:description" content="O Sindacs Bahia representa os Agentes Comunitários de Saúde (ACS) e Agentes de Combate às Endemias (ACE) da Bahia, lutando por direitos e valorização.">
+        <meta name="twitter:title" content="Expresso Vida Nova">
+        <meta name="twitter:description" content="Portal de notícias de Vida Nova e Lauro de Freitas. Expresso Vida Nova cobre segurança, eventos, serviços públicos e tudo o que acontece no bairro.">
         <meta name="twitter:image" content="{{asset('build/client/images/compartilhamento.png')}}">
     @endif
 
@@ -76,12 +76,12 @@
             "@context": "https://schema.org",
             "@type": "Organization",
             "@id": "https://www.sindacsba.org.br/#organization",
-            "name": "Sindacs Bahia",
-            "legalName": "Sindicato de agentes comunitários de saúde e agentes de combate as endemias da Bahia.",
+            "name": "Expresso Vida Nova",
+            "legalName": "Expresso Vida Nova",
             "url": "https://www.sindacsba.org.br",
             "logo": "https://www.sindacsba.org.br/assets/images/logo.png",
             "image": "https://www.sindacsba.org.br/assets/images/logo.png",
-            "description": "O Sindacs Bahia é o sindicato que representa os Agentes Comunitários de Saúde (ACS) e Agentes de Combate às Endemias (ACE) da Bahia, lutando por direitos, valorização profissional e melhores condições de trabalho.",
+            "description": "Expresso Vida Nova é o portal de notícias locais de Vida Nova e Lauro de Freitas. Informações do bairro, segurança, eventos e atualizações da região.",
             "foundingDate": "2003",
             "email": "sindacsbahia@gmail.com",
             "telephone": "+55 71 3017-4112",
@@ -119,25 +119,25 @@
                 "propertyID": "CNPJ",
                 "value": "06.953.941/0001-26"
             },
-            "slogan": "Sindacs Bahia",
+            "slogan": "Expresso Vida Nova",
             "keywords": [
-                "Sindacs Bahia",
-                "Sindicato Bahia",
-                "agentes comunitários de saúde",
-                "agentes de combate às endemias",
-                "ACS Bahia",
-                "ACE Bahia",
-                "sindicato ACS ACE",
-                "saúde pública Bahia",
-                "trabalhadores da saúde Bahia",
-                "direitos dos agentes de saúde",
-                "sindicato saúde Bahia",
-                "categoria ACS ACE",
-                "luta sindical Bahia",
-                "representação sindical saúde",
-                "agentes comunitários Bahia",
-                "agentes endemias Bahia",
-                "sindicato dos agentes Bahia"
+                "Expresso Vida Nova",
+                "Notícias Vida Nova",
+                "Notícias Lauro de Freitas",
+                "Portal de notícias Vida Nova",
+                "Jornal local Vida Nova",
+                "Jornal de Lauro de Freitas",
+                "Notícias do bairro Vida Nova",
+                "Acontece em Vida Nova",
+                "Notícias da região de Lauro de Freitas",
+                "Atualidades Vida Nova",
+                "Notícias Bahia região metropolitana",
+                "Comunidade de Vida Nova",
+                "Segurança em Vida Nova",
+                "Eventos em Lauro de Freitas",
+                "Bairro Vida Nova Lauro de Freitas",
+                "Informações locais Vida Nova",
+                "Notícias da comunidade de Vida Nova"
             ]
         }
     </script>
@@ -147,49 +147,52 @@
     <header id="header" class="w-100 d-flex flex-column position p-0">   
         <div class="w-100 py-0">
             <div class="header-top py-2 mb-0 header-color">
-                <div class="container d-flex justify-content-between align-items-center">
-                    <p class="dropdown-item montserrat-medium text-start font-15 mb-0">Lauro de Freitas, BA | Quinta-feira, 30 de outubro de 2025</p>
-                    <div class="col-6">
-                        <div class="d-flex flex-wrap justify-content-center align-items-center gap-3 flex-column">
-                            <div class="dark-background rounded-3 p-0 m-auto me-0">
-                                <nav class="site-navigation position-relative text-end w-25 redes-sociais">
-                                    <ul class="p-0 d-flex justify-content-start gap-3 flex-row mb-0">
+                <div class="container d-flex flex-wrap justify-content-center justify-content-lg-between align-items-center">
+                    <p class="text-white montserrat-medium text-center text-lg-start font-15 mb-0 col-12 col-lg-6">
+                        Lauro de Freitas, BA | {{ \Carbon\Carbon::now()->translatedFormat('l, d \d\e F \d\e Y') }}
+                    </p>
+
+                    <div class="col-12 col-lg-6 text-center"> 
+                        <div class="d-flex flex-wrap justify-content-center justify-content-lg-end align-items-center">
+                            <div class="dark-background p-0">
+                                <nav class="site-navigation position-relative redes-sociais">
+                                    <ul class="p-0 d-flex justify-content-center gap-3 flex-row mb-0">
                                         @if (isset($contact) && $contact->link_insta)
-                                            <li class="li d-flex justify-content-start align-items-center rounded-circle">
+                                            <li class="li d-flex justify-content-center align-items-center rounded-circle">
                                                 <a href="{{$contact->link_insta}}" rel="nofollow noopener noreferrer" target="_blank">
                                                     <img src="{{asset('build/client/images/insta.svg')}}" alt="Instagram">
                                                 </a>
                                             </li>
                                         @endif
                                         @if (isset($contact) && $contact->link_x)
-                                            <li class="li d-flex justify-content-start align-items-center rounded-circle">
+                                            <li class="li d-flex justify-content-center align-items-center rounded-circle">
                                                 <a href="{{$contact->link_x}}" rel="nofollow noopener noreferrer" target="_blank">
                                                     <img src="{{asset('build/client/images/x.svg')}}" alt="X">
                                                 </a>
                                             </li>
                                         @endif
                                         @if (isset($contact) && $contact->link_youtube)
-                                            <li class="li d-flex justify-content-start align-items-center rounded-circle">
+                                            <li class="li d-flex justify-content-center align-items-center rounded-circle">
                                                 <a href="{{$contact->link_youtube}}" rel="nofollow noopener noreferrer" target="_blank">
                                                     <img src="{{asset('build/client/images/youtube.svg')}}" alt="Youtube">
                                                 </a>
                                             </li>
                                         @endif
                                         @if (isset($contact) && $contact->link_face)
-                                            <li class="li d-flex justify-content-start align-items-center rounded-circle">
+                                            <li class="li d-flex justify-content-center align-items-center rounded-circle">
                                                 <a href="{{$contact->link_face}}" rel="nofollow noopener noreferrer" target="_blank">
                                                     <img src="{{asset('build/client/images/face.svg')}}" alt="Facebook">
                                                 </a>
                                             </li>
                                         @endif
                                         @if (isset($contact) && $contact->link_tik_tok)
-                                            <li class="li d-flex justify-content-start align-items-center rounded-circle">
-                                                <a href="{{$contact->link_tik_tok}}a" rel="nofollow noopener noreferrer" target="_blank">
+                                            <li class="li d-flex justify-content-center align-items-center rounded-circle">
+                                                <a href="{{$contact->link_tik_tok}}" rel="nofollow noopener noreferrer" target="_blank">
                                                     <img src="{{asset('build/client/images/tiktok.svg')}}" alt="Tiktok">
                                                 </a>
                                             </li>
                                         @endif
-                                    </ul> 
+                                    </ul>
                                 </nav>
                             </div>
                         </div>
@@ -634,83 +637,96 @@
         <div class="d-flex justify-content-end align-items-start w-100">    
             <button id="menu-close" aria-label="Fechar menu" class="col-2 btn-close-menu p-0 bg-transparent" type="button">&times;</button>
         </div>
-        <div class="col-10 logo-img px-3 py-2 mb-4 rounded-2 d-flex justify-content-center align-items-center">
-            <img src="{{asset('build/client/images/logo.svg')}}" alt="Expresso Vida Nova" title="Expresso Vida Nova" class="img-fluid">
+        <div class="col-10 logo-img p-0 mb-2 rounded-2 d-flex justify-content-center align-items-center">
+            <img src="{{asset('build/client/images/expressovidadnova.png')}}" alt="Expresso Vida Nova" title="Expresso Vida Nova" class="img-fluid">
         </div>
         <div class="row justify-content-center gap-5">
-            <nav class="mt-5">
+            <nav class="mt-3">
                 <ul class="list-unstyled text-center">
-                    <li><a href="{{route('index')}}" class="nav-link text-white montserrat-regular text-center font-18">Home</a></li>
-                                           
+                    <li class="montserrat-regular font-18 mb-3 font-mob"><a href="{{route('index')}}" class="text-white">Principal</a></li>
+                                        
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white montserrat-regular text-center font-18" 
+                        <a class="nav-link dropdown-toggle montserrat-regular text-white font-18 mb-3 font-mob" 
                         href="{{route('about')}}" 
                         id="sobreNosDropdown" 
                         role="button" 
                         data-bs-toggle="dropdown" 
                         aria-expanded="false">
-                            Quem Somos
+                            Sobre Nós <i class="bi bi-chevron-down"></i>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="sobreNosDropdown">
                             @if (isset($abouts) && $abouts->count() > 0) 
                                 @foreach ($abouts as $about)                                        
-                                    <li><a class="dropdown-item montserrat-regular text-start font-15" href="{{route('about')}}#{{$about->slug}}">{{$about->title}}</a></li>
+                                    <li class="m-0"><a class="dropdown-item montserrat-regular font-15 font-mob" href="{{route('about')}}#{{$about->slug}}">{{$about->title}}</a></li>
                                 @endforeach
-                            @endif                                
-                            @if (isset($directions) && $directions > 0)                                        
-                                <li><a class="dropdown-item montserrat-regular text-start font-15" href="{{route('about')}}#board">Equipe</a></li>
-                            @endif
-                            @if (isset($statute) && $statute > 0)                                        
-                                <li><a class="dropdown-item montserrat-regular text-start font-15" href="{{route('about')}}#statute">Estatuto</a></li>
-                            @endif
+                            @endif 
                         </ul>
                     </li>
-
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white montserrat-regular text-center font-18" 
-                        href="{{route('unionized')}}" 
-                        id="servicosDropdown" 
-                        role="button" 
-                        data-bs-toggle="dropdown" 
-                        aria-expanded="false">
-                            Serviços ao sindicalizados <i class="bi bi-chevron-down"></i>
+                        <a class="nav-link dropdown-toggle montserrat-regular font-18 font-mob mb-3 text-white" 
+                            href="{{ route('blog') }}" 
+                            id="noticiasDropdown" 
+                            role="button" 
+                            data-bs-toggle="dropdown" 
+                            aria-expanded="false">
+                            Notícias <i class="bi bi-chevron-down"></i>
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="servicosDropdown">
-                            @if (isset($agreement) && $agreement > 0)                                
-                                <li><a class="dropdown-item montserrat-regular text-start font-15" href="{{route('unionized')}}#partnes">Convênios</a></li>
-                            @endif
-                            @if (isset($directions) && $directions > 0)                                
-                                <li><a class="dropdown-item montserrat-regular text-start font-15" href="{{route('unionized')}}#benefit">Benefícios</a></li>
-                            @endif
-                            @if (isset($report) && $report > 0)                                
-                                <li><a class="dropdown-item montserrat-regular text-start font-15" href="{{route('unionized')}}#complaint">Denuncias</a></li>
+
+                        <ul class="dropdown-menu" aria-labelledby="noticiasDropdown">
+                            @if ($blogCategories->count())
+                                @foreach ($blogCategories as $category)
+                                    <li class="m-0">
+                                        <a class="dropdown-item montserrat-regular font-15 font-mob" 
+                                        href="{{ route('blog', ['category' => $category->slug]) }}#news">
+                                            {{ $category->title }}
+                                        </a>
+                                    </li>
+                                @endforeach
                             @endif
                         </ul>
                     </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white montserrat-regular text-center font-18" 
-                        href="{{route('juridico')}}" 
-                        id="juridicoDropdown" 
-                        role="button" 
-                        data-bs-toggle="dropdown" 
-                        aria-expanded="false">
-                            Jurídico <i class="bi bi-chevron-down"></i>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="juridicoDropdown">
-                            <li><a class="dropdown-item montserrat-regular text-start font-15" href="{{ route('juridico', ['legal' => 'leis']) }}">Leis</a></li>
-                            <li><a class="dropdown-item montserrat-regular text-start font-15" href="{{ route('juridico', ['legal' => 'decretos']) }}">Decretos</a></li>
-                            <li><a class="dropdown-item montserrat-regular text-start font-15" href="{{ route('juridico', ['legal' => 'portaria']) }}">Portaria</a></li>
-                        </ul>
-
-                    </li>
-
-                    <li><a href="{{route('regional')}}" class="nav-link text-white montserrat-regular text-center font-18">Regionais</a></li>
-                    <li><a href="{{route('blog')}}" class=" text-white nav-link montserrat-regular font-18">Notícias</a></li>
-                    <li><a href="{{route('noticies')}}" class=" text-white nav-link montserrat-regular font-18">Editais</a></li>
-                    <li><a href="{{route('contact')}}" class=" text-white nav-link montserrat-regular font-18">Contato</a></li>
+                    <li class="montserrat-regular font-18 mb-3 font-mob"><a href="{{route('client.event')}}" class="text-white">Eventos</a></li>
+                    <li class="montserrat-regular font-18 mb-3 font-mob"><a href="{{route('contact')}}" class="text-white">Contato</a></li>
+                    <li class="montserrat-regular font-18 mb-3 font-mob"><a href="https://policies.google.com/privacy?hl=pt-BR" target="_blank" rel="noopener noreferrer" class="text-white">Política de Privacidade</a></li>
                 </ul>
             </nav>
+            <div class="d-none justify-content-center align-items-center gap-2 mt-0 login-middle-mobile">                        
+                @if (!Auth::guard('client')->check())                            
+                    <div class="d-flex justify-content-start align-items-center gap-2">
+                        <svg width="20" height="20" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M46.793 8.62893C44.5547 8.62893 42.7344 6.81253 42.7344 4.57423C42.7344 2.33593 44.5547 0.519531 46.793 0.519531L80.57 0.503906C88.8044 0.503906 95.5 7.20311 95.5 15.4339V80.5789C95.5 88.8055 88.8008 95.5089 80.57 95.5089H46.793C44.5469 95.5089 42.7266 93.6847 42.7266 91.4386C42.7266 89.1886 44.5469 87.3683 46.793 87.3683H80.57C84.3083 87.3683 87.3591 84.3136 87.3591 80.5831V15.4311C87.3591 11.7006 84.3083 8.63031 80.57 8.63031L46.793 8.62893ZM49.6914 68.2459L66.5504 51.0619C67.398 50.3158 67.9332 49.2181 67.9332 47.9994C67.9332 46.7807 67.398 45.683 66.5504 44.9408L49.6914 27.7568C48.1133 26.1591 45.543 26.1357 43.9492 27.71C42.3515 29.2803 42.3281 31.8545 43.9062 33.4522L54.1792 43.9322L4.5742 43.9283C2.3281 43.9283 0.5 45.7525 0.5 47.9986C0.5 50.2486 2.3281 52.0689 4.5742 52.0689H54.1762L43.9032 62.5459C42.3251 64.1436 42.3524 66.7138 43.9462 68.288C45.5439 69.8583 48.1103 69.8389 49.6884 68.2412L49.6914 68.2459Z" fill="white"/>
+                        </svg>
+
+                        <h2 class="off-login m-0 montserrat-medium font-14 text-start" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#loginModal">Login</h2>
+                    </div>
+                @else
+                    @php
+                        $user = Auth::guard('client')->user();
+                        $defaultImage = $user && $user->path_image ? url($user->path_image) : '';
+                    @endphp
+                    <div class="image-profile">
+                        <picture>
+                            <source srcset="{{ isset($defaultImage) && $defaultImage <> null ?$defaultImage:asset('build/client/images/user.jpg') }}" type="image/svg+xml">
+                            <img src="{{ isset($defaultImage) && $defaultImage <> null ?$defaultImage:asset('build/client/images/user.jpg') }}"
+                                alt="Imagem de Login"
+                                class="img-fluid rounded-circle">
+                        </picture>
+                    </div>
+                    <div class="d-flex flex-column align-items-start gap-1">
+                        <div class="d-flex justify-content-start align-items-center gap-2 lh-0">
+                            <h2 class="loginOn m-0 montserrat-medium font-10 text-start">Bem vindo,</h2>   
+                            <h3 class="m-0 montserrat-medium font-12 text-start">{{$names = collect(explode(' ', Auth::guard('client')->user()->name))->slice(0, 1)->implode(' ')}}!</h3>      
+                            <a class="nav-link waves-effect waves-light" href="#" data-bs-toggle="modal" data-bs-target="#editClientModal-{{Auth::guard('client')->user()->id}}">
+                                <i class="bi bi-gear font-15"></i>
+                            </a>                 
+                        </div>  
+                        <a href="{{route('client.user.logout')}}" class="d-flex justify-content-start align-items-center gap-2 text-decoration-none lh-0">
+                            <i class="bi bi-box-arrow-right font-15"></i>
+                            <h4 class="montserrat-medium font-12 m-0">Sair</h4>
+                        </a>                                               
+                    </div>
+                @endif
+            </div> 
             <nav class="site-navigation position-relative text-end w-auto redes-sociais">
                 <ul class="p-0 d-flex justify-content-start gap-4 flex-row mb-0">
                     @if (isset($contact) && $contact->link_insta)
@@ -774,10 +790,10 @@
                     <img src="{{asset('build/client/images/expressovidadnova.png')}}" alt="Expresso Vida Nova" title="Expresso Vida Nova" loading="lazy">
                 </div>
                 <ul class="list-unstyled text-start d-flex flex-column flex-md-row justify-content-center align-items-center gap-4 col-12 col-lg-8 mb-0">
-                    <li class="montserrat-regular font-18 mb-3"><a href="{{route('index')}}">Principal</a></li>
+                    <li class="montserrat-regular font-18 mb-3 font-mob"><a href="{{route('index')}}">Principal</a></li>
                                         
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle montserrat-regular font-18 mb-3" 
+                        <a class="nav-link dropdown-toggle montserrat-regular font-18 mb-3 font-mob" 
                         href="{{route('about')}}" 
                         id="sobreNosDropdown" 
                         role="button" 
@@ -788,13 +804,13 @@
                         <ul class="dropdown-menu" aria-labelledby="sobreNosDropdown">
                             @if (isset($abouts) && $abouts->count() > 0) 
                                 @foreach ($abouts as $about)                                        
-                                    <li><a class="dropdown-item montserrat-regular text-start font-15" href="{{route('about')}}#{{$about->slug}}">{{$about->title}}</a></li>
+                                    <li><a class="dropdown-item montserrat-regular text-start font-15 font-mob" href="{{route('about')}}#{{$about->slug}}">{{$about->title}}</a></li>
                                 @endforeach
                             @endif 
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle montserrat-regular font-18 mb-3" 
+                        <a class="nav-link dropdown-toggle montserrat-regular font-18 font-mob mb-3" 
                             href="{{ route('blog') }}" 
                             id="noticiasDropdown" 
                             role="button" 
@@ -807,7 +823,7 @@
                             @if ($blogCategories->count())
                                 @foreach ($blogCategories as $category)
                                     <li>
-                                        <a class="dropdown-item montserrat-regular text-start font-15" 
+                                        <a class="dropdown-item montserrat-regular text-start font-15 font-mob" 
                                         href="{{ route('blog', ['category' => $category->slug]) }}#news">
                                             {{ $category->title }}
                                         </a>
@@ -816,9 +832,9 @@
                             @endif
                         </ul>
                     </li>
-                    <li class="montserrat-regular font-18 mb-3"><a href="{{route('client.event')}}">Eventos</a></li>
-                    <li class="montserrat-regular font-18 mb-3"><a href="{{route('contact')}}">Contato</a></li>
-                    <li class="montserrat-regular font-18 mb-3"><a href="https://policies.google.com/privacy?hl=pt-BR" target="_blank" rel="noopener noreferrer">Política de Privacidade</a></li>
+                    <li class="montserrat-regular font-18 mb-3 font-mob"><a href="{{route('client.event')}}">Eventos</a></li>
+                    <li class="montserrat-regular font-18 mb-3 font-mob"><a href="{{route('contact')}}">Contato</a></li>
+                    <li class="montserrat-regular font-18 mb-3 font-mob"><a href="https://policies.google.com/privacy?hl=pt-BR" target="_blank" rel="noopener noreferrer">Política de Privacidade</a></li>
                 </ul>
             </div>
             <div class="d-flex justify-content-between align-items-center flex-column flex-md-row">
@@ -864,7 +880,7 @@
                     </nav>
                 </div>
                 <div class="copyright">
-                    <p id="footer-text" class="montserrat-regular font-16 text-start text-white mb-0"></p>  
+                    <p id="footer-text" class="montserrat-regular font-16 text-center text-lg-start text-white mb-0"></p>  
                     <script defer>
                         const currentYeaar = (new Date).getFullYear();
                         document.getElementById("footer-text").innerHTML = `Copyright© ${currentYeaar} <span> Expresso Vida Nova todos os direitos reservados.</span>`
@@ -877,15 +893,15 @@
                 </div>
             </div>
         </div>
-        <div class="menu-mobile-down w-100 position-fixed bottom-0 left-0">
+        <div class="menu-mobile-down w-100 position-fixed bottom-0 left-0 bg-blue-light">
             <ul class="list-unstyled h-100 d-flex justify-content-center align-items-center gap-3 p-0 position-relative">
 
-                <li class="nav-mob-center position-absolute">
+                <li class="nav-mob-center position-absolute bg-blue-light">
                     <a href="#" class="icon-text btn_sidebar" title="Abrir menu principal" aria-label="Abrir menu principal" rel="noopener noreferrer">
                         <span class="menu-icon" style="display:inline-block;width:32px;height:32px;">
-                            <span class="d-block w-100 rounded-1" style="height:4px;background:#FFF;margin:6px 0;"></span>
-                            <span class="d-block w-100 rounded-1" style="height:4px;background:#FFF;margin:6px 0;"></span>
-                            <span class="d-block w-100 rounded-1" style="height:4px;background:#FFF;margin:6px 0;"></span>
+                            <span class="d-block w-100 rounded-1 background-red" style="height:4px;background:#FFF;margin:6px 0;"></span>
+                            <span class="d-block w-100 rounded-1 background-red" style="height:4px;background:#FFF;margin:6px 0;"></span>
+                            <span class="d-block w-100 rounded-1 background-red" style="height:4px;background:#FFF;margin:6px 0;"></span>
                         </span>
                     </a>
                 </li>

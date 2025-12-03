@@ -135,7 +135,7 @@
         <div class="container">
             <div class="row">
                 @if ($recentCategories->count() > 0)                    
-                    <div class="col-12 col-lg-9 animate-on-scroll mb-3" data-animation="animate__fadeInLeft">
+                    <div class="col-12 col-lg-9 animate-on-scroll mb-3" data-aos="fade-right" data-aos-delay="100">
                         <div class="border-bottom news mb-0">
                             <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-end">
                                 <h2 class="section-title d-table p-0 w-auto m-0 mb-3 montserrat-bold font-28 title-blue">
@@ -145,15 +145,15 @@
                         </div>
                         <nav class="mt-3">
                             <ul class="list-unstyled d-flex flex-row flex-wrap gap-2 gap-md-3 justify-content-start mb-0">
-                                <li class="py-1 py-sm-2 px-2 px-sm-3 montserrat-semiBold font-14 text-white bg-blue-light background-red active">
-                                    <a href="javascript:void(0)" class="text-decoration-none text-white category-filter" data-category="todas">
+                                <li class="py-0 py-sm-2 px-2 px-sm-3 montserrat-semiBold font-14 text-white bg-blue-light background-red active">
+                                    <a href="javascript:void(0)" class="text-decoration-none text-white category-filter font-15 font-mob" data-category="todas">
                                         Todas
                                     </a>
                                 </li>
                                 
                                 @foreach($recentCategories as $index => $category)
-                                    <li class="py-2 px-1 px-sm-3 montserrat-semiBold font-14 text-black bg-blue-light">
-                                        <a href="javascript:void(0)" class="text-decoration-none text-black category-filter" data-category="{{ $category->slug }}">
+                                    <li class="py-0 px-1 px-sm-3 montserrat-semiBold font-14 text-black bg-blue-light">
+                                        <a href="javascript:void(0)" class="text-decoration-none text-black category-filter font-15 font-mob" data-category="{{ $category->slug }}">
                                             {{ $category->title }}
                                         </a>
                                     </li>
@@ -311,8 +311,8 @@
         </div>
     </section>
 @endif
-<section id="no-bairro">
-    @if ($blogNoBairros->count() > 0) 
+@if ($blogNoBairros->count() > 0) 
+    <section id="no-bairro" data-aos="fade-up" data-aos-delay="100">
         <div class="container border-bottom news mb-0 p-0">
             <div class="px-0 d-flex flex-row justify-content-between align-items-center">
                 <h2 class="section-title d-table p-0 w-auto m-0 mb-3 montserrat-bold font-28 title-blue">
@@ -408,8 +408,8 @@
                 </div>
             </div>
         </div>
-    @endif
-</section>
+    </section>
+@endif
 <style>
 .swiper-button-prev-one,
 .swiper-button-next-one {
@@ -445,9 +445,9 @@
 </script>
 
 @if (!empty($videos) && $videos->count() > 0)
-    <section class="video mt-5">
+    <section class="video mt-0 mt-lg-5">
         <div class="container p-0">
-            <div class="border-bottom news m-auto ms-0 mb-4 col-lg-8 col-11">
+            <div class="border-bottom news m-auto ms-lg-0 mb-4 col-lg-8 col-11" data-aos="fade-up" data-aos-delay="100">
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-end">
                     <h2 class="section-title d-table p-0 w-auto m-0 mb-3 montserrat-bold font-28 title-blue">
                         Novidades em vídeo
@@ -456,7 +456,7 @@
             </div>
             <div class="content-video d-flex justify-content-center align-items-center">
                 <!-- Player -->
-                <div class="right col-8 bg-black d-flex justify-content-center align-items-center">
+                <div class="right col-8 bg-black d-flex justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="100">
                     <iframe id="videoPlayer" class="w-100 h-100"
                             src=""
                             title="Vídeo"
@@ -465,7 +465,7 @@
                 </div>
 
                 <!-- Lista -->
-                <div class="left col-4 h-100 d-flex justify-content-center align-items-end flex-column position-relative grey-background">
+                <div class="left col-4 h-100 d-flex justify-content-center align-items-end flex-column position-relative grey-background" data-aos="fade-down" data-aos-delay="100">
                     <!-- Vídeo ativo fixo -->
                     <div id="activeVideoBox" class="w-100 shadow-video-current mb-3 d-none">
                         <div class="d-flex align-items-center justify-content-end">                           
@@ -513,12 +513,12 @@
 @if ($events->count() > 0)                    
     <div class="container mt-5" data-aos="fade-left" data-aos-delay="100">
         <div class="border-bottom news mb-0">
-            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
+            <div class="d-flex flex-row justify-content-between align-items-start align-items-md-center">
                 <h2 class="section-title d-table p-0 w-auto m-0 mb-3 montserrat-bold font-28 title-blue">
                     Próximos Eventos
                 </h2>        
                 <div class="btn-about">
-                    <a href="{{route('client.event')}}" class="background-red montserrat-semiBold font-18 py-2 px-4 rounded-0">Ver todos</a>
+                    <a href="{{route('client.event')}}" class="font-mob background-red montserrat-semiBold font-18 py-1 py-lg-2 px-2 px-lg-4 rounded-0">Ver todos</a>
                 </div>                         
             </div>
         </div>
@@ -542,7 +542,7 @@
                             @else
                                 <a href="{{ route('client.event') }}?event_id={{ $event->id }}&scroll=true" class="underline col-11">
                             @endif
-                                <h3 class="h6 m-0 montserrat-bold font-14 title-blue" title="{{$event->title}}">
+                                <h3 class="h6 m-0 montserrat-bold font-14 title-blue font-mob" title="{{$event->title}}">
                                     {{ substr(strip_tags($event->title), 0, 50) }}...
                                 </h3>
                             </a>
