@@ -1202,11 +1202,10 @@
     flex-direction: row-reverse !important;
 }
 .about .image{
-    aspect-ratio: 1/1;
     max-width: 450px;
 }
 .about .image img{
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
 }
  .d-flex.justify-content-end.flex-column.w-auto {
@@ -1607,6 +1606,9 @@
     .col-11.col-lg-12.d-flex.flex-wrap.gap-3.justify-content-center{
         gap: 6px !important;
     }
+    .complaint h4{
+        font-size: 1.5rem;
+    }
     .complaint img{
         width: 120px;
         height: 120px;
@@ -1741,7 +1743,8 @@
     .event-item h4, .event-item strong, .event-item span{
         font-size: 0.938rem;
     }
-    #calendar .header span, .montserrat-bold.font-30.mb-0.title-blue {
+    #calendar .header span, .montserrat-bold.font-30.mb-0.title-blue, .blog .h2.m-0.text-white.montserrat-bold.font-32.d-block,
+    .box-small h2 {
         font-size: 1.125rem;
     }
     #calendar .header button{
@@ -1752,6 +1755,18 @@
  }
 
  @media (max-width:476px) {
+    .overlay{
+        padding: 10px 15px;
+    }
+    .description-blog, .text-white.mt-3.montserrat-regular.font-15.col-8.col-lg-10{
+        font-size: 0.75rem;
+    }
+    #about .section-title {
+        font-size: 1.125rem;
+    }
+    .complaint h4{
+        font-size: 1.25rem;
+    }
     .board .image{
         width: 60px;
         height: 60px;
