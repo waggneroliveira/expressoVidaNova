@@ -20,7 +20,7 @@
                                         </a>
                                     </div>
                                 </div>
-                                <p class="text-white montserrat-regular font-15 mb-4 mt-3">Por favor, preencha os campos abaixo para redefinir sua senha.</p>
+                                <p class="text-white poppins-regular font-15 mb-4 mt-3">Por favor, preencha os campos abaixo para redefinir sua senha.</p>
                             </div>
 
                             <form action="{{route('client-password.update')}}" method="POST">
@@ -33,20 +33,20 @@
                                 @endif
                                 <input type="hidden" name="token" value="{{$token}}">
                                 <div class="mb-3">
-                                    <label for="email" class="form-label text-white montserrat-medium font-15">E-mail</label>
-                                    <input class="form-control montserrat-regular" name="email" type="email" required="" id="email" placeholder="Digite seu E-mail">
+                                    <label for="email" class="form-label text-white poppins-medium font-15">E-mail</label>
+                                    <input class="form-control poppins-regular" name="email" type="email" required="" id="email" placeholder="Digite seu E-mail">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="password" class="form-label text-white montserrat-medium font-15">Nova Senha</label>
-                                    <input class="form-control montserrat-regular" name="password" type="password" required="" id="password" placeholder="Digite a nova senha">
+                                    <label for="password" class="form-label text-white poppins-medium font-15">Nova Senha</label>
+                                    <input class="form-control poppins-regular" name="password" type="password" required="" id="password" placeholder="Digite a nova senha">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="password_confirmation" class="form-label text-white montserrat-medium font-15">Confirmar Nova Senha</label>
-                                    <input class="form-control montserrat-regular" name="password_confirmation" type="password" required="" id="password_confirmation" placeholder="Digite a nova senha">
+                                    <label for="password_confirmation" class="form-label text-white poppins-medium font-15">Confirmar Nova Senha</label>
+                                    <input class="form-control poppins-regular" name="password_confirmation" type="password" required="" id="password_confirmation" placeholder="Digite a nova senha">
                                 </div>
         
                                 <div class="text-center d-grid">
-                                    <button class="btn text-white montserrat-medium rounded-3 font-15 background-red" type="submit"> Alterar Senha </button>
+                                    <button class="btn text-white poppins-medium rounded-3 font-15 background-red" type="submit"> Alterar Senha </button>
                                 </div>
                             </form>
 

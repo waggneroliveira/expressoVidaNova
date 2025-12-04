@@ -5,7 +5,7 @@
 @if (isset($popUp))
     <div id="popup" class="popup" style="display: flex;">
         <div class="popup-content">
-            <span class="close-btn font-24 rethink-sans-bold">x</span>
+            <span class="close-btn font-24 poppins-bold">x</span>
             @if ($popUp->link != null)            
                 <a href="{{ $popUp->link }}" target="_blank" rel="noopener noreferrer">
                 <img 
@@ -60,21 +60,21 @@
                                     <article>
                                         <div class="position-relative overflow-hidden" style="height: 500px;">
                                             <img class="img-fluid h-100 w-100"
-                                            src="{{ $blogSuperHighlight->path_image_thumbnail ? asset('storage/'.$blogSuperHighlight->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=montserrat' }}"
+                                            src="{{ $blogSuperHighlight->path_image_thumbnail ? asset('storage/'.$blogSuperHighlight->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=poppins' }}"
                                             alt="{{ $blogSuperHighlight->path_image_thumbnail ? 'Notícia super destaque' : 'Sem imagem'}}"
                                             style="object-fit: cover; aspect-ratio: 1.91/1;">
 
                                             <div class="overlay">
                                                 <div class="mb-3 d-flex justify-content-center align-items-center gap-1 flex-wrap">
-                                                    <span class="badge rounded-0 background-red montserrat-semiBold font-12 text-uppercase py-2 px-2 me-2">{{$blogSuperHighlight->category->title}}</span>                                   
+                                                    <span class="badge rounded-0 background-red poppins-semiBold font-12 text-uppercase py-2 px-2 me-2">{{$blogSuperHighlight->category->title}}</span>                                   
                                                 </div>
                                                 <a href="{{route('blog-inner', ['slug' => $blogSuperHighlight->slug])}}">
-                                                    <h1 class="h2 m-0 text-white montserrat-bold font-32 d-block">{{$blogSuperHighlight->title}}</h1>
+                                                    <h1 class="h2 m-0 text-white poppins-bold font-32 d-block">{{$blogSuperHighlight->title}}</h1>
                                                 </a>
                                                 <div class="description-blog mt-2">{!!substr(strip_tags($blogSuperHighlight->text), 0, 400)!!}...</div>
 
                                                 <div class="d-flex justify-content-between gap-2 align-items-center w-100">
-                                                    <p class="text-white mt-3 montserrat-regular font-15 col-8 col-lg-10">{{$dataFormatada}}</p>
+                                                    <p class="text-white mt-3 poppins-regular font-15 col-8 col-lg-10">{{$dataFormatada}}</p>
 
                                                     <div id="socialLinks-{{$blogSuperHighlight->id}}" class="social-links home opacity-0">
                                                         <div class="d-flex gap-2">
@@ -130,18 +130,18 @@
                                     <article>
                                         <div class="position-relative overflow-hidden" style="height: 246px;">
                                             <img class="img-fluid h-100 w-100"
-                                            src="{{ $blogHighlight->path_image_thumbnail ? asset('storage/'.$blogHighlight->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=montserrat' }}"
+                                            src="{{ $blogHighlight->path_image_thumbnail ? asset('storage/'.$blogHighlight->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=poppins' }}"
                                             alt="{{ $blogHighlight->title ? $blogHighlight->title : 'Sem imagem'}}"
                                             style="object-fit: cover; aspect-ratio: 1 / 1;">
                                             <div class="overlay">
                                                 <div class="mb-2 d-flex justify-content-start align-items-center gap-1 flex-wrap">
-                                                    <span class="badge rounded-0 background-red text-uppercase montserrat-semiBold font-12 py-2 px-2 me-2">{{$blogHighlight->category->title}}</span>
+                                                    <span class="badge rounded-0 background-red text-uppercase poppins-semiBold font-12 py-2 px-2 me-2">{{$blogHighlight->category->title}}</span>
                                                 </div>
                                                 <a href="{{route('blog-inner', ['slug' => $blogHighlight->slug])}}">                              
-                                                    <h2 class="h6 m-0 text-white montserrat-bold font-20 d-block">{{$blogHighlight->title}}</h2>
+                                                    <h2 class="h6 m-0 text-white poppins-bold font-20 d-block">{{$blogHighlight->title}}</h2>
                                                 </a>
                                                 <div class="d-flex justify-content-between align-items-center w-100">
-                                                    <p class="text-white mt-3 montserrat-regular font-14 col-8">{{$dataFormatada}}</p>
+                                                    <p class="text-white mt-3 poppins-regular font-14 col-8">{{$dataFormatada}}</p>
                                                     
                                                     <div id="socialLinks-{{$blogHighlight->id}}" class="social-links home opacity-0">
                                                         <div class="d-flex gap-2">
@@ -180,21 +180,21 @@
                     <div class="col-12 col-lg-9 animate-on-scroll mb-3" data-aos="fade-right" data-aos-delay="100">
                         <div class="border-bottom news mb-0">
                             <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-end">
-                                <h2 class="section-title d-table p-0 w-auto m-0 mb-3 montserrat-bold font-28 title-blue">
+                                <h2 class="section-title d-table p-0 w-auto m-0 mb-3 poppins-bold font-28 title-blue">
                                     Últimas notícias
                                 </h2>                                
                             </div>
                         </div>
                         <nav class="mt-3">
                             <ul class="list-unstyled d-flex flex-row flex-wrap gap-2 gap-md-3 justify-content-start mb-0">
-                                <li class="py-0 py-sm-2 px-2 px-sm-3 montserrat-semiBold font-14 text-white bg-blue-light background-red active">
+                                <li class="py-0 py-sm-2 px-2 px-sm-3 poppins-semiBold font-14 text-white bg-blue-light background-red active">
                                     <a href="javascript:void(0)" class="text-decoration-none text-white category-filter font-15 font-mob" data-category="todas">
                                         Todas
                                     </a>
                                 </li>
                                 
                                 @foreach($recentCategories as $index => $category)
-                                    <li class="py-0 px-1 px-sm-3 montserrat-semiBold font-14 text-black bg-blue-light d-flex align-items-center justify-content-center">
+                                    <li class="py-0 px-1 px-sm-3 poppins-semiBold font-14 text-black bg-blue-light d-flex align-items-center justify-content-center">
                                         <a href="javascript:void(0)" class="text-decoration-none text-black category-filter font-15 font-mob" data-category="{{ $category->slug }}">
                                             {{ $category->title }}
                                         </a>
@@ -222,7 +222,7 @@
                         <div class="mb-3">
                             <div class="bg-white border p-3 rounded-1">
                                 <div class="section-title mb-4 rounded-top-left">
-                                    <h4 class="mb-3 montserrat-bold font-18 pb-3 border-bottom title-blue news">Veja também</h4>
+                                    <h4 class="mb-3 poppins-bold font-18 pb-3 border-bottom title-blue news">Veja também</h4>
                                 </div>
                                 @foreach($blogRelacionados as $index => $relacionado)
                                     <article class="{{ $index >= 5 ? 'rel-item d-none' : '' }}">
@@ -230,7 +230,7 @@
 
                                             <div class="h-100 pe-2 d-flex flex-column justify-content-center" style="flex: 1;">
                                                 <a href="{{ route('blog-inner', ['slug' => $relacionado->slug]) }}" class="underline">
-                                                    <h3 class="h6 m-0 montserrat-bold font-15 title-blue">
+                                                    <h3 class="h6 m-0 poppins-bold font-15 title-blue">
                                                         {{ substr(strip_tags($relacionado->title), 0, 100) }}
                                                     </h3>
                                                 </a>
@@ -240,7 +240,7 @@
                                                 <img loading="lazy"
                                                     class="rounded-1 img-fluid w-100 h-100"
                                                     style="object-fit: cover; aspect-ratio: 1/1;"
-                                                    src="{{ $relacionado->path_image_thumbnail ? asset('storage/'.$relacionado->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=montserrat' }}"
+                                                    src="{{ $relacionado->path_image_thumbnail ? asset('storage/'.$relacionado->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=poppins' }}"
                                                     alt="{{ $relacionado->title ?? 'Sem imagem' }}">
                                             </div>
 
@@ -250,7 +250,7 @@
 
                                 @if(count($blogRelacionados) > 5)
                                     <div class="text-center mt-2">
-                                        <p id="btn-ver-mais" class="montserrat-bold font-15" style="cursor: pointer;">Ver mais</p>                                        
+                                        <p id="btn-ver-mais" class="poppins-bold font-15" style="cursor: pointer;">Ver mais</p>                                        
                                     </div>
                                 @endif
                             </div>
@@ -262,13 +262,13 @@
                     <div class="mb-3">
                         <div class="bg-white border rounded-1 p-3">
                             <div class="section-title mb-0 rounded-top-left cat-mt">
-                                <h4 class="mb-3 montserrat-bold font-18 border-bottom title-blue pb-3 news">Categorias</h4>
+                                <h4 class="mb-3 poppins-bold font-18 border-bottom title-blue pb-3 news">Categorias</h4>
                             </div>
                             <div class="d-flex flex-wrap m-n1">
                                 @foreach ($blogCategories as $category)
                                     <li class="nav-link">
                                         <a href="{{ route('blog', ['category' => $category->slug]) }}#news"
-                                        class="btn btn-sm title-blue rounded-0 montserrat-semiBold font-12 m-1 bg-blue-light">
+                                        class="btn btn-sm title-blue rounded-0 poppins-semiBold font-12 m-1 bg-blue-light">
                                         {{-- active background-red --}}
                                             {{ $category->title }}
                                         </a>
@@ -290,7 +290,7 @@
                     <!-- Newsletter Start -->
                     <div class="mb-4 bg-white text-center border p-3 rounded-1">
                         <div class="section-title mb-0 rounded-top-left">
-                            <h4 class="mb-3 montserrat-bold font-18 border-bottom pb-3 title-blue text-start news">Newsletter</h4>
+                            <h4 class="mb-3 poppins-bold font-18 border-bottom pb-3 title-blue text-start news">Newsletter</h4>
                         </div>
                         @include('client.includes.newsletter')
                     </div>
@@ -299,8 +299,8 @@
                     <!-- Rede sociais Start -->
                     <div class="mb-4 bg-white text-center border p-3 rounded-1">
                         <div class="section-title mb-0 rounded-top-left">
-                            <h4 class="mb-3 montserrat-bold font-18 border-bottom pb-3 title-blue text-start news">Siga-nos nas redes sociais</h4>
-                                <p class="text-color montserrat-regular font-12 text-start">
+                            <h4 class="mb-3 poppins-bold font-18 border-bottom pb-3 title-blue text-start news">Siga-nos nas redes sociais</h4>
+                                <p class="text-color poppins-regular font-12 text-start">
                                     Acompanhe as notícias de toda a cidade através das nossas redes sociais
                                 </p>
                         </div>
@@ -357,7 +357,7 @@
     <section id="no-bairro" data-aos="fade-up" data-aos-delay="100">
         <div class="container border-bottom news mb-0 p-0">
             <div class="px-0 d-flex flex-row justify-content-between align-items-center">
-                <h2 class="section-title d-table p-0 w-auto m-0 mb-3 montserrat-bold font-28 title-blue">
+                <h2 class="section-title d-table p-0 w-auto m-0 mb-3 poppins-bold font-28 title-blue">
                     No Bairro
                 </h2>
 
@@ -391,29 +391,29 @@
                                 <div class="d-flex flex-column align-items-center bg-white mb-4 overflow-hidden position-relative">
 
                                     <div class="position-absolute mt-2 start-0">
-                                        <span class="badge rounded-0 badge-primary montserrat-semiBold font-10 text-uppercase py-2 px-2 mr-2 background-red">
+                                        <span class="badge rounded-0 badge-primary poppins-semiBold font-10 text-uppercase py-2 px-2 mr-2 background-red">
                                             {{ $noBairro->category->title }}
                                         </span>
                                     </div>
 
                                     <img loading="lazy" class="img-fluid w-100 rounded-1"
-                                    src="{{ $noBairro->path_image_thumbnail ? asset('storage/' . $noBairro->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=montserrat' }}"
+                                    src="{{ $noBairro->path_image_thumbnail ? asset('storage/' . $noBairro->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=poppins' }}"
                                     alt="{{ $noBairro->title }}"
                                     style="height: 232px;aspect-ratio:1/1;object-fit: cover;">
 
                                     <div class="col-12 my-3 h-100 px-0 d-flex flex-column justify-content-center position-relative">                        
                                         <a href="{{ route('blog-inner', $noBairro->slug) }}" class="underline">
-                                            <h3 class="h6 m-0 montserrat-bold font-14 title-blue">
+                                            <h3 class="h6 m-0 poppins-bold font-14 title-blue">
                                                 {{ Str::limit($noBairro->title, 60) }}
                                             </h3>
                                         </a>
 
-                                        <p class="text-color my-3 montserrat-regular font-15">
+                                        <p class="text-color my-3 poppins-regular font-15">
                                             {!! substr(strip_tags($noBairro->text), 0, 200) !!}...
                                         </p>
 
                                         <div class="d-flex justify-content-between align-items-center w-100">
-                                            <p class="text-color mb-0 montserrat-regular font-12 col-8">{{$dataFormatada}}</p>
+                                            <p class="text-color mb-0 poppins-regular font-12 col-8">{{$dataFormatada}}</p>
 
                                             <div id="socialLinks-filter-two-{{$noBairro->id}}" class="social-links home opacity-0">
                                                 <div class="d-flex gap-2">
@@ -491,7 +491,7 @@
         <div class="container p-0">
             <div class="border-bottom news m-auto ms-lg-0 mb-4 col-lg-8 col-11" data-aos="fade-up" data-aos-delay="100">
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-end">
-                    <h2 class="section-title d-table p-0 w-auto m-0 mb-3 montserrat-bold font-28 title-blue">
+                    <h2 class="section-title d-table p-0 w-auto m-0 mb-3 poppins-bold font-28 title-blue">
                         Novidades em vídeo
                     </h2>                                
                 </div>
@@ -513,8 +513,8 @@
                         <div class="d-flex align-items-center justify-content-end">                           
                             <div class="d-flex">
                                 <div class="pt-2 col-10 px-3">
-                                    <span class="montserrat-medium font-14 title-blue">Assistindo</span>
-                                    <h3 id="activeVideoTitle" class="montserrat-bold font-16 title-blue"></h3>
+                                    <span class="poppins-medium font-14 title-blue">Assistindo</span>
+                                    <h3 id="activeVideoTitle" class="poppins-bold font-16 title-blue"></h3>
                                 </div>
                                 <div class="bg-danger col-2 d-flex justify-content-center align-items-center">
                                     <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -534,7 +534,7 @@
 
                                     <img class="video-thumb me-3" src="" alt="thumbnail"
                                     style="width: 60px; height: 45px; object-fit: cover; border-radius: 4px;">
-                                    <h3 class="title montserrat-medium font-16 mb-0 col-10 title-blue">
+                                    <h3 class="title poppins-medium font-16 mb-0 col-10 title-blue">
 
                                         {{ $video->title ?? 'Vídeo' }}
                                     </h3>
@@ -556,11 +556,11 @@
     <div class="container mt-5" data-aos="fade-left" data-aos-delay="100">
         <div class="border-bottom news mb-0">
             <div class="d-flex flex-row justify-content-between align-items-start align-items-md-center">
-                <h2 class="section-title d-table p-0 w-auto m-0 mb-3 montserrat-bold font-28 title-blue">
+                <h2 class="section-title d-table p-0 w-auto m-0 mb-3 poppins-bold font-28 title-blue">
                     Próximos Eventos
                 </h2>        
                 <div class="btn-about">
-                    <a href="{{route('client.event')}}" class="font-mob background-red montserrat-semiBold font-18 py-1 py-lg-2 px-2 px-lg-4 rounded-0">Ver todos</a>
+                    <a href="{{route('client.event')}}" class="font-mob background-red poppins-semiBold font-18 py-1 py-lg-2 px-2 px-lg-4 rounded-0">Ver todos</a>
                 </div>                         
             </div>
         </div>
@@ -570,10 +570,10 @@
                 <article class="col-12 col-sm-6 col-lg-3">
                     <div class="d-flex align-items-center bg-white mb-3 overflow-hidden shadow-video-current" style="height: 80px;">
                         <div class="background-red date col-4 h-100 d-flex justify-content-center align-items-center">
-                            <span class="montserrat-bold col-9 h-100 d-flex justify-content-center align-items-center font-20 text-white">
+                            <span class="poppins-bold col-9 h-100 d-flex justify-content-center align-items-center font-20 text-white">
                                 {{ \Carbon\Carbon::parse($event->date)->format('d') }}
                             </span>
-                            <span class="border-start vertical-letters montserrat-medium col-3 h-100 d-flex justify-content-center align-items-center font-14 title-blue text-white">
+                            <span class="border-start vertical-letters poppins-medium col-3 h-100 d-flex justify-content-center align-items-center font-14 title-blue text-white">
                                 {{ strtoupper(substr(\Carbon\Carbon::parse($event->date)->translatedFormat('F'), 0, 3)) }}
                             </span>
 
@@ -584,7 +584,7 @@
                             @else
                                 <a href="{{ route('client.event') }}?event_id={{ $event->id }}&scroll=true" class="underline col-11">
                             @endif
-                                <h3 class="h6 m-0 montserrat-bold font-14 title-blue font-mob" title="{{$event->title}}">
+                                <h3 class="h6 m-0 poppins-bold font-14 title-blue font-mob" title="{{$event->title}}">
                                     {{ substr(strip_tags($event->title), 0, 50) }}...
                                 </h3>
                             </a>
@@ -829,9 +829,9 @@
                 newsContainer.innerHTML = `
                     <div class="col-12 text-center py-5">
                         <div class="spinner-border text-blue" role="status">
-                            <span class="visually-hidden montserrat-semiBold font-15">Carregando...</span>
+                            <span class="visually-hidden poppins-semiBold font-15">Carregando...</span>
                         </div>
-                        <p class="mt-2 montserrat-semiBold font-15">Carregando notícias...</p>
+                        <p class="mt-2 poppins-semiBold font-15">Carregando notícias...</p>
                     </div>
                 `;
 
@@ -854,7 +854,7 @@
                         console.error('Error:', error);
                         newsContainer.innerHTML = `
                             <div class="col-12 text-center py-5">
-                                <p class="text-danger montserrat-semiBold font-15">Erro ao carregar notícias: ${error.message}</p>
+                                <p class="text-danger poppins-semiBold font-15">Erro ao carregar notícias: ${error.message}</p>
                             </div>
                         `;
                     });

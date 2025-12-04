@@ -2,7 +2,6 @@
 
 use Inertia\Inertia;
 use App\Models\About;
-use App\Models\PopUp;
 use App\Models\Report;
 use App\Models\Contact;
 use App\Models\Statute;
@@ -109,7 +108,6 @@ View::composer('client.core.client', function ($view) {
     $directions = Direction::active()->sorting()->count();
     $benefitTopics = BenefitTopic::active()->sorting()->count();
     $report = Report::active()->count();
-    $popUp = PopUp::active()->first();
 
     return $view->with('blogCategories', $blogCategories)
     ->with('announcements', $announcements)
@@ -117,6 +115,5 @@ View::composer('client.core.client', function ($view) {
     ->with('directions', $directions)
     ->with('benefitTopics', $benefitTopics)
     ->with('report', $report)
-    ->with('popUp', $popUp)
     ->with('abouts', $abouts);
 });

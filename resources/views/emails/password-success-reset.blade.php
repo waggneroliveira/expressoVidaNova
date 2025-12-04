@@ -31,8 +31,8 @@
                                         </svg>
                                     </div>
 
-                                    <h3 class="montserrat-bold font-20">Sucesso!</h3>
-                                    <p class="text-muted montserrat-regular font-14 mt-2">
+                                    <h3 class="poppins-bold font-20">Sucesso!</h3>
+                                    <p class="text-muted poppins-regular font-14 mt-2">
                                         <strong>Senha alterada com sucesso!</strong> Aguarde enquanto você é redirecionado para a tela de login.
                                     </p>
                                 </div>

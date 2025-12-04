@@ -73,11 +73,11 @@
                                         </g>
                                     </svg>
 
-                                    <h3 class="montserrat-bold font-20 text-white mt-3">Sucesso!</h3>
-                                    <p class="montserrat-regular font-15 text-white mt-3"> Um e-mail foi enviado para  <b>{{$email}}</b>.
+                                    <h3 class="poppins-bold font-20 text-white mt-3">Sucesso!</h3>
+                                    <p class="poppins-regular font-15 text-white mt-3"> Um e-mail foi enviado para  <b>{{$email}}</b>.
                                         Por favor, verifique sua caixa de entrada e siga as instruções para prosseguir com a redefinição de sua senha.
                                     </p>
-                                    <a href="{{route('blog')}}" class="btn w-100 background-red montserrat-medium font-15 text-white mt-3">Voltar</a>
+                                    <a href="{{route('blog')}}" class="btn w-100 background-red poppins-medium font-15 text-white mt-3">Voltar</a>
                                 </div>
 
                             </div> <!-- end card-body -->

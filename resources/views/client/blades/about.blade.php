@@ -8,7 +8,7 @@
                     <div class="about-item">
 
                         <div class="border-bottom mb-5 pb-3 pt-4 pt-lg-5" data-aos="fade-right" data-aos-delay="100">
-                            <h2 class="section-title w-auto m-0 montserrat-bold font-22 title-blue">
+                            <h2 class="section-title w-auto m-0 poppins-bold font-22 title-blue">
                                 {{$about->title}}
                             </h2>
                         </div>
@@ -23,19 +23,19 @@
                                 </div>
 
                                 <div class="col-12 col-lg-7 animate-on-scroll" data-aos="fade-left" data-aos-delay="100">                        
-                                    <div class="description mt-0 text-blog-inner montserrat-medium font-16">
+                                    <div class="description mt-0 text-blog-inner poppins-medium font-16">
                                         {!! $about->text !!}
                                     </div>
                                 </div>
                             @else
                                 <div class="col-12 animate-on-scroll w-100" data-aos="fade-left" data-aos-delay="100">
                                     <div class="border-bottom mb-0">
-                                        <h2 class="section-title rounded-top-left d-table px-4 w-auto m-0 montserrat-bold font-18 title-blue">
+                                        <h2 class="section-title rounded-top-left d-table px-4 w-auto m-0 poppins-bold font-18 title-blue">
                                             {{$about->title}}
                                         </h2>
                                     </div>
                             
-                                    <div class="description mt-0 text-blog-inner montserrat-medium font-16">
+                                    <div class="description mt-0 text-blog-inner poppins-medium font-16">
                                         {!! $about->text !!}
                                     </div>
                                 </div>
@@ -52,13 +52,13 @@
                                                     <img src="{{asset('storage/' . $direction->path_image)}}" loading="lazy" class="h-100" alt="{{$direction->title}}">
                                                 </div>
                                                 <div class="description d-flex flex-column justify-content-center">
-                                                    <h5 class="mb-2 montserrat-bold text-center font-17 title-blue">{{$direction->title}}</h5>
-                                                    <p class="montserrat-regular text-center text-black font-14 mb-0">{{$direction->description}}</p>
+                                                    <h5 class="mb-2 poppins-bold text-center font-17 title-blue">{{$direction->title}}</h5>
+                                                    <p class="poppins-regular text-center text-black font-14 mb-0">{{$direction->description}}</p>
                                                 </div>
                                             @else
                                                 <div class="description d-flex flex-column justify-content-center">
-                                                    <h5 class="mb-2 montserrat-bold text-center font-17 title-blue">{{$direction->title}}</h5>
-                                                    <p class="montserrat-regular text-center text-black font-14 mb-0">{{$direction->description}}</p>
+                                                    <h5 class="mb-2 poppins-bold text-center font-17 title-blue">{{$direction->title}}</h5>
+                                                    <p class="poppins-regular text-center text-black font-14 mb-0">{{$direction->description}}</p>
                                                 </div>
                                             @endif
                                         </div>

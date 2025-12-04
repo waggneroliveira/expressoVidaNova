@@ -8,26 +8,26 @@
             <article class="col-12 col-sm-12 col-md-6">
                 <div class="d-flex flex-column align-items-center bg-white mb-4 overflow-hidden position-relative">
                     <div class="position-absolute mt-2 start-0">
-                        <span class="badge rounded-0 badge-primary montserrat-semiBold font-10 text-uppercase py-2 px-2 mr-2 background-red">
+                        <span class="badge rounded-0 badge-primary poppins-semiBold font-10 text-uppercase py-2 px-2 mr-2 background-red">
                             {{ $news->category->title }}
                         </span>
                     </div>
                     <img loading="lazy" class="img-fluid w-100 rounded-1"
-                    src="{{ $news->path_image_thumbnail ? asset('storage/' . $news->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=montserrat' }}"
+                    src="{{ $news->path_image_thumbnail ? asset('storage/' . $news->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=poppins' }}"
                     alt="{{ $news->title }}"
                     style="height: 232px;aspect-ratio:1/1;object-fit: cover;">
                     <div class="col-12 my-3 h-100 px-0 d-flex flex-column justify-content-center position-relative">                        
                         <a href="{{ route('blog-inner', $news->slug) }}" class="underline">
-                            <h3 class="h6 m-0 montserrat-bold font-14 title-blue">
+                            <h3 class="h6 m-0 poppins-bold font-14 title-blue">
                                 {{ Str::limit($news->title, 60) }}
                             </h3>
                         </a>
-                        <p class="text-color my-3 montserrat-regular font-15">
+                        <p class="text-color my-3 poppins-regular font-15">
                                 {!! substr(strip_tags($news->text), 0, 200) !!}...
                         </p>
 
                         <div class="d-flex justify-content-between align-items-center w-100">
-                            <p class="text-color mb-0 montserrat-regular font-12 col-8">{{$dataFormatada}}</p>
+                            <p class="text-color mb-0 poppins-regular font-12 col-8">{{$dataFormatada}}</p>
                             
                             <div id="socialLinks-filter-{{$news->id}}" class="social-links home opacity-0">
                                 <div class="d-flex gap-2">

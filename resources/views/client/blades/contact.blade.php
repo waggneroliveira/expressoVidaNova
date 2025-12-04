@@ -5,8 +5,8 @@
             <div class="d-flex justify-content-start gap-2 align-items-start flex-nowrap">
                 <span class="firula-contact mt-2"></span>
                 <div class="description">
-                    <h3 class="montserrat-bold font-30 mb-0 title-blue">{{$contact->name_section}}</h3>
-                    <p class="mb-0 text-color montserrat-regular font-15">{{$contact->text}}</p>
+                    <h3 class="poppins-bold font-30 mb-0 title-blue">{{$contact->name_section}}</h3>
+                    <p class="mb-0 text-color poppins-regular font-15">{{$contact->text}}</p>
                 </div>
             </div>
         @endif
@@ -31,7 +31,7 @@
                             </svg>
 
 
-                            <p class="montserrat-semiBold font-15 mb-0 title-blue">
+                            <p class="poppins-semiBold font-15 mb-0 title-blue">
                                 {{$contact->phone_one}}
                             </p>
                         </div>
@@ -43,7 +43,7 @@
                             <path d="M23.7638 8.2474C23.9057 8.33606 24 8.49097 24 8.66829V20.8751C24 21.4587 23.7549 21.9907 23.3618 22.3765C22.9688 22.7613 22.4289 23 21.8344 23H2.16458C1.5701 23 1.02918 22.7613 0.637165 22.3765C0.243148 21.9916 0 21.4606 0 20.8751V8.66829C0 8.48902 0.096271 8.33215 0.240178 8.24448L10.9311 0.355621C11.2526 0.118868 11.6268 0 12 0C12.3731 0 12.7473 0.11789 13.0689 0.355621L23.7638 8.24647L23.7638 8.2474ZM22.9837 20.8762V19.5521L17.932 15.3958C17.7176 15.2195 17.6888 14.9048 17.8684 14.6943C18.0481 14.4839 18.3687 14.4556 18.583 14.632L22.9836 18.2525V9.66507L13.0689 16.98C12.7483 17.2168 12.3741 17.3356 12 17.3356C11.6268 17.3356 11.2527 17.2168 10.9311 16.98L1.01716 9.66407V18.2525L5.41771 14.632C5.63209 14.4556 5.95266 14.4839 6.13229 14.6943C6.31193 14.9048 6.28315 15.2195 6.06877 15.3958L1.01703 19.5521V20.8762C1.01703 21.1851 1.14705 21.4676 1.35447 21.6712C1.5619 21.8758 1.84872 22.0025 2.16532 22.0025H21.8352C22.1518 22.0025 22.4396 21.8748 22.648 21.6712C22.8544 21.4686 22.9844 21.186 22.9844 20.8762H22.9837ZM11.5385 1.15169L1.35063 8.66941L2.01856 9.16241L11.6863 2.02954C11.862 1.89314 12.1151 1.88437 12.3026 2.02272L21.9803 9.16332L22.6492 8.67032L12.4604 1.1526C12.3224 1.05128 12.1606 0.999638 11.9989 0.999638C11.8371 0.999638 11.6753 1.05128 11.5374 1.1526L11.5385 1.15169ZM2.86135 9.78381L11.5385 16.1869C11.6764 16.2882 11.8392 16.3398 12 16.3398C12.1617 16.3398 12.3235 16.2882 12.4615 16.1869L21.1396 9.78381L12.0008 3.04079L2.86206 9.78381H2.86135ZM12.0001 8.23762C12.5053 8.23762 12.9638 8.4393 13.2943 8.76374C13.6248 9.08819 13.8303 9.53831 13.8303 10.0342V10.7552C13.8303 10.8195 13.8521 10.877 13.8878 10.9189C13.9255 10.9627 13.9791 10.9939 14.0407 11.0046C14.1062 11.0163 14.1697 11.0036 14.2183 10.9754C14.264 10.9491 14.3017 10.9062 14.3245 10.8536L14.3295 10.839C14.3751 10.7123 14.4099 10.5798 14.4337 10.4425C14.4565 10.3109 14.4684 10.1736 14.4684 10.0333C14.4684 9.36295 14.1925 8.75597 13.7469 8.31851C13.2993 7.87911 12.682 7.60825 11.9982 7.60825C11.3163 7.60825 10.699 7.88006 10.2514 8.31851C9.8048 8.75694 9.52789 9.36295 9.52789 10.0333C9.52789 10.6022 9.72837 11.1323 10.0688 11.5502C10.4112 11.9692 10.8955 12.278 11.4583 12.4008C11.7312 12.4602 11.9039 12.7252 11.8433 12.9932C11.7828 13.2611 11.5128 13.4306 11.2399 13.3712C10.443 13.1968 9.76014 12.7632 9.27877 12.1728C8.79544 11.5814 8.51159 10.8322 8.51159 10.0323C8.51159 9.08722 8.90264 8.23082 9.53185 7.61313C10.1631 6.99348 11.0345 6.61157 11.9962 6.61157C12.9559 6.61157 13.8273 6.99448 14.4585 7.61313L14.4615 7.61606C15.0907 8.23571 15.4817 9.09114 15.4817 10.0323C15.4817 10.2252 15.4648 10.4181 15.4311 10.6081C15.3984 10.7991 15.3477 10.9871 15.2832 11.1674L15.2713 11.1966C15.1651 11.4713 14.9706 11.6896 14.7274 11.8299C14.4764 11.975 14.1756 12.0345 13.8709 11.9838C13.5633 11.9322 13.2973 11.7773 13.1107 11.56L13.0591 11.4957C12.7594 11.7052 12.3931 11.8289 11.9962 11.8289C11.492 11.8289 11.0354 11.6272 10.704 11.3028C10.3705 10.9754 10.166 10.5272 10.166 10.0323C10.166 9.53637 10.3715 9.08625 10.702 8.7618L10.7357 8.7316C11.0642 8.42372 11.5089 8.23568 11.9962 8.23568L12.0001 8.23762ZM12.5767 9.46912C12.4299 9.32493 12.2254 9.23529 12.0001 9.23529C11.7847 9.23529 11.5892 9.31713 11.4443 9.44866L11.4245 9.4701C11.2776 9.61429 11.1863 9.81499 11.1863 10.0362C11.1863 10.2573 11.2776 10.458 11.4235 10.6022C11.5704 10.7454 11.7748 10.8351 12.0001 10.8351C12.2244 10.8351 12.4289 10.7454 12.5767 10.6012C12.7236 10.458 12.8149 10.2573 12.8149 10.0352C12.8149 9.81499 12.7236 9.61428 12.5767 9.46912Z" fill="#1C58A6"/>
                             </svg>
 
-                            <p class="montserrat-semiBold font-15 mb-0 title-blue">
+                            <p class="poppins-semiBold font-15 mb-0 title-blue">
                                 {{$contact->name_one}}
                             </p>
                         </div>
@@ -57,28 +57,28 @@
                         @csrf
                         <div class="row g-3">
                             <div class="col-md-12">
-                                <input type="text" required id="nome" name="name" class="montserrat-regular font-15 text-color form-control" placeholder="Nome Completo">
+                                <input type="text" required id="nome" name="name" class="poppins-regular font-15 text-color form-control" placeholder="Nome Completo">
                             </div>
                             <div class="col-md-6">
-                                <input type="email" required id="email" name="email" class="montserrat-regular font-15 text-color form-control" placeholder="E-mail">
+                                <input type="email" required id="email" name="email" class="poppins-regular font-15 text-color form-control" placeholder="E-mail">
                             </div>
                             <div class="col-md-6">
-                                <input type="text" required id="phone" name="phone" class="montserrat-regular font-15 text-color form-control" placeholder="Whatsapp para contato">
+                                <input type="text" required id="phone" name="phone" class="poppins-regular font-15 text-color form-control" placeholder="Whatsapp para contato">
                             </div>
                             <div class="col-md-12">
-                                <input type="text" required id="subject" name="subject" class="montserrat-regular font-15 text-color form-control" placeholder="Assunto">
+                                <input type="text" required id="subject" name="subject" class="poppins-regular font-15 text-color form-control" placeholder="Assunto">
                             </div>
                             <div class="col-md-12">
-                                <textarea id="text" required name="text" class="form-control montserrat-regular font-15 text-color" rows="4" placeholder="Digite aqui...."></textarea>
+                                <textarea id="text" required name="text" class="form-control poppins-regular font-15 text-color" rows="4" placeholder="Digite aqui...."></textarea>
                             </div>
                             <div class="col-12 d-flex align-items-center flex-wrap">
                                 <div class="form-check me-3">
                                     <input class="form-check-input" required id="term_privacy" name="term_privacy" type="checkbox" value="1">
-                                    <label class="form-check-label small montserrat-regular font-14 text-color" for="privacyCheck">
+                                    <label class="form-check-label small poppins-regular font-14 text-color" for="privacyCheck">
                                         Aceito os termos descritos na Política de Privacidade
                                     </label>
                                 </div>
-                                <button type="submit" class="montserrat-semiBold font-15 btn background-red text-white rounded-3 ms-auto px-4">Enviar</button>
+                                <button type="submit" class="poppins-semiBold font-15 btn background-red text-white rounded-3 ms-auto px-4">Enviar</button>
                             </div>
                         </div>
                     </form>

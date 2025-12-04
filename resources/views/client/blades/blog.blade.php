@@ -12,7 +12,7 @@
             <div class="col-lg-12 mb-4" data-aos="fade-up" data-aos-delay="750">
                @if ($blogAll->count())                     
                   <div class="mb-5 rounded-top-left">
-                     <h2 class="m-0 text-uppercase montserrat-bold font-22 title-blue">Notícias</h2>
+                     <h2 class="m-0 text-uppercase poppins-bold font-22 title-blue">Notícias</h2>
                   </div>
 
                   <div class="col-12">
@@ -24,13 +24,13 @@
                                     <div class="bg-white border-top-0">
                                           <div class="d-flex flex-wrap m-n1">
                                              <a href="{{ route('blog') }}#news"
-                                                   class="btn btn-sm btn-outline-secondary text-p montserrat-medium font-14 m-1
+                                                   class="btn btn-sm btn-outline-secondary text-p poppins-medium font-14 m-1
                                                    {{ (request()->routeIs('blog') && request()->route('category') === null) ? 'active background-red' : '' }}">
                                                    Todas
                                              </a>
                                              @foreach ($blogCategories as $blogCategory)
                                                 <a href="{{ route('blog', ['category' => $blogCategory->slug]) }}#news"
-                                                   class="btn btn-sm btn-outline-secondary text-p montserrat-medium font-14 m-1
+                                                   class="btn btn-sm btn-outline-secondary text-p poppins-medium font-14 m-1
                                                    {{ (request()->routeIs('blog') && request()->route('category') === $blogCategory->slug) ? 'active background-red' : '' }}">
                                                    {{$blogCategory->title}}
                                                 </a>
@@ -45,7 +45,7 @@
                            <form action="{{route('blog-search')}}#news" class="search col-12 h-1/6" method="post">
                               @csrf
                               <div class="input-group input-group-lg h-100">
-                                 <input type="search" name="search" class="form-control border-end-0 text-color montserrat-regular bg-white py-0" placeholder="Pesquise aqui">
+                                 <input type="search" name="search" class="form-control border-end-0 text-color poppins-regular bg-white py-0" placeholder="Pesquise aqui">
                                  <button type="submit" title="search" class="btn-reset input-group-text bg-white border">
                                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M6.99989 0C3.13331 0 0 3.13427 0 6.99979C0 10.8663 3.13351 14.0004 6.99989 14.0004C8.49916 14.0004 9.88877 13.5285 11.0281 12.7252L15.9512 17.6491C16.4199 18.117 17.1798 18.117 17.6485 17.6491C18.1172 17.1804 18.1172 16.4205 17.6485 15.9518L12.7254 11.0288C13.5279 9.88936 13.9998 8.4997 13.9998 6.99983C13.9998 3.13411 10.8655 0 6.99989 0ZM2.39962 6.99979C2.39962 4.45981 4.45907 2.40019 6.99989 2.40019C9.54072 2.40019 11.6002 4.45961 11.6002 6.99979C11.6002 9.54058 9.54072 11.6 6.99989 11.6C4.45907 11.6 2.39962 9.54058 2.39962 6.99979Z" fill="#31404B"/>
@@ -54,7 +54,7 @@
                               </div>
                            </form>   
                            @if (Route::currentRouteName() == 'blog-search')
-                              <a href="{{ route('blog') }}#news" class="btn background-red rounded-0 text-white montserrat-medium py-1 font-15">Limpar</a>
+                              <a href="{{ route('blog') }}#news" class="btn background-red rounded-0 text-white poppins-medium py-1 font-15">Limpar</a>
                            @endif                     
                         </div>
                      </div>
@@ -74,29 +74,29 @@
                                 <div class="d-flex flex-column align-items-center bg-white mb-4 overflow-hidden position-relative">
 
                                     <div class="position-absolute mt-2 start-0">
-                                        <span class="badge rounded-0 badge-primary montserrat-semiBold font-10 text-uppercase py-2 px-2 mr-2 background-red">
+                                        <span class="badge rounded-0 badge-primary poppins-semiBold font-10 text-uppercase py-2 px-2 mr-2 background-red">
                                             {{ $blog->category->title }}
                                         </span>
                                     </div>
 
                                     <img loading="lazy" class="img-fluid w-100 rounded-1"
-                                    src="{{ $blog->path_image_thumbnail ? asset('storage/' . $blog->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=montserrat' }}"
+                                    src="{{ $blog->path_image_thumbnail ? asset('storage/' . $blog->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=poppins' }}"
                                     alt="{{ $blog->title }}"
                                     style="height: 232px;aspect-ratio:1/1;object-fit: cover;">
 
                                     <div class="col-12 my-3 h-auto px-0 d-flex flex-column justify-content-center position-relative">                        
                                         <a href="{{ route('blog-inner', $blog->slug) }}" class="underline">
-                                            <h3 class="h6 m-0 montserrat-bold font-14 title-blue">
+                                            <h3 class="h6 m-0 poppins-bold font-14 title-blue">
                                                 {{ Str::limit($blog->title, 60) }}
                                             </h3>
                                         </a>
 
-                                        <p class="text-color my-3 montserrat-regular font-15">
+                                        <p class="text-color my-3 poppins-regular font-15">
                                             {!! substr(strip_tags($blog->text), 0, 200) !!}...
                                         </p>
 
                                         <div class="d-flex justify-content-between align-items-center w-100">
-                                            <p class="text-color mb-0 montserrat-regular font-12 col-8">{{$dataFormatada}}</p>
+                                            <p class="text-color mb-0 poppins-regular font-12 col-8">{{$dataFormatada}}</p>
 
                                             <div id="socialLinks-filter-{{$blog->id}}" class="social-links home opacity-0">
                                                 <div class="d-flex gap-2">
@@ -127,7 +127,7 @@
                   @else
                   <div class="alert alert-warning d-flex align-items-center flex-column text-center py-4" role="alert">
                      <i class="bi bi-emoji-frown fs-1 mb-2"></i>
-                     <h3 class="alert-heading text-uppercase montserrat-bold font-20">Nenhuma notícia encontrada</h3>
+                     <h3 class="alert-heading text-uppercase poppins-bold font-20">Nenhuma notícia encontrada</h3>
                   </div>
                @endif
             </div>

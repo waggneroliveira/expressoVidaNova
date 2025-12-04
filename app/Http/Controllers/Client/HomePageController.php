@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Blog;
 use App\Models\About;
 use App\Models\Event;
+use App\Models\PopUp;
 use App\Models\Slide;
 use App\Models\Stack;
 use App\Models\Topic;
@@ -16,10 +17,10 @@ use App\Models\Partner;
 use App\Models\Unionized;
 use App\Models\Announcement;
 use App\Models\BenefitTopic;
+use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 use App\Models\StackSessionTitle;
 use App\Http\Controllers\Controller;
-use App\Models\BlogCategory;
 
 class HomePageController extends Controller
 {
@@ -117,6 +118,7 @@ class HomePageController extends Controller
         ->whereMonth('date', now()->month)
         ->orderBy('date', 'asc')
         ->get();
+        $popUp = PopUp::active()->first();
         
         return view('client.blades.index', compact(
             'latestNews', 
@@ -131,6 +133,7 @@ class HomePageController extends Controller
             'announcementVerticals', 
             'blogCategories', 
             'events', 
+            'popUp', 
             'blogNoBairros')
         );
     }

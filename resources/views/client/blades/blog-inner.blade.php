@@ -3,7 +3,7 @@
     <!-- News With Sidebar Start -->
     <div class="col-12 p-0">
         <img class="border img-fluid w-100 rounded-0 image-inner d-flex justify-content-center align-items-center"
-        src="{{ $blogInner->path_image_thumbnail ? asset('storage/'.$blogInner->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=montserrat' }}"
+        src="{{ $blogInner->path_image_thumbnail ? asset('storage/'.$blogInner->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=poppins' }}"
         alt="{{ $blogInner->title ? $blogInner->title : 'Sem imagem'}}"
         style="aspect-ratio:1.91/1;object-fit: cover;max-height: 565px;">
     </div>
@@ -18,16 +18,16 @@
                     <!-- News Detail Start -->
                     <div class="position-relative mb-3">
                         <article>
-                            <h1 class="mb-3 title-blue montserrat-bold font-32 text-uppercase">{{$blogInner->title}}</h1>
+                            <h1 class="mb-3 title-blue poppins-bold font-32 text-uppercase">{{$blogInner->title}}</h1>
                             <div class="mb-3 d-flex justify-content-start align-items-center gap-1 flex-wrap">
-                                <span class="badge background-red rounded-0 montserrat-semiBold font-12 text-uppercase py-2 px-2 me-2">{{$blogInner->category->title}}</span>
-                                <p class="text-color mb-0 montserrat-regular font-15">{{$dataFormatada}}</p>
+                                <span class="badge background-red rounded-0 poppins-semiBold font-12 text-uppercase py-2 px-2 me-2">{{$blogInner->category->title}}</span>
+                                <p class="text-color mb-0 poppins-regular font-15">{{$dataFormatada}}</p>
                             </div>
 
                             <div class="py-4">
                                 <div class="barra-de-progresso mt-2 d-flex align-items-center gap-2">
                                     <i id="audioIcon" class="fa fa-play d-flex justify-content-center align-items-center rounded-5 font-12 text-black" onclick="togglePlayPause()"></i>
-                                    <span id="audioStatus" class="text-muted montserrat-semiBold font-12"></span>
+                                    <span id="audioStatus" class="text-muted poppins-semiBold font-12"></span>
 
                                     <div id="progressContainer" class="progressContainer flex-grow-1">
                                         <div id="progressBar" class="background-red" style="width:0%;"></div>
@@ -36,7 +36,7 @@
                                     <!-- Controlador de velocidade -->
                                     <div class="d-flex gap-1 align-items-center">
                                         <button id="decreaseSpeed" class="btn-voz d-flex justify-content-center align-items-center btn btn-sm btn-outline-secondary">-</button>
-                                        <span id="speedLabel" class="text-muted montserrat-semiBold font-12 ms-1 me-1">1x</span>
+                                        <span id="speedLabel" class="text-muted poppins-semiBold font-12 ms-1 me-1">1x</span>
                                         <button id="increaseSpeed" class="btn-voz d-flex justify-content-center align-items-center btn btn-sm btn-outline-secondary">+</button>
                                     </div>
 
@@ -47,21 +47,21 @@
                                     </div>
                                 </div>
 
-                                <div class="text-blog-inner montserrat-medium font-16 mt-4 text-audio">
+                                <div class="text-blog-inner poppins-medium font-16 mt-4 text-audio">
                                     {!! $blogInner->text !!}
                                 </div>                                
                             </div>                        
                         </article>
 
                         <div class="d-flex justify-content-between align-items-start">      
-                            <a href="{{route('blog')}}" class="montserrat-semiBold font-16 d-flex justify-content-start align-items-center gap-2 mb-3 text-black col-2">
+                            <a href="{{route('blog')}}" class="poppins-semiBold font-16 d-flex justify-content-start align-items-center gap-2 mb-3 text-black col-2">
                                 <svg width="15" height="15" viewBox="0 0 17 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M14.1926 2.20441L2.32113 10.6069C2.05923 10.7927 2.05923 11.2059 2.32113 11.3917L14.1926 19.7941C14.4739 19.9924 14.8716 19.8011 14.8716 19.4017V2.59536C14.8716 2.19742 14.4725 2.00613 14.1926 2.20441ZM1.09904 8.87649L12.9705 0.474006C14.6832 -0.737844 17 0.519764 17 2.59681V19.4032C17 21.4803 14.6831 22.7378 12.9705 21.526L1.09904 13.1221C-0.365655 12.085 -0.367038 9.91502 1.09904 8.87649Z" fill="black"/>
                                 </svg>
                                 Voltar
                             </a>                     
                             <div class="position-relative d-flex justify-content-center align-items-end flex-column">
-                                <button class="montserrat-semiBold font-16 d-flex justify-content-around align-items-center btn pt-0 px-0 text-black rounded-0">
+                                <button class="poppins-semiBold font-16 d-flex justify-content-around align-items-center btn pt-0 px-0 text-black rounded-0">
                                     Compartilhe aqui
                                 </button>
                                 <div class="mt-0">
@@ -81,7 +81,7 @@
                     <div class="mb-0 mt-5">
                         <div class="bg-white border border-top-0 p-4">
                             <div class="section-title mb-0 rounded-top-left">
-                                <h4 class="m-0 montserrat-bold font-25 title-blue">Deixe um comentário</h4>
+                                <h4 class="m-0 poppins-bold font-25 title-blue">Deixe um comentário</h4>
                             </div>
                             <form id="commentForm">
                                 @csrf
@@ -89,14 +89,14 @@
 
                                 <div class="mb-3">
                                     <label for="message">Mensagem *</label>
-                                    <textarea id="message" name="comment" required cols="30" rows="5" class="form-control montserrat-regular font-15"></textarea>
+                                    <textarea id="message" name="comment" required cols="30" rows="5" class="form-control poppins-regular font-15"></textarea>
                                 </div>
                                                                 
                                 <div class="mb-0">
-                                    <button type="submit" class="btn background-red rounded-3 montserrat-medium text-white font-15">Comentar</button>
+                                    <button type="submit" class="btn background-red rounded-3 poppins-medium text-white font-15">Comentar</button>
                                 </div>
                             </form>
-                            <div id="commentMessage" class="mt-3 montserrat-regular font-15"></div>
+                            <div id="commentMessage" class="mt-3 poppins-regular font-15"></div>
                         </div>
                     </div>
                     <!-- Comment Form End -->
@@ -106,7 +106,7 @@
                         <div class="mb-3 mt-3 comments">
                             <div class="bg-white border p-4 comment-scroll">
                                 <div class="section-title mb-4 title-blue rounded-top-left">
-                                    <h4 class="m-0 montserrat-bold font-25 title-blue">{{$blogInner->comments->count()}} Comentário(s)</h4>
+                                    <h4 class="m-0 poppins-bold font-25 title-blue">{{$blogInner->comments->count()}} Comentário(s)</h4>
                                 </div>
                                 @foreach ($blogInner->comments as $comment)
                                     @php
@@ -123,8 +123,8 @@
                                                     class="img-fluid mr-3 mt-1 rounded-circle"
                                                     style="width: 50px; height: 50px; object-fit: cover;">
                                                 <div class="d-flex flex-column col-10 comment">
-                                                    <h6 class="title-blue montserrat-bold font-15 mb-0">{{ $client->name }}</h6>
-                                                    <small class="title-blue mb-0 montserrat-regular font-12">
+                                                    <h6 class="title-blue poppins-bold font-15 mb-0">{{ $client->name }}</h6>
+                                                    <small class="title-blue mb-0 poppins-regular font-12">
                                                         {{ $dataFormatada }}
                                                     </small>
                                                     <div class="w-100 mt-3">
@@ -149,7 +149,7 @@
                         <div class="mb-3">
                             <div class="bg-white border p-3 rounded-1">
                                 <div class="section-title mb-4 rounded-top-left">
-                                    <h4 class="mb-3 montserrat-bold font-18 pb-3 border-bottom title-blue news">Relacionados</h4>
+                                    <h4 class="mb-3 poppins-bold font-18 pb-3 border-bottom title-blue news">Relacionados</h4>
                                 </div>
                                 @foreach($blogRelacionados as $index => $relacionado)
                                     <article class="{{ $index >= 5 ? 'rel-item d-none' : '' }}">
@@ -157,7 +157,7 @@
 
                                             <div class="h-100 pe-2 d-flex flex-column justify-content-center" style="flex: 1;">
                                                 <a href="{{ route('blog-inner', ['slug' => $relacionado->slug]) }}" class="underline">
-                                                    <h3 class="h6 m-0 montserrat-bold font-15 title-blue">
+                                                    <h3 class="h6 m-0 poppins-bold font-15 title-blue">
                                                         {{ substr(strip_tags($relacionado->title), 0, 100) }}
                                                     </h3>
                                                 </a>
@@ -167,7 +167,7 @@
                                                 <img loading="lazy"
                                                     class="rounded-1 img-fluid w-100 h-100"
                                                     style="object-fit: cover; aspect-ratio: 1/1;"
-                                                    src="{{ $relacionado->path_image_thumbnail ? asset('storage/'.$relacionado->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=montserrat' }}"
+                                                    src="{{ $relacionado->path_image_thumbnail ? asset('storage/'.$relacionado->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=poppins' }}"
                                                     alt="{{ $relacionado->title ?? 'Sem imagem' }}">
                                             </div>
 
@@ -177,7 +177,7 @@
 
                                 @if(count($blogRelacionados) > 5)
                                     <div class="text-center mt-2">
-                                        <p id="btn-ver-mais" class="montserrat-bold font-15" style="cursor: pointer;">Ver mais</p>                                        
+                                        <p id="btn-ver-mais" class="poppins-bold font-15" style="cursor: pointer;">Ver mais</p>                                        
                                     </div>
                                 @endif
                             </div>
@@ -189,13 +189,13 @@
                     <div class="mb-3">
                         <div class="bg-white border rounded-1 p-3">
                             <div class="section-title mb-0 rounded-top-left cat-mt">
-                                <h4 class="mb-3 montserrat-bold font-18 border-bottom title-blue pb-3 news">Categorias</h4>
+                                <h4 class="mb-3 poppins-bold font-18 border-bottom title-blue pb-3 news">Categorias</h4>
                             </div>
                             <div class="d-flex flex-wrap m-n1">
                                 @foreach ($blogCategories as $category)
                                     <li class="nav-link">
                                         <a href="{{ route('blog', ['category' => $category->slug]) }}#news"
-                                        class="btn btn-sm title-blue rounded-0 montserrat-semiBold font-12 m-1 bg-blue-light">
+                                        class="btn btn-sm title-blue rounded-0 poppins-semiBold font-12 m-1 bg-blue-light">
                                         {{-- active background-red --}}
                                             {{ $category->title }}
                                         </a>
@@ -217,7 +217,7 @@
                     <!-- Newsletter Start -->
                     <div class="mb-4 bg-white text-center border p-3 rounded-1">
                         <div class="section-title mb-0 rounded-top-left">
-                            <h4 class="mb-3 montserrat-bold font-18 border-bottom pb-3 title-blue text-start news">Newsletter</h4>
+                            <h4 class="mb-3 poppins-bold font-18 border-bottom pb-3 title-blue text-start news">Newsletter</h4>
                         </div>
                         @include('client.includes.newsletter')
                     </div>
@@ -226,8 +226,8 @@
                     <!-- Rede sociais Start -->
                     <div class="mb-4 bg-white text-center border p-3 rounded-1">
                         <div class="section-title mb-0 rounded-top-left">
-                            <h4 class="mb-3 montserrat-bold font-18 border-bottom pb-3 title-blue text-start news">Siga-nos nas redes sociais</h4>
-                                <p class="text-color montserrat-regular font-12 text-start">
+                            <h4 class="mb-3 poppins-bold font-18 border-bottom pb-3 title-blue text-start news">Siga-nos nas redes sociais</h4>
+                                <p class="text-color poppins-regular font-12 text-start">
                                     Acompanhe as notícias de toda a cidade através das nossas redes sociais
                                 </p>
                         </div>
@@ -281,7 +281,7 @@
                 @if ($viewMores->count() > 0) 
                     <div class="container border-bottom news mb-0 p-0">
                         <div class="px-0 d-flex flex-row justify-content-between align-items-center">
-                            <h2 class="section-title d-table p-0 w-auto m-0 mb-3 montserrat-bold font-28 title-blue">
+                            <h2 class="section-title d-table p-0 w-auto m-0 mb-3 poppins-bold font-28 title-blue">
                                 Veja também
                             </h2>
 
@@ -315,29 +315,29 @@
                                             <div class="d-flex flex-column align-items-center bg-white mb-4 overflow-hidden position-relative">
 
                                                 <div class="position-absolute mt-2 start-0">
-                                                    <span class="badge rounded-0 badge-primary montserrat-semiBold font-10 text-uppercase py-2 px-2 mr-2 background-red">
+                                                    <span class="badge rounded-0 badge-primary poppins-semiBold font-10 text-uppercase py-2 px-2 mr-2 background-red">
                                                         {{ $viewMore->category->title }}
                                                     </span>
                                                 </div>
 
                                                 <img loading="lazy" class="img-fluid w-100 rounded-1"
-                                                src="{{ $viewMore->path_image_thumbnail ? asset('storage/' . $viewMore->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=montserrat' }}"
+                                                src="{{ $viewMore->path_image_thumbnail ? asset('storage/' . $viewMore->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=poppins' }}"
                                                 alt="{{ $viewMore->title }}"
                                                 style="height: 232px;aspect-ratio:1/1;object-fit: cover;">
 
                                                 <div class="col-12 my-3 h-100 px-0 d-flex flex-column justify-content-center position-relative">                        
                                                     <a href="{{ route('blog-inner', $viewMore->slug) }}" class="underline">
-                                                        <h3 class="h6 m-0 montserrat-bold font-14 title-blue">
+                                                        <h3 class="h6 m-0 poppins-bold font-14 title-blue">
                                                             {{ Str::limit($viewMore->title, 60) }}
                                                         </h3>
                                                     </a>
 
-                                                    <p class="text-color my-3 montserrat-regular font-15">
+                                                    <p class="text-color my-3 poppins-regular font-15">
                                                         {!! substr(strip_tags($viewMore->text), 0, 200) !!}...
                                                     </p>
 
                                                     <div class="d-flex justify-content-between align-items-center w-100">
-                                                        <p class="text-color mb-0 montserrat-regular font-12 col-8">{{$dataFormatada}}</p>
+                                                        <p class="text-color mb-0 poppins-regular font-12 col-8">{{$dataFormatada}}</p>
 
                                                         <div id="socialLinks-filter-{{$viewMore->id}}" class="social-links home opacity-0">
                                                             <div class="d-flex gap-2">

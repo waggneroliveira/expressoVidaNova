@@ -27,15 +27,15 @@
             </div>
             
             <!-- Título e mensagem -->
-            <h1 class="display-1 fw-bold emphasis montserrat-bold">404</h1>
-            <h2 class="mb-4 montserrat-bold title-blue">Página não encontrada</h2>
-            <p class="lead mb-4 text-center title-blue montserrat-medium">
+            <h1 class="display-1 fw-bold emphasis poppins-bold">404</h1>
+            <h2 class="mb-4 poppins-bold title-blue">Página não encontrada</h2>
+            <p class="lead mb-4 text-center title-blue poppins-medium">
                 Desculpe, a página que você está procurando não existe ou foi movida.
             </p>
             
             <!-- Botão de ação -->
             <div class="d-grid gap-2 d-md-flex justify-content-center">
-                <a href="{{route('index')}}" class="text-white py-2 px-3 montserrat-medium rounded-3 background-red d-flex justify-content-start gap-2 align-items-center">
+                <a href="{{route('index')}}" class="text-white py-2 px-3 poppins-medium rounded-3 background-red d-flex justify-content-start gap-2 align-items-center">
                     <i class="bi bi-house-fill me-2 d-flex justify-content-center align-items-center"></i>Voltar para o Início
                 </a>
             </div>

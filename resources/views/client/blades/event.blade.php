@@ -54,7 +54,7 @@
 <div class="d-flex justify-content-start gap-2 align-items-start flex-nowrap mt-5 mb-3">
     <span class="firula-contact mt-2"></span>
     <div class="description">
-        <h1 class="montserrat-bold font-30 mb-0 title-blue text-uppercase">Eventos</h1>
+        <h1 class="poppins-bold font-30 mb-0 title-blue text-uppercase">Eventos</h1>
     </div>
 </div>
 
@@ -272,7 +272,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (eventId) {
             const backButton = document.createElement('button');
             backButton.textContent = 'Ver todos os eventos';
-            backButton.className = 'btn background-red montserrat-semiBold font-15 text-white mt-3';
+            backButton.className = 'btn background-red poppins-semiBold font-15 text-white mt-3';
             backButton.onclick = () => {
                 window.location.href = window.location.pathname; // Remove parâmetros da URL
             };
