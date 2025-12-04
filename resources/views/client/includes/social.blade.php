@@ -8,7 +8,7 @@ isset($contact) && $contact->link_youtube || isset($contact) && $contact->link_x
             <div class="d-flex justify-content-start gap-2 align-items-start flex-nowrap mt-4">
                 <span class="firula-contact mt-2"></span>
                 <div class="description">
-                    <h3 class="montserrat-bold font-30 mb-0 title-blue">{{$contact->name_section_social_media}}</h3>
+                    <h3 class="poppins-bold font-30 mb-0 title-blue">{{$contact->name_section_social_media}}</h3>
                 </div>
             </div>
         @endif
@@ -56,7 +56,7 @@ isset($contact) && $contact->link_youtube || isset($contact) && $contact->link_x
                     </nav>
                 </div>
                 @if (isset($contact) && $contact->mention != null)                        
-                    <span class="montserrat-ExtraBold font-20 ms-2 title-blue text-uppercase">@ {{ $contact->mention }}</span>
+                    <span class="poppins-ExtraBold font-20 ms-2 title-blue text-uppercase">@ {{ $contact->mention }}</span>
                 @endif
             </div>
         </div>

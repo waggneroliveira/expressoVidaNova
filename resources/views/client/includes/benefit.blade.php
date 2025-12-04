@@ -17,11 +17,11 @@
                     </div>
                     <div class="col-lg-4 col-md-5 col-11 p-0">
                         <div class="col-12 col-lg-10">
-                            <h2 class="montserrat-semiBold mb-4 font-20 font-md-25 m-0 text-white">{{$unionized->title}}</h2>
-                            <p class="montserrat-medium font-16 font-md-18 mb-4 text-white">{{$unionized->description}}</p>
+                            <h2 class="poppins-semiBold mb-4 font-20 font-md-25 m-0 text-white">{{$unionized->title}}</h2>
+                            <p class="poppins-medium font-16 font-md-18 mb-4 text-white">{{$unionized->description}}</p>
                             @if ($unionized->path_file <> null)
                                 <a href="{{asset('storage/' . $unionized->path_file)}}" target="_blank" rel="noopener noreferrer" 
-                                    class="bg-light montserrat-bold font-15 rounded-5 py-1 px-4 px-md-5 text-center d-inline-block">
+                                    class="bg-light poppins-bold font-15 rounded-5 py-1 px-4 px-md-5 text-center d-inline-block">
                                     Baixar ficha de filiação <span class="bi-file-earmark-arrow-down"></span>
                                 </a>
                             @endif
@@ -40,7 +40,7 @@
                                         <img src="{{asset('storage/' . $benefitTopic->path_image)}}" alt="Direitos trabalhistas" width="60" loading="lazy">
                                     </div>
                                 @endif
-                                <p class="montserrat-bold font-15 mb-0 text-center">
+                                <p class="poppins-bold font-15 mb-0 text-center">
                                     {{$benefitTopic->title}}
                                 </p>
                             </div>
