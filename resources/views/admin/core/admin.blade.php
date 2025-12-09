@@ -156,7 +156,7 @@
                             <li class="menu-item">
                                 <a href="#servicos" data-bs-toggle="collapse" class="menu-link">
                                     <span class="menu-icon"><i class="mdi mdi-toolbox"></i></span>
-                                    <span class="menu-text"> Serviços aos <br> sindicalizados </span>
+                                    <span class="menu-text"> Sessão Anuncie </span>
                                     <span class="badge bg-success rounded-pill ms-auto">4</span>
                                 </a>
                                 <div class="collapse" id="servicos">

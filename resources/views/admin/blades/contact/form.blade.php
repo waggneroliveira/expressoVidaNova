@@ -87,12 +87,12 @@
                 <div class="mb-3 col-lg-6 col-12">
                     <label for="name_one" class="form-label">E-mail</label>
                     <input type="text" name="name_one" class="form-control" id="name_one"
-                        value="{{ $contact->name_one }}" placeholder="Título">
+                        value="{{ isset($contact)?$contact->name_one:'' }}" placeholder="Título">
                 </div>
                 <div class="mb-3 col-lg-6 col-12">
                     <label for="phone_one" class="form-label">Telefone</label>
                     <input type="text" name="phone_one" class="form-control" id="phone_one"
-                        value="{{ $contact->phone_one }}" placeholder="Telefone">
+                        value="{{ isset($contact)?$contact->phone_one:'' }}" placeholder="Telefone">
                 </div>
             </div> 
         </div>
