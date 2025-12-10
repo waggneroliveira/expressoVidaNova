@@ -147,41 +147,19 @@
     <header id="header" class="w-100 d-flex flex-column position p-0">   
         <div class="w-100 py-0">
             <div class="header-top py-2 mb-0 header-color">
-                <div class="container d-flex flex-wrap justify-content-center justify-content-lg-between align-items-center">
-                    <div class="d-flex justify-content-center gap-4 w-100">
-                        <div class="logo-img d-block d-lg-none px-0 py-2 rounded-2 d-flex justify-content-start align-items-center w-auto">
-                            <a href="{{route('index')}}">
-                                <img src="{{asset('build/client/images/expressovidadnova.png')}}" alt="Expresso Vida Nova" title="Expresso Vida Nova" class="img-fluid" style="width: 100px;">
-                            </a>
-                        </div>                           
-                        <div class="d-flex justify-content-between gap-3 flex-nowrap align-items-center d-lg-none search-mobile">
-                            <form action="{{route('blog-search')}}#news" class="search col-12 col-lg-10" method="post">
-                                @csrf
-                                <div class="input-group input-group-lg">
-                                    <input type="search" name="search" class="rounded-0 form-control border-end-0 text-color poppins-regular bg-white py-0" placeholder="Pesquise aqui">
-                                    <button type="submit" title="search" class="btn-reset input-group-text bg-white border rounded-0">
-                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.99989 0C3.13331 0 0 3.13427 0 6.99979C0 10.8663 3.13351 14.0004 6.99989 14.0004C8.49916 14.0004 9.88877 13.5285 11.0281 12.7252L15.9512 17.6491C16.4199 18.117 17.1798 18.117 17.6485 17.6491C18.1172 17.1804 18.1172 16.4205 17.6485 15.9518L12.7254 11.0288C13.5279 9.88936 13.9998 8.4997 13.9998 6.99983C13.9998 3.13411 10.8655 0 6.99989 0ZM2.39962 6.99979C2.39962 4.45981 4.45907 2.40019 6.99989 2.40019C9.54072 2.40019 11.6002 4.45961 11.6002 6.99979C11.6002 9.54058 9.54072 11.6 6.99989 11.6C4.45907 11.6 2.39962 9.54058 2.39962 6.99979Z" fill="#31404B"/>
-                                    </svg>                                    
-                                    </button>
-                                </div>
-                            </form>
-                            <button id="menu-toggle" class="d-lg-none btn btn-link p-0 ms-2" aria-label="Abrir menu" type="button">
-                                <span class="menu-icon" style="display:inline-block;width:32px;height:32px;">
-                                    <span class="d-block w-100 rounded-1" style="height:4px;background:#FFF;margin:6px 0;"></span>
-                                    <span class="d-block w-100 rounded-1" style="height:4px;background:#FFF;margin:6px 0;"></span>
-                                    <span class="d-block w-100 rounded-1" style="height:4px;background:#FFF;margin:6px 0;"></span>
-                                </span>
-                            </button>
-                        </div>  
+                <div class="container d-flex d-lg-none flex-wrap justify-content-center justify-content-lg-between align-items-center">
+                    <div class="logo-img px-0 py-2 rounded-2 d-flex justify-content-start align-items-center w-auto">
+                        <a href="{{route('index')}}">
+                            <img src="{{asset('build/client/images/expressovidadnova.png')}}" alt="Expresso Vida Nova" title="Expresso Vida Nova" class="img-fluid" style="width: 100px;">
+                        </a>
                     </div>
-
-                    <p class="text-white d-none d-lg-block poppins-medium text-center text-lg-start font-15 mb-0 col-12 col-lg-6">
+                    
+                    <p class="text-white poppins-medium text-center text-lg-start font-15 mb-0 col-12 col-lg-6">
                         Lauro de Freitas, BA | {{ \Carbon\Carbon::now()->translatedFormat('l, d \d\e F \d\e Y') }}
                     </p>
 
-                    <div class="col-12 col-lg-6 text-center"> 
-                        <div class="d-none d-lg-flex flex-wrap justify-content-center justify-content-lg-end align-items-center">
+                    <div class="col-12 col-lg-6 text-center d-none d-lg-block"> 
+                        <div class="d-flex flex-wrap justify-content-center justify-content-lg-end align-items-center">
                             <div class="dark-background p-0">
                                 <nav class="site-navigation position-relative redes-sociais">
                                     <ul class="p-0 d-flex justify-content-center gap-3 flex-row mb-0">
@@ -228,7 +206,7 @@
                 </div>
             </div>
             <div class="container m-auto d-none d-lg-flex align-items-center justify-content-between flex-column">
-                <div class="d-flex col-12 justify-content-between align-items-center ">
+                <div class="d-flex col-12 justify-content-between align-items-center wrap-logo-and-login">
                     <div class="logo-img px-0 py-2 rounded-2 d-flex justify-content-start align-items-center w-auto">
                         <a href="{{route('index')}}">
                             <img src="{{asset('build/client/images/expressovidadnova.png')}}" alt="Expresso Vida Nova" title="Expresso Vida Nova" class="img-fluid">
@@ -242,7 +220,7 @@
                     @endif
                 </div>       
             </div>
-            <div class="container-fluid header-color mt-0 h-60 d-none d-lg-flex align-items-center py-0">
+            <div class="container-fluid header-color mt-0 h-60 d-flex align-items-center py-0">
                 <div class="container d-flex justify-content-between align-items-center w-100 h-100">
                     <div class="social-links d-flex justify-content-center align-items-center gap-4 text-center col-12 col-lg-auto">
                         <nav class="none site-navigation ul position-relative text-end width-75 h-60">
@@ -294,7 +272,7 @@
                             </ul>                      
                         </nav>
 
-                        {{-- <div class="d-flex justify-content-between gap-3 flex-wrap align-items-center d-lg-none">
+                        <div class="d-flex justify-content-between gap-3 flex-wrap align-items-center d-lg-none">
                            <form action="{{route('blog-search')}}#news" class="search col-12 col-lg-10" method="post">
                               @csrf
                               <div class="input-group input-group-lg">
@@ -306,53 +284,15 @@
                                  </button>
                               </div>
                            </form>
-                        </div> --}}
+                        </div>
                         <!-- Botão menu sandwich -->
-                        {{-- <button id="menu-toggle" class="d-lg-none btn btn-link p-0 ms-2" aria-label="Abrir menu" type="button">
+                        <button id="menu-toggle" class="d-lg-none btn btn-link p-0 ms-2" aria-label="Abrir menu" type="button">
                             <span class="menu-icon" style="display:inline-block;width:32px;height:32px;">
                                 <span class="d-block w-100 rounded-1" style="height:4px;background:#FFF;margin:6px 0;"></span>
                                 <span class="d-block w-100 rounded-1" style="height:4px;background:#FFF;margin:6px 0;"></span>
                                 <span class="d-block w-100 rounded-1" style="height:4px;background:#FFF;margin:6px 0;"></span>
                             </span>
-                        </button> --}}
-                        {{-- <div class="d-none justify-content-center align-items-center gap-2 mt-0 login-middle-mobile">                        
-                            @if (!Auth::guard('client')->check())                            
-                                <div class="d-flex justify-content-start align-items-center gap-2">
-                                    <svg width="20" height="20" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M46.793 8.62893C44.5547 8.62893 42.7344 6.81253 42.7344 4.57423C42.7344 2.33593 44.5547 0.519531 46.793 0.519531L80.57 0.503906C88.8044 0.503906 95.5 7.20311 95.5 15.4339V80.5789C95.5 88.8055 88.8008 95.5089 80.57 95.5089H46.793C44.5469 95.5089 42.7266 93.6847 42.7266 91.4386C42.7266 89.1886 44.5469 87.3683 46.793 87.3683H80.57C84.3083 87.3683 87.3591 84.3136 87.3591 80.5831V15.4311C87.3591 11.7006 84.3083 8.63031 80.57 8.63031L46.793 8.62893ZM49.6914 68.2459L66.5504 51.0619C67.398 50.3158 67.9332 49.2181 67.9332 47.9994C67.9332 46.7807 67.398 45.683 66.5504 44.9408L49.6914 27.7568C48.1133 26.1591 45.543 26.1357 43.9492 27.71C42.3515 29.2803 42.3281 31.8545 43.9062 33.4522L54.1792 43.9322L4.5742 43.9283C2.3281 43.9283 0.5 45.7525 0.5 47.9986C0.5 50.2486 2.3281 52.0689 4.5742 52.0689H54.1762L43.9032 62.5459C42.3251 64.1436 42.3524 66.7138 43.9462 68.288C45.5439 69.8583 48.1103 69.8389 49.6884 68.2412L49.6914 68.2459Z" fill="white"/>
-                                    </svg>
-
-                                    <h2 class="off-login m-0 poppins-medium font-14 text-start" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#loginModal">Login</h2>
-                                </div>
-                            @else
-                                @php
-                                    $user = Auth::guard('client')->user();
-                                    $defaultImage = $user && $user->path_image ? url($user->path_image) : '';
-                                @endphp
-                                <div class="image-profile">
-                                    <picture>
-                                        <source srcset="{{ isset($defaultImage) && $defaultImage <> null ?$defaultImage:asset('build/client/images/user.jpg') }}" type="image/svg+xml">
-                                        <img src="{{ isset($defaultImage) && $defaultImage <> null ?$defaultImage:asset('build/client/images/user.jpg') }}"
-                                            alt="Imagem de Login"
-                                            class="img-fluid rounded-circle">
-                                    </picture>
-                                </div>
-                                <div class="d-flex flex-column align-items-start gap-1">
-                                    <div class="d-flex justify-content-start align-items-center gap-2 lh-0">
-                                        <h2 class="loginOn m-0 poppins-medium font-10 text-start">Bem vindo,</h2>   
-                                        <h3 class="m-0 poppins-medium font-12 text-start">{{$names = collect(explode(' ', Auth::guard('client')->user()->name))->slice(0, 1)->implode(' ')}}!</h3>      
-                                        <a class="nav-link waves-effect waves-light" href="#" data-bs-toggle="modal" data-bs-target="#editClientModal-{{Auth::guard('client')->user()->id}}">
-                                            <i class="bi bi-gear font-15"></i>
-                                        </a>                 
-                                    </div>  
-                                    <a href="{{route('client.user.logout')}}" class="d-flex justify-content-start align-items-center gap-2 text-decoration-none lh-0">
-                                        <i class="bi bi-box-arrow-right font-15"></i>
-                                        <h4 class="poppins-medium font-12 m-0">Sair</h4>
-                                    </a>                                               
-                                </div>
-                            @endif
-                        </div> --}}
-                        
+                        </button>                        
                     </div>
 
                     <div class="d-none d-lg-flex d-flex justify-content-center align-items-center gap-2 login-desktop col-auto col-lg-8">   
@@ -415,43 +355,7 @@
                 </div>
             </div>
         </div>     
-        <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector(".search-mobile form");
-    const input = form.querySelector("input[type='search']");
-    const submitBtn = form.querySelector("button[type='submit']");
-
-    submitBtn.addEventListener("click", function (event) {
-        // Se estiver no mobile (≤560px)
-        if (window.innerWidth <= 560) {
-
-            // Se o campo está escondido, mostra ele em vez de enviar
-            if (getComputedStyle(input).display === "none") {
-                event.preventDefault(); // impede o submit
-
-                // mostra o campo
-                input.style.display = "block";
-                input.focus();
-
-                return;
-            }
-        }
-        // Se já está visível, segue com o submit normal
-    });
-});
-
-
-        </script>
-        <style>
-/* MOBILE – até 560px */
-@media (max-width: 560px) {
-    .search-mobile form .input-group input {
-        display: none; /* escondemos só o input */
-    }
-}
-
-
-        </style>
+        
         @include('client/includes/lgpd/lgpd')
         
         @if (isset($contact) && $contact->whatsapp <> null)
