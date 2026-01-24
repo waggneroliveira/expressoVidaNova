@@ -157,7 +157,7 @@ class HomePageController extends Controller
 
             // Obter TODAS as notícias ordenadas por data
             $allNews = $query->orderBy('created_at', 'DESC')->get();
-            
+
             // Pegar as próximas notícias (excluindo a primeira)
             $latestNews = $allNews;
 
@@ -165,12 +165,15 @@ class HomePageController extends Controller
                 'latestNews' => $latestNews
             ])->render();
 
+            // Força UTF-8 e remove caracteres inválidos
+            $html = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
+
             return response()->json([
                 'success' => true,
                 'html' => $html,
                 'count' => $allNews->count(),
                 'latest_count' => $latestNews->count()
-            ]);
+            ], 200, [], JSON_UNESCAPED_UNICODE);
 
         } catch (\Exception $e) {
             return response()->json([

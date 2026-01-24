@@ -269,7 +269,7 @@
 
                                 {{-- PAGINATION --}}
                                 <div class="mt-3 float-end">
-                                   {{-- {{$blog->links()}} --}}
+                                   {{$blogs->links()}}
                                 </div>
                             </div>
                         </div> <!-- end card-->
