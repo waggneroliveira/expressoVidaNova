@@ -17,6 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->web(append: [
             \App\Http\Middleware\SetLocale::class,
             HandleInertiaRequests::class,
+            // \App\Console\Commands\ImportRssBlogs::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

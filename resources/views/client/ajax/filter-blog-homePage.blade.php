@@ -4,6 +4,19 @@
             @php
                 \Carbon\Carbon::setLocale('pt_BR');
                 $dataFormatada = \Carbon\Carbon::parse($news->date)->translatedFormat('d \d\e F \d\e Y');
+                
+                // Verifica se a imagem é do RSS (URL externa) ou manual (storage)
+                if ($news->path_image_thumbnail) {
+                    if (Str::startsWith($news->path_image_thumbnail, ['http://', 'https://'])) {
+                        // Já é uma URL completa (RSS ou manual com URL externa)
+                        $imagemUrl = $news->path_image_thumbnail;
+                    } else {
+                        // Precisa do asset() para o storage
+                        $imagemUrl = asset('storage/' . $news->path_image_thumbnail);
+                    }
+                } else {
+                    $imagemUrl = 'https://placehold.co/600x400?text=Sem+imagem&font=poppins';
+                }
             @endphp
             <article class="col-12 col-sm-12 col-md-6">
                 <div class="d-flex flex-column align-items-center bg-white mb-4 overflow-hidden position-relative">
@@ -13,7 +26,7 @@
                         </span>
                     </div>
                     <img loading="lazy" class="img-fluid w-100 rounded-1"
-                    src="{{ $news->path_image_thumbnail ? asset('storage/' . $news->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=poppins' }}"
+                    src="{{ $imagemUrl }}"
                     alt="{{ $news->title }}"
                     style="height: 232px;aspect-ratio:1/1;object-fit: cover;">
                     <div class="col-12 my-3 h-100 px-0 d-flex flex-column justify-content-center position-relative">                        

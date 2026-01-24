@@ -2,8 +2,23 @@
 @section('content')
     <!-- News With Sidebar Start -->
     <div class="col-12 p-0">
+        @php
+            // Verifica se a imagem é do RSS (URL externa) ou manual (storage)
+            if ($blogInner->path_image_thumbnail) {
+                if (Str::startsWith($blogInner->path_image_thumbnail, ['http://', 'https://'])) {
+                    // Já é uma URL completa (RSS ou manual com URL externa)
+                    $imagemUrl = $blogInner->path_image_thumbnail;
+                } else {
+                    // Precisa do asset() para o storage
+                    $imagemUrl = asset('storage/' . $blogInner->path_image_thumbnail);
+                }
+            } else {
+                $imagemUrl = 'https://placehold.co/600x400?text=Sem+imagem&font=poppins';
+            }
+        @endphp
+        
         <img class="border img-fluid w-100 rounded-0 image-inner d-flex justify-content-center align-items-center"
-        src="{{ $blogInner->path_image_thumbnail ? asset('storage/'.$blogInner->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=poppins' }}"
+        src="{{ $imagemUrl }}"
         alt="{{ $blogInner->title ? $blogInner->title : 'Sem imagem'}}"
         style="aspect-ratio:1.91/1;object-fit: cover;max-height: 565px;">
     </div>
@@ -152,6 +167,21 @@
                                     <h4 class="mb-3 poppins-bold font-18 pb-3 border-bottom title-blue news">Relacionados</h4>
                                 </div>
                                 @foreach($blogRelacionados as $index => $relacionado)
+                                    @php
+                                        // Verifica se a imagem é do RSS (URL externa) ou manual (storage)
+                                        if ($relacionado->path_image_thumbnail) {
+                                            if (Str::startsWith($relacionado->path_image_thumbnail, ['http://', 'https://'])) {
+                                                // Já é uma URL completa (RSS ou manual com URL externa)
+                                                $imagemRelacionadoUrl = $relacionado->path_image_thumbnail;
+                                            } else {
+                                                // Precisa do asset() para o storage
+                                                $imagemRelacionadoUrl = asset('storage/' . $relacionado->path_image_thumbnail);
+                                            }
+                                        } else {
+                                            $imagemRelacionadoUrl = 'https://placehold.co/600x400?text=Sem+imagem&font=poppins';
+                                        }
+                                    @endphp
+                                    
                                     <article class="{{ $index >= 5 ? 'rel-item d-none' : '' }}">
                                         <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
 
@@ -167,7 +197,7 @@
                                                 <img loading="lazy"
                                                     class="rounded-1 img-fluid w-100 h-100"
                                                     style="object-fit: cover; aspect-ratio: 1/1;"
-                                                    src="{{ $relacionado->path_image_thumbnail ? asset('storage/'.$relacionado->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=poppins' }}"
+                                                    src="{{ $imagemRelacionadoUrl }}"
                                                     alt="{{ $relacionado->title ?? 'Sem imagem' }}">
                                             </div>
 
@@ -308,6 +338,19 @@
                                     @php
                                         \Carbon\Carbon::setLocale('pt_BR');
                                         $dataFormatada = \Carbon\Carbon::parse($viewMore->date)->translatedFormat('d \d\e F \d\e Y');
+                                        
+                                        // Verifica se a imagem é do RSS (URL externa) ou manual (storage)
+                                        if ($viewMore->path_image_thumbnail) {
+                                            if (Str::startsWith($viewMore->path_image_thumbnail, ['http://', 'https://'])) {
+                                                // Já é uma URL completa (RSS ou manual com URL externa)
+                                                $imagemViewMoreUrl = $viewMore->path_image_thumbnail;
+                                            } else {
+                                                // Precisa do asset() para o storage
+                                                $imagemViewMoreUrl = asset('storage/' . $viewMore->path_image_thumbnail);
+                                            }
+                                        } else {
+                                            $imagemViewMoreUrl = 'https://placehold.co/600x400?text=Sem+imagem&font=poppins';
+                                        }
                                     @endphp
                                     
                                     <div class="swiper-slide">
@@ -321,7 +364,7 @@
                                                 </div>
 
                                                 <img loading="lazy" class="img-fluid w-100 rounded-1"
-                                                src="{{ $viewMore->path_image_thumbnail ? asset('storage/' . $viewMore->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=poppins' }}"
+                                                src="{{ $imagemViewMoreUrl }}"
                                                 alt="{{ $viewMore->title }}"
                                                 style="height: 232px;aspect-ratio:1/1;object-fit: cover;">
 

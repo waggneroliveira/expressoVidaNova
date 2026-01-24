@@ -26,6 +26,9 @@ class Blog extends Model
         'super_highlight',
         'highlight',
         'sorting',
+        'source',
+        'external_link',
+        'is_rss',
     ];
 
     public function comments()

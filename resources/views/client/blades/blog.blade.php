@@ -1,5 +1,3 @@
-
-
 @extends('client.core.client')
 @section('content')
 <section id="news" class="blog-content pt-0 my-5">
@@ -68,6 +66,22 @@
                            @php
                               \Carbon\Carbon::setLocale('pt_BR');
                               $dataFormatada = \Carbon\Carbon::parse($blog->date)->translatedFormat('d \d\e F \d\e Y');
+                              
+                              // Verifica se a imagem é do RSS (URL externa) ou manual (storage)
+                              $imagemUrl = null;
+                              if ($blog->path_image_thumbnail) {
+                                  if ($blog->is_rss && filter_var($blog->path_image_thumbnail, FILTER_VALIDATE_URL)) {
+                                      // É do RSS - URL externa direta
+                                      $imagemUrl = $blog->path_image_thumbnail;
+                                     
+                                  } elseif (Str::startsWith($blog->path_image_thumbnail, 'http')) {
+                                      // Já é uma URL completa (pode ser de RSS ou manual com URL externa)
+                                      $imagemUrl = $blog->path_image_thumbnail;
+                                  } else {
+                                      // É manual - caminho no storage
+                                      $imagemUrl = asset('storage/' . $blog->path_image_thumbnail);
+                                  }
+                              }
                            @endphp                     
 
                            <article class="col-lg-4 col-md-6 col-12 mb-4 d-flex">
@@ -80,7 +94,7 @@
                                     </div>
 
                                     <img loading="lazy" class="img-fluid w-100 rounded-1"
-                                    src="{{ $blog->path_image_thumbnail ? asset('storage/' . $blog->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=poppins' }}"
+                                    src="{{ $imagemUrl ?: 'https://placehold.co/600x400?text=Sem+imagem&font=poppins' }}"
                                     alt="{{ $blog->title }}"
                                     style="height: 232px;aspect-ratio:1/1;object-fit: cover;">
 

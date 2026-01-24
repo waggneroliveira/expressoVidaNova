@@ -11,7 +11,7 @@ class BlogCategoriesSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run(): void //php artisan db:seed --class=BlogCategoriesSeeder
     {
         DB::table('blog_categories')->upsert(
             [

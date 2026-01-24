@@ -55,12 +55,25 @@
                                 @php
                                     \Carbon\Carbon::setLocale('pt_BR');
                                     $dataFormatada = \Carbon\Carbon::parse($blogSuperHighlight->date)->translatedFormat('d \d\e F \d\e Y');
+                                    
+                                    // Verifica se a imagem é do RSS (URL externa) ou manual (storage)
+                                    if ($blogSuperHighlight->path_image_thumbnail) {
+                                        if (Str::startsWith($blogSuperHighlight->path_image_thumbnail, ['http://', 'https://'])) {
+                                            // Já é uma URL completa (RSS ou manual com URL externa)
+                                            $imagemSuperHighlightUrl = $blogSuperHighlight->path_image_thumbnail;
+                                        } else {
+                                            // Precisa do asset() para o storage
+                                            $imagemSuperHighlightUrl = asset('storage/' . $blogSuperHighlight->path_image_thumbnail);
+                                        }
+                                    } else {
+                                        $imagemSuperHighlightUrl = 'https://placehold.co/600x400?text=Sem+imagem&font=poppins';
+                                    }
                                 @endphp
                                 <div class="swiper-slide">
                                     <article>
                                         <div class="position-relative overflow-hidden" style="height: 500px;">
                                             <img class="img-fluid h-100 w-100"
-                                            src="{{ $blogSuperHighlight->path_image_thumbnail ? asset('storage/'.$blogSuperHighlight->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=poppins' }}"
+                                            src="{{ $imagemSuperHighlightUrl }}"
                                             alt="{{ $blogSuperHighlight->path_image_thumbnail ? 'Notícia super destaque' : 'Sem imagem'}}"
                                             style="object-fit: cover; aspect-ratio: 1.91/1;">
 
@@ -125,12 +138,25 @@
                                 @php
                                     \Carbon\Carbon::setLocale('pt_BR');
                                     $dataFormatada = \Carbon\Carbon::parse($blogHighlight->date)->translatedFormat('d \d\e F \d\e Y');
+                                    
+                                    // Verifica se a imagem é do RSS (URL externa) ou manual (storage)
+                                    if ($blogHighlight->path_image_thumbnail) {
+                                        if (Str::startsWith($blogHighlight->path_image_thumbnail, ['http://', 'https://'])) {
+                                            // Já é uma URL completa (RSS ou manual com URL externa)
+                                            $imagemHighlightUrl = $blogHighlight->path_image_thumbnail;
+                                        } else {
+                                            // Precisa do asset() para o storage
+                                            $imagemHighlightUrl = asset('storage/' . $blogHighlight->path_image_thumbnail);
+                                        }
+                                    } else {
+                                        $imagemHighlightUrl = 'https://placehold.co/600x400?text=Sem+imagem&font=poppins';
+                                    }
                                 @endphp
                                 <div class="col-md-12 box-small">
                                     <article>
                                         <div class="position-relative overflow-hidden" style="height: 246px;">
                                             <img class="img-fluid h-100 w-100"
-                                            src="{{ $blogHighlight->path_image_thumbnail ? asset('storage/'.$blogHighlight->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=poppins' }}"
+                                            src="{{ $imagemHighlightUrl }}"
                                             alt="{{ $blogHighlight->title ? $blogHighlight->title : 'Sem imagem'}}"
                                             style="object-fit: cover; aspect-ratio: 1 / 1;">
                                             <div class="overlay">
@@ -225,6 +251,21 @@
                                     <h4 class="mb-3 poppins-bold font-18 pb-3 border-bottom title-blue news">Veja também</h4>
                                 </div>
                                 @foreach($blogRelacionados as $index => $relacionado)
+                                    @php
+                                        // Verifica se a imagem é do RSS (URL externa) ou manual (storage)
+                                        if ($relacionado->path_image_thumbnail) {
+                                            if (Str::startsWith($relacionado->path_image_thumbnail, ['http://', 'https://'])) {
+                                                // Já é uma URL completa (RSS ou manual com URL externa)
+                                                $imagemRelacionadoUrl = $relacionado->path_image_thumbnail;
+                                            } else {
+                                                // Precisa do asset() para o storage
+                                                $imagemRelacionadoUrl = asset('storage/' . $relacionado->path_image_thumbnail);
+                                            }
+                                        } else {
+                                            $imagemRelacionadoUrl = 'https://placehold.co/600x400?text=Sem+imagem&font=poppins';
+                                        }
+                                    @endphp
+                                    
                                     <article class="{{ $index >= 5 ? 'rel-item d-none' : '' }}">
                                         <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
 
@@ -240,7 +281,7 @@
                                                 <img loading="lazy"
                                                     class="rounded-1 img-fluid w-100 h-100"
                                                     style="object-fit: cover; aspect-ratio: 1/1;"
-                                                    src="{{ $relacionado->path_image_thumbnail ? asset('storage/'.$relacionado->path_image_thumbnail) : 'https://placehold.co/600x400?text=Sem+imagem&font=poppins' }}"
+                                                    src="{{ $imagemRelacionadoUrl }}"
                                                     alt="{{ $relacionado->title ?? 'Sem imagem' }}">
                                             </div>
 
