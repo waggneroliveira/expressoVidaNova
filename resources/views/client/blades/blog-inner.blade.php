@@ -64,6 +64,15 @@
 
                                 <div class="text-blog-inner poppins-medium font-16 mt-4 text-audio">
                                     {!! $blogInner->text !!}
+                                    <br>
+                                    <br>
+                                    <small class="text-muted">
+                                        <b>Fonte:</b> Bahia Notícias
+                                        <br>
+                                        <a href="{{ $blogInner->external_link }}" target="_blank" rel="noopener noreferrer" class="text-underline text-primary">
+                                            Leia a matéria completa no site original.
+                                        </a> 
+                                    </small>
                                 </div>                                
                             </div>                        
                         </article>
