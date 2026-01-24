@@ -66,13 +66,22 @@
                                     {!! $blogInner->text !!}
                                     <br>
                                     <br>
-                                    <small class="text-muted">
-                                        <b>Fonte:</b> Bahia Notícias
+                                    @if ($blogInner->is_rss)                                        
+                                        <small class="text-muted">
+                                            <b>Fonte:</b> Bahia Notícias
+                                            <br>
+                                            <a href="{{ $blogInner->external_link }}" target="_blank" rel="noopener noreferrer" class="text-underline text-primary">
+                                                Leia a matéria completa no site original.
+                                            </a> 
+                                        </small>
                                         <br>
-                                        <a href="{{ $blogInner->external_link }}" target="_blank" rel="noopener noreferrer" class="text-underline text-primary">
-                                            Leia a matéria completa no site original.
-                                        </a> 
-                                    </small>
+                                        <br>
+                                        <div class="alert alert-warning small" role="alert">
+                                            <strong>Aviso:</strong> Este site atua como agregador de notícias.
+                                            Os conteúdos de terceiros pertencem integralmente aos seus respectivos
+                                            autores e veículos. As publicações externas contêm apenas resumos informativos.
+                                        </div>
+                                    @endif
                                 </div>                                
                             </div>                        
                         </article>
