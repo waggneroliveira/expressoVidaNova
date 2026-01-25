@@ -1,3 +1,6 @@
+.fs-table-item.fs-align-center{
+    color: #000;
+}
 .whatsapp-float svg {
     width: 29px;
     height: 29px;
@@ -1503,6 +1506,11 @@ div[vw].enabled {
         font-size: 0.625rem !important;
     }
  }
+@media (min-width: 992px) {
+    .border-lg-no-start {
+        border-left: none !important;
+    }
+}
  @media (max-width: 991.98px) {
     .content-video {
         flex-direction: column; /* lista em cima, player embaixo */
