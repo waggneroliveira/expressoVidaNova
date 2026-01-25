@@ -43,47 +43,6 @@
     </script>
 @endif
 
-@if($tempo)
-<div class="container mt-5">
-    <div class="row">
-        <div class="card border-0 shadow-sm col-12 col-lg-3">
-            <div class="card-body d-flex align-items-center gap-3 py-2">
-    
-                <div class="bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center"
-                     style="width:42px;height:42px;">
-                    <i class="bi bi-cloud-sun fs-5"></i>
-                </div>
-    
-                <div class="flex-grow-1">
-                    <small class="m-0 poppins-bold font-15 title-blue">Lauro de Freitas</small>
-                    <div class="m-0 poppins-bold font-15 title-blue">
-                        {{ $tempo['temperature'] }}°C
-                        <span class="m-0 poppins-regular font-15 text-muted">
-                            • Vento {{ $tempo['windspeed'] }} km/h
-                        </span>
-                    </div>
-                </div>
-    
-            </div>
-        </div>
-        <!-- Futebol -->
-        {{-- <div class="col-md-7">
-            <div style="flex:1; min-width:200px;">
-                <iframe
-                    src="https://www.aiscore.com/livescorewidget"
-                    width="100%" height="60"
-                    style="border:none;"
-                    loading="lazy">
-                </iframe>
-            </div>
-        </div> --}}
-    </div>
-</div>
-@endif
-
-
-
-
 @if (isset($blogSuperHighlights) && $blogSuperHighlights <> null)
     <section class="blog mb-0 mt-4">
         <div class="container">
@@ -430,6 +389,29 @@
                         </div>
                     </div>
                     <!-- Newsletter End -->
+
+                                        @if($tempo)
+                        <div class="card border-0 shadow-sm col-12 mb-3">
+                            <div class="card-body d-flex align-items-center gap-3 py-2">
+
+                                <div class="bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center"
+                                        style="width:42px;height:42px;">
+                                    <i class="bi bi-cloud-sun fs-5"></i>
+                                </div>
+
+                                <div class="flex-grow-1">
+                                    <small class="m-0 poppins-bold font-15 title-blue">Lauro de Freitas</small>
+                                    <div class="m-0 poppins-bold font-15 title-blue">
+                                        {{ $tempo['temperature'] }}°C
+                                        <span class="m-0 poppins-regular font-15 text-muted">
+                                            • Vento {{ $tempo['windspeed'] }} km/h
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
