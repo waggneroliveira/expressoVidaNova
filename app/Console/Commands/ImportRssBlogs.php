@@ -11,7 +11,7 @@ use Illuminate\Console\Command;
 
 class ImportRssBlogs extends Command
 {
-    protected $signature = 'rss:blogs';
+    protected $signature = 'rss:bahianoticias'; //php artisan rss:bahianoticias
     protected $description = 'Importa notícias via RSS e cria categorias automaticamente';
 
     protected RssService $rss;

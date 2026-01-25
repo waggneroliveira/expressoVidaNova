@@ -68,7 +68,7 @@
                                     <br>
                                     @if ($blogInner->is_rss)                                        
                                         <small class="text-muted">
-                                            <b>Fonte:</b> Bahia Notícias
+                                            <b>Fonte:</b> {{$blogInner->source}}
                                             <br>
                                             <a href="{{ $blogInner->external_link }}" target="_blank" rel="noopener noreferrer" class="text-underline text-primary">
                                                 Leia a matéria completa no site original.
