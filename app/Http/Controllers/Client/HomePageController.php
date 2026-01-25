@@ -18,13 +18,12 @@ use App\Models\Unionized;
 use App\Models\Announcement;
 use App\Models\BenefitTopic;
 use App\Models\BlogCategory;
-use Illuminate\Http\Request;
-use App\Models\StackSessionTitle;
+use App\Services\WeatherService;
 use App\Http\Controllers\Controller;
 
 class HomePageController extends Controller
 {
-    public function index()
+    public function index(WeatherService $weather)
     {
         $blogSuperHighlights = Blog::whereHas('category', function($active){
             $active->where('active', 1);
@@ -119,6 +118,13 @@ class HomePageController extends Controller
         ->orderBy('date', 'asc')
         ->get();
         $popUp = PopUp::active()->first();
+
+        $tempo = cache()->remember(
+            'weather_lauro_freitas',
+            now()->addMinutes(30),
+            fn () => $weather->current(-12.89, -38.33)
+        );
+
         
         return view('client.blades.index', compact(
             'latestNews', 
@@ -134,6 +140,7 @@ class HomePageController extends Controller
             'blogCategories', 
             'events', 
             'popUp', 
+            'tempo', 
             'blogNoBairros')
         );
     }
