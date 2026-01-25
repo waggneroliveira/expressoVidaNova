@@ -1,3 +1,25 @@
+.instagram-title {
+    text-align: center;
+    font-size: 1.9rem;
+    font-weight: 700;
+
+    background: #f09433; /* Fallback */
+    background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+    background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.instagram-title i {
+    font-size: 2.1rem;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+
 .fs-table-item.fs-align-center{
     color: #000;
 }

@@ -782,6 +782,21 @@
     </div>
 @endif
 
+<div class="feed-inatgram mt-5">
+    <div class="text-center my-4">
+        <h3 class="poppins-bold font-30 text-black d-flex justify-content-center align-items-center gap-2 flex-column">
+            <div class="col-12 instagram-title">
+                <i class="bi bi-instagram"></i>
+                Instagram
+            </div>
+            
+            <span class="text-muted fw-normal font-15">@agenciawhi</span>
+        </h3>
+    </div>
+
+    <!-- LightWidget WIDGET -->
+    <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script><iframe src="//lightwidget.com/widgets/088343ee9d83593f8d3f907c86a90a55.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden;"></iframe>
+</div>
 <script>
     const section = document.querySelector('section.video');
     if (section) {
