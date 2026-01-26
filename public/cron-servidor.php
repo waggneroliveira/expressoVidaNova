@@ -1,39 +1,42 @@
 <?php
-// public/cron-servidor.php - VERSÃO FINAL FUNCIONAL
 
-// Token
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Log;
+
+// =====================
+// TOKEN
+// =====================
 $tokenEsperado = "fbaffa5c0ac7f47a89abdf8fa3eb4aa7";
-if(isset($_SERVER['HTTP_X_CRON_AUTH']) && $_SERVER['HTTP_X_CRON_AUTH'] !== $tokenEsperado) {
-    die("Token invalido");
+
+if (
+    !isset($_SERVER['HTTP_X_CRON_AUTH']) ||
+    $_SERVER['HTTP_X_CRON_AUTH'] !== $tokenEsperado
+) {
+    http_response_code(403);
+    exit('Token inválido');
 }
 
-// Log
-$logFile = __DIR__.'/../storage/logs/cron-servidor.log';
-file_put_contents($logFile, date('Y-m-d H:i:s') . " - Cron acionado pela Kinghost\n", FILE_APPEND);
-
-// Inicializa Laravel
+// =====================
+// BOOTSTRAP LARAVEL (FORMA CORRETA)
+// =====================
 require __DIR__.'/../vendor/autoload.php';
 
-try {
-    $app = require_once __DIR__.'/../bootstrap/app.php';
-    $app->boot();
-    
-    // Cria uma requisição para a rota interna
-    $request = \Illuminate\Http\Request::create('/run-cron-interno', 'GET');
-    $request->headers->set('X-Cron-Auth', $tokenEsperado);
-    
-    // Processa a requisição
-    $response = $app->handle($request);
-    
-    // Log do resultado
-    file_put_contents($logFile, date('Y-m-d H:i:s') . " - Status: " . $response->getStatusCode() . "\n", FILE_APPEND);
-    file_put_contents($logFile, date('Y-m-d H:i:s') . " - Resposta: " . $response->getContent() . "\n", FILE_APPEND);
-    
-    // Retorna para a Kinghost
-    echo $response->getContent();
-    
-} catch (\Exception $e) {
-    file_put_contents($logFile, date('Y-m-d H:i:s') . " - ERRO: " . $e->getMessage() . "\n", FILE_APPEND);
-    echo "Erro no servidor: " . $e->getMessage();
-}
-?>
+$app = require __DIR__.'/../bootstrap/app.php';
+
+$app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+
+// =====================
+// LOG
+// =====================
+Log::info('Cron RSS iniciado');
+
+// =====================
+// EXECUTA OS COMANDOS
+// =====================
+Artisan::call('rss:g1bahia');
+Artisan::call('rss:govba');
+Artisan::call('rss:bahianoticias');
+
+Log::info('Cron RSS finalizado');
+
+echo 'Cron executado com sucesso';
