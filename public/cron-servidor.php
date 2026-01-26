@@ -1,31 +1,34 @@
 <?php
-    // public/cron-emergencia.php - FUNCIONA 100%
+// public/cron-servidor.php - VERSÃO CURL
 
-    // Token
-    $tokenEsperado = "fbaffa5c0ac7f47a89abdf8fa3eb4aa7";
-    if(isset($_SERVER['HTTP_X_CRON_AUTH']) && $_SERVER['HTTP_X_CRON_AUTH'] !== $tokenEsperado) {
-        // die("Token invalido");
-    }
+// Token
+$tokenEsperado = "fbaffa5c0ac7f47a89abdf8fa3eb4aa7";
+if(isset($_SERVER['HTTP_X_CRON_AUTH']) && $_SERVER['HTTP_X_CRON_AUTH'] !== $tokenEsperado) {
+    die("Token invalido");
+}
 
-    $logFile = __DIR__.'/../storage/logs/cron-emergencia.log';
-    file_put_contents($logFile, date('Y-m-d H:i:s') . " - Inicio\n", FILE_APPEND);
+// Log
+$logFile = __DIR__.'/../storage/logs/cron-curl.log';
+file_put_contents($logFile, date('Y-m-d H:i:s') . " - Iniciando via cURL\n", FILE_APPEND);
 
-    // Método DIRETO: Execute cada comando separadamente via include
-    $baseDir = __DIR__ . '/../';
+// Método cURL para chamar uma rota interna
+$ch = curl_init();
 
-    // 1. Execute rss:g1bahia
-    $output1 = shell_exec("cd $baseDir && /usr/bin/php artisan rss:g1bahia 2>&1");
-    file_put_contents($logFile, date('Y-m-d H:i:s') . " - G1: " . ($output1 ?: 'sem saida') . "\n", FILE_APPEND);
+// Chama uma rota INTERNA do seu site que executa os comandos
+curl_setopt($ch, CURLOPT_URL, "http://localhost/run-cron-interno");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    'X-Cron-Auth: ' . $tokenEsperado,
+    'User-Agent: CronJob'
+]);
 
-    // 2. Execute rss:govba
-    $output2 = shell_exec("cd $baseDir && /usr/bin/php artisan rss:govba 2>&1");
-    file_put_contents($logFile, date('Y-m-d H:i:s') . " - GovBA: " . ($output2 ?: 'sem saida') . "\n", FILE_APPEND);
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-    // 3. Execute rss:bahianoticias
-    $output3 = shell_exec("cd $baseDir && /usr/bin/php artisan rss:bahianoticias 2>&1");
-    file_put_contents($logFile, date('Y-m-d H:i:s') . " - Bahia: " . ($output3 ?: 'sem saida') . "\n", FILE_APPEND);
+curl_close($ch);
 
-    file_put_contents($logFile, date('Y-m-d H:i:s') . " - Fim\n\n", FILE_APPEND);
+file_put_contents($logFile, date('Y-m-d H:i:s') . " - HTTP Code: $httpCode\n", FILE_APPEND);
+file_put_contents($logFile, date('Y-m-d H:i:s') . " - Response: $response\n", FILE_APPEND);
 
-    echo "Comandos executados!";
+echo "Cron executado via cURL! Code: $httpCode";
 ?>
