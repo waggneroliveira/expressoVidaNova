@@ -90,6 +90,12 @@
     }, 10000);
 </script>
 
+{{-- <div class="container">
+</div> --}}
+<script type="module" src="https://widgets.tradingview-widget.com/w/br/tv-ticker-tape.js"></script>
+<tv-ticker-tape symbols='FOREXCOM:SPXUSD,FOREXCOM:NSXUSD,FOREXCOM:DJI,FX:EURUSD,BITSTAMP:BTCUSD,BITSTAMP:ETHUSD,CMCMARKETS:GOLD' show-hover theme="light"></tv-ticker-tape>
+
+<!-- TradingView Widget END -->
 @if (isset($blogSuperHighlights) && $blogSuperHighlights <> null)
     <section class="blog mb-0 mt-4">
         <div class="container">
