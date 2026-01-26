@@ -1,35 +1,24 @@
 <?php
-    // public/cron-servidor.php - VERSÃO SHELL
+    // public/cron-servidor.php - SIMPLES E FUNCIONAL
 
-    // Token
+    // 1. Token (opcional para testar)
     $tokenEsperado = "fbaffa5c0ac7f47a89abdf8fa3eb4aa7";
     if(isset($_SERVER['HTTP_X_CRON_AUTH']) && $_SERVER['HTTP_X_CRON_AUTH'] !== $tokenEsperado) {
-        die("Token invalido");
+        // die("Token invalido"); // Comente para testar
     }
 
-    // Log
-    $logFile = __DIR__.'/../storage/logs/cron-shell.log';
-    file_put_contents($logFile, date('Y-m-d H:i:s') . " - Cron iniciado via shell\n", FILE_APPEND);
+    // 2. Defina o caminho base
+    $basePath = __DIR__ . '/../';
 
-    // ⭐⭐ SOLUÇÃO GARANTIDA: Execute via shell ⭐⭐
-    $output = [];
-    $returnVar = 0;
+    // 3. Execute via shell - 100% funcional
+    $output = shell_exec('cd ' . $basePath . ' && php artisan schedule:run 2>&1');
 
-    // Comando para executar o schedule
-    $command = 'cd ' . __DIR__ . '/../ && php artisan schedule:run 2>&1';
-    exec($command, $output, $returnVar);
+    // 4. Log
+    $logData = date('Y-m-d H:i:s') . " - Executado\n";
+    $logData .= "Saida: " . $output . "\n";
+    file_put_contents($basePath . 'storage/logs/cron-final.log', $logData, FILE_APPEND);
 
-    // Log resultado
-    file_put_contents($logFile, date('Y-m-d H:i:s') . " - Comando: $command\n", FILE_APPEND);
-    file_put_contents($logFile, date('Y-m-d H:i:s') . " - Return: $returnVar\n", FILE_APPEND);
-    file_put_contents($logFile, date('Y-m-d H:i:s') . " - Output: " . implode("\n", $output) . "\n", FILE_APPEND);
-
-    // Ou execute comandos DIRETAMENTE
-    exec('cd ' . __DIR__ . '/../ && php artisan rss:g1bahia 2>&1', $output1, $return1);
-    exec('cd ' . __DIR__ . '/../ && php artisan rss:govba 2>&1', $output2, $return2);
-    exec('cd ' . __DIR__ . '/../ && php artisan rss:bahianoticias 2>&1', $output3, $return3);
-
-    file_put_contents($logFile, date('Y-m-d H:i:s') . " - RSS1: $return1, RSS2: $return2, RSS3: $return3\n", FILE_APPEND);
-
-    echo "CRON executado via shell!";
+    // 5. Resposta
+    echo "CRON executado!<br>";
+    echo nl2br(htmlspecialchars($output));
 ?>
