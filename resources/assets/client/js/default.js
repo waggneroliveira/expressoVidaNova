@@ -137,7 +137,7 @@
                     crossFade: true,
                 },
             autoplay: {
-                delay: 5000,
+                delay: 7500,
                 disableOnInteraction: false,
             },
         });
@@ -149,7 +149,7 @@
                     crossFade: true,
                 },
             autoplay: {
-                delay: 5000,
+                delay: 7500,
                 disableOnInteraction: false,
             },
         });
@@ -162,7 +162,7 @@
                     crossFade: true,
                 },
             autoplay: {
-                delay: 5000,
+                delay: 7500,
                 disableOnInteraction: false,
             },
         });
