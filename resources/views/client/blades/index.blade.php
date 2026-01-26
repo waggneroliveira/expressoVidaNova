@@ -786,7 +786,7 @@
     </div>
 @endif
 
-<div class="feed-inatgram mb-0">
+{{-- <div class="feed-inatgram mb-0">
     <div class="text-center">
         <h3 class="poppins-bold font-30 text-black d-flex justify-content-center align-items-center gap-2 flex-column">
             <div class="col-12 instagram-title">
@@ -797,9 +797,10 @@
             <span class="text-muted fw-normal font-15">@agenciawhi</span>
         </h3>
     </div>
-
+    
     <!-- LightWidget WIDGET -->
     <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script><iframe src="//lightwidget.com/widgets/20fa691805e156d2906a413c0a7d2ed7.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden;"></iframe></div>
+</div> --}}
 
 <script>
     const section = document.querySelector('section.video');
