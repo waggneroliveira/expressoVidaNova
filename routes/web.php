@@ -10,8 +10,10 @@ use App\Models\Direction;
 use App\Models\Announcement;
 use App\Models\BenefitTopic;
 use App\Models\BlogCategory;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FormIndexController;
@@ -34,6 +36,25 @@ require __DIR__ . '/dashboard.php';
 
 Route::get('/', function () {
     return redirect()->route('index');
+});
+
+Route::get('/run-cron-interno', function () {
+    $tokenEsperado = "fbaffa5c0ac7f47a89abdf8fa3eb4aa7";
+    $tokenRecebido = request()->header('X-Cron-Auth');
+    
+    if ($tokenRecebido !== $tokenEsperado) {
+        return response('Token invalido', 403);
+    }
+    
+    Log::info('Cron interno iniciado');
+    
+    Artisan::call('rss:g1bahia');
+    Artisan::call('rss:govba');
+    Artisan::call('rss:bahianoticias');
+    
+    Log::info('Cron interno finalizado');
+    
+    return 'Comandos executados com sucesso!';
 });
 
 Route::post('login.do', [AuthClientController::class, 'authenticate'])
