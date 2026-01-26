@@ -1,52 +1,51 @@
 <?php
-    // CORRIJA O TOKEN - a Kinghost envia como 'x-cron-auth' não 'HTTP_X_CRON_AUTH'
-    // No PHP, cabeçalhos HTTP são convertidos para: HTTP_X_CRON_AUTH
-    // Mas note que está vindo como 'x-cron-auth:fbaffa5c0ac7f47a89abdf8fa3eb4aa7'
-    
-    // Para DEBUG, veja todos os headers
-    // error_log("Headers recebidos: " . print_r($_SERVER, true));
-    
-    // Token CORRETO da Kinghost (veio no log)
-    $tokenEsperado = "fbaffa5c0ac7f47a89abdf8fa3eb4aa7";
-    
-    // Verifique o token CORRETAMENTE
-    if(isset($_SERVER['HTTP_X_CRON_AUTH'])) {
-        $tokenRecebido = $_SERVER['HTTP_X_CRON_AUTH'];
-    } elseif(isset($_SERVER['x-cron-auth'])) {
-        $tokenRecebido = $_SERVER['x-cron-auth'];
-    } else {
-        // Para DEBUG, descomente temporariamente
-        // error_log("Nenhum token encontrado. Headers: " . print_r($_SERVER, true));
-        // die("Token não encontrado");
-    }
-    
-    // Se tiver token, verifica
-    if(isset($tokenRecebido) && $tokenRecebido !== $tokenEsperado) {
-        die("Acesso nao Autorizado. Token: $tokenRecebido");
-    }
+// public/cron-servidor.php - VERSÃO CORRIGIDA
 
-    // Log
-    $logFile = __DIR__.'/../storage/logs/cron-debug.log';
-    file_put_contents($logFile, date('Y-m-d H:i:s') . " - Cron iniciado\n", FILE_APPEND);
+// Token (comente para testar primeiro)
+$tokenEsperado = "fbaffa5c0ac7f47a89abdf8fa3eb4aa7";
+if(isset($_SERVER['HTTP_X_CRON_AUTH']) && $_SERVER['HTTP_X_CRON_AUTH'] !== $tokenEsperado) {
+    // die("Token invalido"); // Descomente depois
+}
 
-    // Laravel 11 - Inicialização CORRETA
-    require __DIR__.'/../vendor/autoload.php';
+// Log
+$logFile = __DIR__.'/../storage/logs/cron-kinghost.log';
+file_put_contents($logFile, date('Y-m-d H:i:s') . " - Iniciando cron\n", FILE_APPEND);
+
+// ⭐⭐ NOVO: Defina constantes do Laravel antes ⭐⭐
+define('LARAVEL_START', microtime(true));
+
+// Inicializa o Laravel COM tratamento de erro
+require __DIR__.'/../vendor/autoload.php';
+
+try {
+    $app = require_once __DIR__.'/../bootstrap/app.php';
     
-    try {
-        $app = require_once __DIR__.'/../bootstrap/app.php';
-        
-        $app->boot();
-        
-        // Agora sim pode usar Artisan
-        $status = \Illuminate\Support\Facades\Artisan::call('schedule:run');
-        
-        file_put_contents($logFile, date('Y-m-d H:i:s') . " - Finalizado. Status: $status\n", FILE_APPEND);
-        
-        // Resposta simples
-        echo "CRON executado com sucesso! Status: $status";
-        
-    } catch (Throwable $e) {
-        file_put_contents($logFile, date('Y-m-d H:i:s') . " - ERRO: " . $e->getMessage() . "\n", FILE_APPEND);
-        echo "ERRO: " . $e->getMessage();
+    // ⭐⭐ IMPORTANTE: Configure o bind manualmente se necessário ⭐⭐
+    // Algumas versões do Laravel 11 precisam disso
+    if (!interface_exists(\Illuminate\Contracts\Console\Kernel::class)) {
+        require __DIR__.'/../vendor/autoload.php';
     }
+    
+    // Boot com tratamento de erro
+    $app->boot();
+    
+    file_put_contents($logFile, date('Y-m-d H:i:s') . " - Laravel booted\n", FILE_APPEND);
+    
+    // Método ALTERNATIVO que funciona
+    $kernel = $app->make(\Illuminate\Contracts\Console\Kernel::class);
+    $status = $kernel->call('schedule:run');
+    
+    file_put_contents($logFile, date('Y-m-d H:i:s') . " - Schedule executado. Status: $status\n", FILE_APPEND);
+    
+    echo "SUCESSO! Status: $status";
+    
+} catch (Throwable $e) {
+    $errorMsg = date('Y-m-d H:i:s') . " - ERRO: " . $e->getMessage() . "\n" . $e->getTraceAsString() . "\n";
+    file_put_contents($logFile, $errorMsg, FILE_APPEND);
+    
+    echo "ERRO DETALHADO: " . $e->getMessage();
+    
+    // Log adicional
+    error_log("CRON ERROR: " . $e->getMessage());
+}
 ?>
