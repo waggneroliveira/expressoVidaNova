@@ -10,7 +10,7 @@ require __DIR__ . '/../vendor/autoload.php';
 $app = require_once __DIR__ . '/../bootstrap/app.php';
 
 // Inicializa a aplicação (Kernel)
-$kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
+$kernel = $app->make(Illuminate\Foundation\Application::class);
 $kernel->bootstrap();
 
 // Executa os comandos Artisan
