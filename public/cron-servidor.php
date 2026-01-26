@@ -3,31 +3,21 @@
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
 
-// =====================
-// BOOTSTRAP LARAVEL 11 (FORMA CORRETA)
-// =====================
+// Autoload
 require __DIR__ . '/../vendor/autoload.php';
 
-$app = require __DIR__ . '/../bootstrap/app.php';
+// Bootstrap do Laravel 11
+$app = require_once __DIR__ . '/../bootstrap/app.php';
 
-// Inicializa o Console Kernel
-$app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+// Inicializa a aplicação (Kernel)
+$kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
+$kernel->bootstrap();
 
-// =====================
-// LOG INÍCIO
-// =====================
-Log::info('Cron RSS iniciado');
-
-// =====================
-// EXECUTA OS COMANDOS
-// =====================
+// Executa os comandos Artisan
 Artisan::call('rss:g1bahia');
 Artisan::call('rss:govba');
 Artisan::call('rss:bahianoticias');
 
-// =====================
-// LOG FIM
-// =====================
-Log::info('Cron RSS finalizado');
+Log::info('Cron RSS executado via cron.php');
 
-echo 'Cron executado com sucesso';
+echo 'OK';
