@@ -1,52 +1,35 @@
 <?php
-    // CORRIJA O TOKEN - a Kinghost envia como 'x-cron-auth' não 'HTTP_X_CRON_AUTH'
-    // No PHP, cabeçalhos HTTP são convertidos para: HTTP_X_CRON_AUTH
-    // Mas note que está vindo como 'x-cron-auth:fbaffa5c0ac7f47a89abdf8fa3eb4aa7'
-    
-    // Para DEBUG, veja todos os headers
-    // error_log("Headers recebidos: " . print_r($_SERVER, true));
-    
-    // Token CORRETO da Kinghost (veio no log)
+    // public/cron-servidor.php - VERSÃO SHELL
+
+    // Token
     $tokenEsperado = "fbaffa5c0ac7f47a89abdf8fa3eb4aa7";
-    
-    // Verifique o token CORRETAMENTE
-    if(isset($_SERVER['HTTP_X_CRON_AUTH'])) {
-        $tokenRecebido = $_SERVER['HTTP_X_CRON_AUTH'];
-    } elseif(isset($_SERVER['x-cron-auth'])) {
-        $tokenRecebido = $_SERVER['x-cron-auth'];
-    } else {
-        // Para DEBUG, descomente temporariamente
-        // error_log("Nenhum token encontrado. Headers: " . print_r($_SERVER, true));
-        // die("Token não encontrado");
-    }
-    
-    // Se tiver token, verifica
-    if(isset($tokenRecebido) && $tokenRecebido !== $tokenEsperado) {
-        die("Acesso nao Autorizado. Token: $tokenRecebido");
+    if(isset($_SERVER['HTTP_X_CRON_AUTH']) && $_SERVER['HTTP_X_CRON_AUTH'] !== $tokenEsperado) {
+        die("Token invalido");
     }
 
     // Log
-    $logFile = __DIR__.'/../storage/logs/cron-debug.log';
-    file_put_contents($logFile, date('Y-m-d H:i:s') . " - Cron iniciado\n", FILE_APPEND);
+    $logFile = __DIR__.'/../storage/logs/cron-shell.log';
+    file_put_contents($logFile, date('Y-m-d H:i:s') . " - Cron iniciado via shell\n", FILE_APPEND);
 
-    // Laravel 11 - Inicialização CORRETA
-    require __DIR__.'/../vendor/autoload.php';
-    
-    try {
-        $app = require_once __DIR__.'/../bootstrap/app.php';
-        
-        $app->boot();
-        
-        // Agora sim pode usar Artisan
-        $status = \Illuminate\Support\Facades\Artisan::call('schedule:run');
-        
-        file_put_contents($logFile, date('Y-m-d H:i:s') . " - Finalizado. Status: $status\n", FILE_APPEND);
-        
-        // Resposta simples
-        echo "CRON executado com sucesso! Status: $status";
-        
-    } catch (Throwable $e) {
-        file_put_contents($logFile, date('Y-m-d H:i:s') . " - ERRO: " . $e->getMessage() . "\n", FILE_APPEND);
-        echo "ERRO: " . $e->getMessage();
-    }
+    // ⭐⭐ SOLUÇÃO GARANTIDA: Execute via shell ⭐⭐
+    $output = [];
+    $returnVar = 0;
+
+    // Comando para executar o schedule
+    $command = 'cd ' . __DIR__ . '/../ && php artisan schedule:run 2>&1';
+    exec($command, $output, $returnVar);
+
+    // Log resultado
+    file_put_contents($logFile, date('Y-m-d H:i:s') . " - Comando: $command\n", FILE_APPEND);
+    file_put_contents($logFile, date('Y-m-d H:i:s') . " - Return: $returnVar\n", FILE_APPEND);
+    file_put_contents($logFile, date('Y-m-d H:i:s') . " - Output: " . implode("\n", $output) . "\n", FILE_APPEND);
+
+    // Ou execute comandos DIRETAMENTE
+    exec('cd ' . __DIR__ . '/../ && php artisan rss:g1bahia 2>&1', $output1, $return1);
+    exec('cd ' . __DIR__ . '/../ && php artisan rss:govba 2>&1', $output2, $return2);
+    exec('cd ' . __DIR__ . '/../ && php artisan rss:bahianoticias 2>&1', $output3, $return3);
+
+    file_put_contents($logFile, date('Y-m-d H:i:s') . " - RSS1: $return1, RSS2: $return2, RSS3: $return3\n", FILE_APPEND);
+
+    echo "CRON executado via shell!";
 ?>
