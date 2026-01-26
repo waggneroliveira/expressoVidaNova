@@ -1,5 +1,5 @@
 <?php
-// public/cron-servidor.php - VERSÃO CURL
+// public/cron-servidor.php - EXECUÇÃO DIRETA
 
 // Token
 $tokenEsperado = "fbaffa5c0ac7f47a89abdf8fa3eb4aa7";
@@ -8,27 +8,46 @@ if(isset($_SERVER['HTTP_X_CRON_AUTH']) && $_SERVER['HTTP_X_CRON_AUTH'] !== $toke
 }
 
 // Log
-$logFile = __DIR__.'/../storage/logs/cron-curl.log';
-file_put_contents($logFile, date('Y-m-d H:i:s') . " - Iniciando via cURL\n", FILE_APPEND);
+file_put_contents(__DIR__.'/../storage/logs/cron-direto.log', 
+    date('Y-m-d H:i:s') . " - Inicio\n", FILE_APPEND
+);
 
-// Método cURL para chamar uma rota interna
-$ch = curl_init();
+// Inicialização MÍNIMA do Laravel
+require __DIR__.'/../vendor/autoload.php';
 
-// Chama uma rota INTERNA do seu site que executa os comandos
-curl_setopt($ch, CURLOPT_URL, "http://localhost/run-cron-interno");
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, [
-    'X-Cron-Auth: ' . $tokenEsperado,
-    'User-Agent: CronJob'
-]);
+$app = require_once __DIR__.'/../bootstrap/app.php';
+$app->boot();
 
-$response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-curl_close($ch);
-
-file_put_contents($logFile, date('Y-m-d H:i:s') . " - HTTP Code: $httpCode\n", FILE_APPEND);
-file_put_contents($logFile, date('Y-m-d H:i:s') . " - Response: $response\n", FILE_APPEND);
-
-echo "Cron executado via cURL! Code: $httpCode";
+// Execute cada comando DIRETAMENTE
+try {
+    // 1. rss:g1bahia
+    \Artisan::call('rss:g1bahia');
+    file_put_contents(__DIR__.'/../storage/logs/cron-direto.log', 
+        date('Y-m-d H:i:s') . " - G1 Bahia OK\n", FILE_APPEND
+    );
+    
+    // 2. rss:govba
+    \Artisan::call('rss:govba');
+    file_put_contents(__DIR__.'/../storage/logs/cron-direto.log', 
+        date('Y-m-d H:i:s') . " - GovBA OK\n", FILE_APPEND
+    );
+    
+    // 3. rss:bahianoticias
+    \Artisan::call('rss:bahianoticias');
+    file_put_contents(__DIR__.'/../storage/logs/cron-direto.log', 
+        date('Y-m-d H:i:s') . " - Bahia Noticias OK\n", FILE_APPEND
+    );
+    
+    file_put_contents(__DIR__.'/../storage/logs/cron-direto.log', 
+        date('Y-m-d H:i:s') . " - Todos comandos OK\n", FILE_APPEND
+    );
+    
+    echo "Comandos executados com sucesso!";
+    
+} catch (Exception $e) {
+    file_put_contents(__DIR__.'/../storage/logs/cron-direto.log', 
+        date('Y-m-d H:i:s') . " - ERRO: " . $e->getMessage() . "\n", FILE_APPEND
+    );
+    echo "Erro: " . $e->getMessage();
+}
 ?>
