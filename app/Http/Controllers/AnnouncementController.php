@@ -32,198 +32,228 @@ class AnnouncementController extends Controller
         return view('admin.blades.announcement.index', compact('announcements'));
     }
 
-    public function store(Request $request)
-    {
-        $data = $request->all();
-        $manager = new ImageManager(GdDriver::class);
+public function store(Request $request)
+{
+    $data = $request->all();
+    $manager = new ImageManager(GdDriver::class);
 
-        // anuncio horizontal
-        if ($request->hasFile('path_image')) {
-            $file = $request->file('path_image');
-            $mime = $file->getMimeType();
-            $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '_horizontal.webp';
+    // anuncio horizontal
+    if ($request->hasFile('path_image')) {
+        $file = $request->file('path_image');
+        $mime = $file->getMimeType();
+        $originalExtension = $file->getClientOriginalExtension();
+        $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '_horizontal.' . $originalExtension;
 
-            if ($mime === 'image/svg+xml') {
-                Storage::putFileAs($this->pathUpload, $file, $filename);
-            } else {
-                $image = $manager->read($file)
-                    ->resize(null, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                        $constraint->upsize();
-                    })
-                    ->toWebp(quality: 95)
-                    ->toString();
+        if ($mime === 'image/svg+xml') {
+            Storage::putFileAs($this->pathUpload, $file, $filename);
+        } elseif ($mime === 'image/gif') {
+            // Para GIFs, apenas armazena o arquivo original
+            Storage::putFileAs($this->pathUpload, $file, $filename);
+        } else {
+            // Para outras imagens (JPEG, PNG, etc.), processa normalmente
+            $image = $manager->read($file)
+                ->resize(null, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->encodeByMediaType()
+                ->toString();
 
-                Storage::put($this->pathUpload . $filename, $image);
-            }
-
-            $data['path_image'] = $this->pathUpload . $filename;
+            Storage::put($this->pathUpload . $filename, $image);
         }
 
-        // anuncio horizontal mobile
-        if ($request->hasFile('path_image_mobile')) {
-            $file = $request->file('path_image_mobile');
-            $mime = $file->getMimeType();
-            $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '_horizontal_mobile.webp';
-
-            if ($mime === 'image/svg+xml') {
-                Storage::putFileAs($this->pathUpload, $file, $filename);
-            } else {
-                $image = $manager->read($file)
-                    ->resize(null, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                        $constraint->upsize();
-                    })
-                    ->toWebp(quality: 95)
-                    ->toString();
-
-                Storage::put($this->pathUpload . $filename, $image);
-            }
-
-            $data['path_image_mobile'] = $this->pathUpload . $filename;
-        }
-
-        // anuncio vertical
-        if ($request->hasFile('path_image_vertical')) {
-            $fileMobile = $request->file('path_image_vertical');
-            $mimeMobile = $fileMobile->getMimeType();
-            $filenameMobile = pathinfo($fileMobile->getClientOriginalName(), PATHINFO_FILENAME) . '_vertical.webp';
-
-            if ($mimeMobile === 'image/svg+xml') {
-                Storage::putFileAs($this->pathUpload, $fileMobile, $filenameMobile);
-            } else {
-                $imageMobile = $manager->read($fileMobile)
-                    ->resize(null, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                        $constraint->upsize();
-                    })
-                    ->toWebp(quality: 95)
-                    ->toString();
-
-                Storage::put($this->pathUpload . $filenameMobile, $imageMobile);
-            }
-
-            $data['path_image_vertical'] = $this->pathUpload . $filenameMobile;
-        }
-
-        $data['active'] = $request->active ? 1 : 0;
-
-        try {
-            DB::beginTransaction();
-                Announcement::create($data);
-            DB::commit();
-            session()->flash('success', __('dashboard.response_item_create'));
-        } catch (\Exception $e) {
-            DB::rollback();
-            Alert::error('Erro', __('dashboard.response_item_error_create'));
-        }
-
-        return redirect()->back();
+        $data['path_image'] = $this->pathUpload . $filename;
     }
 
+    // anuncio horizontal mobile
+    if ($request->hasFile('path_image_mobile')) {
+        $file = $request->file('path_image_mobile');
+        $mime = $file->getMimeType();
+        $originalExtension = $file->getClientOriginalExtension();
+        $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '_horizontal_mobile.' . $originalExtension;
 
-    public function update(Request $request, Announcement $announcement)
-    {
-        $data = $request->all();
-        $helper = new HelperArchive();
-        $manager = new ImageManager(GdDriver::class);
+        if ($mime === 'image/svg+xml') {
+            Storage::putFileAs($this->pathUpload, $file, $filename);
+        } elseif ($mime === 'image/gif') {
+            // Para GIFs, apenas armazena o arquivo original
+            Storage::putFileAs($this->pathUpload, $file, $filename);
+        } else {
+            // Para outras imagens (JPEG, PNG, etc.), processa normalmente
+            $image = $manager->read($file)
+                ->resize(null, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->encodeByMediaType()
+                ->toString();
 
-        // Anuncio horizontal
-        if ($request->hasFile('path_image')) {
-            $file = $request->file('path_image');
-            $mime = $file->getMimeType();
-            $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '_horizontal.webp';
-
-            if ($mime === 'image/svg+xml') {
-                Storage::putFileAs($this->pathUpload, $file, $filename);
-            } else {
-                $image = $manager->read($file)
-                    ->resize(null, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                        $constraint->upsize();
-                    })
-                    ->toWebp(quality: 95)
-                    ->toString();
-
-                Storage::put($this->pathUpload . $filename, $image);
-            }
-
-            Storage::delete(isset($announcement->path_image)??$announcement->path_image);
-            $data['path_image'] = $this->pathUpload . $filename;
+            Storage::put($this->pathUpload . $filename, $image);
         }
 
-        // Anuncio horizontal mobile
-        if ($request->hasFile('path_image_mobile')) {
-            $file = $request->file('path_image_mobile');
-            $mime = $file->getMimeType();
-            $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '_horizontal_mobile.webp';
-
-            if ($mime === 'image/svg+xml') {
-                Storage::putFileAs($this->pathUpload, $file, $filename);
-            } else {
-                $image = $manager->read($file)
-                    ->resize(null, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                        $constraint->upsize();
-                    })
-                    ->toWebp(quality: 95)
-                    ->toString();
-
-                Storage::put($this->pathUpload . $filename, $image);
-            }
-
-            Storage::delete(isset($announcement->path_image_mobile)??$announcement->path_image_mobile);
-            $data['path_image_mobile'] = $this->pathUpload . $filename;
-        }
-
-        if (isset($request->delete_path_image)) {
-            Storage::delete(isset($announcement->path_image)??$announcement->path_image);
-            $data['path_image'] = null;
-        }
-
-        // Anuncio vertical
-        if ($request->hasFile('path_image_vertical')) {
-            $fileMobile = $request->file('path_image_vertical');
-            $mimeMobile = $fileMobile->getMimeType();
-            $filenameMobile = pathinfo($fileMobile->getClientOriginalName(), PATHINFO_FILENAME) . '_vertical.webp';
-
-            if ($mimeMobile === 'image/svg+xml') {
-                Storage::putFileAs($this->pathUpload, $fileMobile, $filenameMobile);
-            } else {
-                $imageMobile = $manager->read($fileMobile)
-                    ->resize(null, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                        $constraint->upsize();
-                    })
-                    ->toWebp(quality: 95)
-                    ->toString();
-
-                Storage::put($this->pathUpload . $filenameMobile, $imageMobile);
-            }
-
-            Storage::delete(isset($announcement->path_image_vertical) && $announcement->path_image_vertical != null ?? $announcement->path_image_vertical);
-            $data['path_image_vertical'] = $this->pathUpload . $filenameMobile;
-        }
-
-        if (isset($request->delete_path_image_vertical)) {
-            Storage::delete(isset($announcement->path_image_vertical) && $announcement->path_image_vertical != null ?? $announcement->path_image_vertical);
-            $data['path_image_vertical'] = null;
-        }
-
-        $data['active'] = $request->active ? 1 : 0;
-
-        try {
-            DB::beginTransaction();
-                $announcement->fill($data)->save();
-            DB::commit();
-            session()->flash('success', __('dashboard.response_item_update'));
-        } catch (\Exception $e) {
-            DB::rollBack();
-            Alert::error('Erro', __('dashboard.response_item_error_update'));
-        }
-
-        return redirect()->back();
+        $data['path_image_mobile'] = $this->pathUpload . $filename;
     }
+
+    // anuncio vertical
+    if ($request->hasFile('path_image_vertical')) {
+        $fileMobile = $request->file('path_image_vertical');
+        $mimeMobile = $fileMobile->getMimeType();
+        $originalExtension = $fileMobile->getClientOriginalExtension();
+        $filenameMobile = pathinfo($fileMobile->getClientOriginalName(), PATHINFO_FILENAME) . '_vertical.' . $originalExtension;
+
+        if ($mimeMobile === 'image/svg+xml') {
+            Storage::putFileAs($this->pathUpload, $fileMobile, $filenameMobile);
+        } elseif ($mimeMobile === 'image/gif') {
+            // Para GIFs, apenas armazena o arquivo original
+            Storage::putFileAs($this->pathUpload, $fileMobile, $filenameMobile);
+        } else {
+            // Para outras imagens (JPEG, PNG, etc.), processa normalmente
+            $imageMobile = $manager->read($fileMobile)
+                ->resize(null, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->encodeByMediaType()
+                ->toString();
+
+            Storage::put($this->pathUpload . $filenameMobile, $imageMobile);
+        }
+
+        $data['path_image_vertical'] = $this->pathUpload . $filenameMobile;
+    }
+
+    $data['active'] = $request->active ? 1 : 0;
+
+    try {
+        DB::beginTransaction();
+            Announcement::create($data);
+        DB::commit();
+        session()->flash('success', __('dashboard.response_item_create'));
+    } catch (\Exception $e) {
+        DB::rollback();
+        Alert::error('Erro', __('dashboard.response_item_error_create'));
+    }
+
+    return redirect()->back();
+}
+
+
+public function update(Request $request, Announcement $announcement)
+{
+    $data = $request->all();
+    $helper = new HelperArchive();
+    $manager = new ImageManager(GdDriver::class);
+
+    // Anuncio horizontal
+    if ($request->hasFile('path_image')) {
+        $file = $request->file('path_image');
+        $mime = $file->getMimeType();
+        $originalExtension = $file->getClientOriginalExtension();
+        $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '_horizontal.' . $originalExtension;
+
+        if ($mime === 'image/svg+xml') {
+            Storage::putFileAs($this->pathUpload, $file, $filename);
+        } elseif ($mime === 'image/gif') {
+            // Para GIFs, apenas armazena o arquivo original
+            Storage::putFileAs($this->pathUpload, $file, $filename);
+        } else {
+            // Para outras imagens (JPEG, PNG, etc.), processa normalmente
+            $image = $manager->read($file)
+                ->resize(null, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->encodeByMediaType()
+                ->toString();
+
+            Storage::put($this->pathUpload . $filename, $image);
+        }
+
+        Storage::delete(isset($announcement->path_image)??$announcement->path_image);
+        $data['path_image'] = $this->pathUpload . $filename;
+    }
+
+    // Anuncio horizontal mobile
+    if ($request->hasFile('path_image_mobile')) {
+        $file = $request->file('path_image_mobile');
+        $mime = $file->getMimeType();
+        $originalExtension = $file->getClientOriginalExtension();
+        $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '_horizontal_mobile.' . $originalExtension;
+
+        if ($mime === 'image/svg+xml') {
+            Storage::putFileAs($this->pathUpload, $file, $filename);
+        } elseif ($mime === 'image/gif') {
+            // Para GIFs, apenas armazena o arquivo original
+            Storage::putFileAs($this->pathUpload, $file, $filename);
+        } else {
+            // Para outras imagens (JPEG, PNG, etc.), processa normalmente
+            $image = $manager->read($file)
+                ->resize(null, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->encodeByMediaType()
+                ->toString();
+
+            Storage::put($this->pathUpload . $filename, $image);
+        }
+
+        Storage::delete(isset($announcement->path_image_mobile)??$announcement->path_image_mobile);
+        $data['path_image_mobile'] = $this->pathUpload . $filename;
+    }
+
+    if (isset($request->delete_path_image)) {
+        Storage::delete(isset($announcement->path_image)??$announcement->path_image);
+        $data['path_image'] = null;
+    }
+
+    // Anuncio vertical
+    if ($request->hasFile('path_image_vertical')) {
+        $fileMobile = $request->file('path_image_vertical');
+        $mimeMobile = $fileMobile->getMimeType();
+        $originalExtension = $fileMobile->getClientOriginalExtension();
+        $filenameMobile = pathinfo($fileMobile->getClientOriginalName(), PATHINFO_FILENAME) . '_vertical.' . $originalExtension;
+
+        if ($mimeMobile === 'image/svg+xml') {
+            Storage::putFileAs($this->pathUpload, $fileMobile, $filenameMobile);
+        } elseif ($mimeMobile === 'image/gif') {
+            // Para GIFs, apenas armazena o arquivo original
+            Storage::putFileAs($this->pathUpload, $fileMobile, $filenameMobile);
+        } else {
+            // Para outras imagens (JPEG, PNG, etc.), processa normalmente
+            $imageMobile = $manager->read($fileMobile)
+                ->resize(null, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->encodeByMediaType()
+                ->toString();
+
+            Storage::put($this->pathUpload . $filenameMobile, $imageMobile);
+        }
+
+        Storage::delete(isset($announcement->path_image_vertical) && $announcement->path_image_vertical != null ?? $announcement->path_image_vertical);
+        $data['path_image_vertical'] = $this->pathUpload . $filenameMobile;
+    }
+
+    if (isset($request->delete_path_image_vertical)) {
+        Storage::delete(isset($announcement->path_image_vertical) && $announcement->path_image_vertical != null ?? $announcement->path_image_vertical);
+        $data['path_image_vertical'] = null;
+    }
+
+    $data['active'] = $request->active ? 1 : 0;
+
+    try {
+        DB::beginTransaction();
+            $announcement->fill($data)->save();
+        DB::commit();
+        session()->flash('success', __('dashboard.response_item_update'));
+    } catch (\Exception $e) {
+        DB::rollBack();
+        Alert::error('Erro', __('dashboard.response_item_error_update'));
+    }
+
+    return redirect()->back();
+}
 
     public function destroy(Announcement $announcement)
     {
