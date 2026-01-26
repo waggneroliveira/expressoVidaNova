@@ -89,7 +89,7 @@ View::composer('client.core.client', function ($view) {
     $blogCategories = BlogCategory::whereHas('blogs')
     ->active()
     ->sorting()
-    ->limit(10)
+    // ->limit(10)
     ->get();
     $announcements = Announcement::select(
         'exhibition',
