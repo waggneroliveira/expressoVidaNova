@@ -26,7 +26,7 @@
     }
 
     // Log
-    $logFile = __DIR__.'/../storage/logs/cron-execution.log';
+    $logFile = __DIR__.'/../storage/logs/cron-debug.log';
     file_put_contents($logFile, date('Y-m-d H:i:s') . " - Cron iniciado\n", FILE_APPEND);
 
     // Laravel 11 - Inicialização CORRETA
