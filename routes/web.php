@@ -106,6 +106,14 @@ Route::get('blog/filter/{category?}', [HomePageController::class, 'filterByCateg
 //     return 'Comandos executados com sucesso!';
 // });
 
+Route::get('cron/rss', function () {
+    Artisan::call('rss:g1bahia');
+    Artisan::call('rss:govba');
+    Artisan::call('rss:bahianoticias');
+
+    return 'Comandos RSS executados com sucesso';
+});
+
 View::composer('client.core.client', function ($view) {
     $blogCategories = BlogCategory::whereHas('blogs')
     ->active()
