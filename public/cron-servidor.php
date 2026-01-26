@@ -1,24 +1,37 @@
 <?php
-    // public/cron-servidor.php - SIMPLES E FUNCIONAL
+echo "<h3>Teste Completo CRON</h3>";
 
-    // 1. Token (opcional para testar)
-    $tokenEsperado = "fbaffa5c0ac7f47a89abdf8fa3eb4aa7";
-    if(isset($_SERVER['HTTP_X_CRON_AUTH']) && $_SERVER['HTTP_X_CRON_AUTH'] !== $tokenEsperado) {
-        // die("Token invalido"); // Comente para testar
-    }
+// 1. Teste funções do PHP
+echo "1. Testando funções PHP:<br>";
+echo "shell_exec: " . (function_exists('shell_exec') ? 'OK' : 'DESABILITADO') . "<br>";
+echo "exec: " . (function_exists('exec') ? 'OK' : 'DESABILITADO') . "<br>";
+echo "system: " . (function_exists('system') ? 'OK' : 'DESABILITADO') . "<br>";
+echo "passthru: " . (function_exists('passthru') ? 'OK' : 'DESABILITADO') . "<br>";
 
-    // 2. Defina o caminho base
-    $basePath = __DIR__ . '/../';
+// 2. Teste caminho
+$baseDir = realpath(__DIR__ . '/../');
+echo "<br>2. Caminho base: $baseDir<br>";
 
-    // 3. Execute via shell - 100% funcional
-    $output = shell_exec('cd ' . $basePath . ' && php artisan schedule:run 2>&1');
+// 3. Teste PHP path
+echo "3. PHP path: ";
+system('which php', $phpPath);
+echo "<br>";
 
-    // 4. Log
-    $logData = date('Y-m-d H:i:s') . " - Executado\n";
-    $logData .= "Saida: " . $output . "\n";
-    file_put_contents($basePath . 'storage/logs/cron-final.log', $logData, FILE_APPEND);
+// 4. Teste comando simples
+echo "<br>4. Teste pwd: ";
+echo shell_exec('pwd 2>&1');
 
-    // 5. Resposta
-    echo "CRON executado!<br>";
-    echo nl2br(htmlspecialchars($output));
+// 5. Teste Artisan
+echo "<br>5. Teste Artisan version: ";
+$output = shell_exec("cd $baseDir && php artisan --version 2>&1");
+echo htmlspecialchars($output ?: '(nenhuma saída)');
+
+// 6. Teste SEU comando
+echo "<br>6. Teste SEU comando: ";
+$output = shell_exec("cd $baseDir && php artisan rss:g1bahia 2>&1");
+echo "<pre>" . htmlspecialchars($output ?: '(nenhuma saída)') . "</pre>";
+
+echo "<br>7. Teste schedule:run: ";
+$output = shell_exec("cd $baseDir && php artisan schedule:run 2>&1");
+echo "<pre>" . htmlspecialchars($output ?: '(nenhuma saída)') . "</pre>";
 ?>
