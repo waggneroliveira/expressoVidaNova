@@ -1,65 +1,42 @@
 <?php
-// cron-simple.php - Assumindo que está na raiz do Laravel
+// cron-via-http.php
+$urls = [
+    'https://www.expressovidanova.com.br/artisan-call/rss-g1bahia',
+    'https://www.expressovidanova.com.br/artisan-call/rss-govba',
+    'https://www.expressovidanova.com.br/artisan-call/rss-bahianoticias'
+];
 
-// Define o timezone
-date_default_timezone_set('America/Sao_Paulo');
+echo "🌐 Executando via HTTP requests...<br>\n";
 
-echo "🔄 Inicializando cron Laravel...<br>\n";
-flush();
-
-// Tenta carregar o Laravel do diretório atual
-if (!file_exists('vendor/autoload.php')) {
-    die("❌ Autoload não encontrado. Este arquivo deve estar na raiz do Laravel.<br>\n");
-}
-
-require 'vendor/autoload.php';
-
-try {
-    $app = require_once 'bootstrap/app.php';
-    $kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
-    $kernel->bootstrap();
+foreach ($urls as $url) {
+    echo "🔗 Chamando: " . $url . "...<br>\n";
+    flush();
     
-    echo "✅ Laravel carregado<br>\n<br>\n";
+    // Usa file_get_contents com contexto
+    $context = stream_context_create([
+        'ssl' => [
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+        ],
+        'http' => [
+            'timeout' => 30,
+            'ignore_errors' => true
+        ]
+    ]);
     
-    // Lista de comandos para executar
-    $commands = [
-        'rss:g1bahia' => 'Coletando notícias G1 Bahia',
-        'rss:govba' => 'Coletando notícias Governo BA',
-        'rss:bahianoticias' => 'Coletando Bahia Notícias'
-    ];
-    
-    $totalSucesso = 0;
-    
-    foreach ($commands as $cmd => $desc) {
-        echo "▶️ " . $desc . "...<br>\n";
-        flush();
+    try {
+        $response = @file_get_contents($url, false, $context);
         
-        $start = microtime(true);
-        
-        try {
-            // Executa o comando
-            $exitCode = Illuminate\Support\Facades\Artisan::call($cmd);
-            
-            $tempo = round(microtime(true) - $start, 2);
-            
-            if ($exitCode === 0) {
-                echo "✅ Sucesso (" . $tempo . "s)<br>\n";
-                $totalSucesso++;
-            } else {
-                echo "⚠️ Comando retornou código: " . $exitCode . " (" . $tempo . "s)<br>\n";
-            }
-            
-        } catch (Throwable $e) {
-            echo "❌ Erro: " . $e->getMessage() . "<br>\n";
+        if ($response !== false) {
+            echo "✅ Sucesso<br>\n";
+        } else {
+            echo "⚠️ Sem resposta<br>\n";
         }
-        
-        echo "<br>\n";
-        flush();
+    } catch (Exception $e) {
+        echo "❌ Erro: " . $e->getMessage() . "<br>\n";
     }
     
-    echo "📊 Resultado: " . $totalSucesso . "/" . count($commands) . " comandos executados com sucesso<br>\n";
-    echo "🏁 Finalizado em: " . date('H:i:s') . "<br>\n";
-    
-} catch (Exception $e) {
-    die("❌ Erro crítico: " . $e->getMessage() . "<br>\n");
+    echo "<br>\n";
 }
+
+echo "🏁 Concluído!<br>\n";

@@ -114,6 +114,29 @@ Route::get('blog/filter/{category?}', [HomePageController::class, 'filterByCateg
 //     return 'Comandos RSS executados com sucesso';
 // });
 
+// routes/web.php
+Route::get('/artisan-call/{command}', function ($command) {
+    // Mapeia os comandos
+    $commandMap = [
+        'rss-g1bahia' => 'rss:g1bahia',
+        'rss-govba' => 'rss:govba',
+        'rss-bahianoticias' => 'rss:bahianoticias'
+    ];
+    
+    if (!isset($commandMap[$command])) {
+        abort(404);
+    }
+    
+    // Executa o comando
+    Artisan::call($commandMap[$command]);
+    
+    return response()->json([
+        'success' => true,
+        'command' => $commandMap[$command],
+        'time' => now()->toDateTimeString()
+    ]);
+})->middleware('auth.basic'); // Adicione autenticação básica!
+
 View::composer('client.core.client', function ($view) {
     $blogCategories = BlogCategory::whereHas('blogs')
     ->active()
