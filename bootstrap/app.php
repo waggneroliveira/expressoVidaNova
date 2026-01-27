@@ -36,20 +36,18 @@ return Application::configure(basePath: dirname(__DIR__))
             return $response;
         });
     })->withSchedule(function (Schedule $schedule) {
-        $schedule->command('rss:g1bahia')->everyMinute();
-            // ->everyFifteenMinutes()
-            // ->withoutOverlapping()
-            // ->appendOutputTo(storage_path('logs/rss-g1bahia.log'));
-        
-        $schedule->command('rss:govba')->everyMinute();
-            // ->everyFifteenMinutes()
-            // ->withoutOverlapping()
-            // ->appendOutputTo(storage_path('logs/rss-govba.log'));
-        
-        $schedule->command('rss:bahianoticias')->everyMinute();
-            // ->everyFifteenMinutes()
-            // ->withoutOverlapping()
-            // ->appendOutputTo(storage_path('logs/rss-bahianoticias.log'));
+        // Mude de everyMinute() para everyFifteenMinutes()
+        $schedule->command('rss:g1bahia')->everyFifteenMinutes()
+            ->withoutOverlapping()
+            ->appendOutputTo(storage_path('logs/rss-g1bahia.log'));
+
+        $schedule->command('rss:govba')->everyFifteenMinutes()
+            ->withoutOverlapping()
+            ->appendOutputTo(storage_path('logs/rss-govba.log'));
+
+        $schedule->command('rss:bahianoticias')->everyFifteenMinutes()
+            ->withoutOverlapping()
+            ->appendOutputTo(storage_path('logs/rss-bahianoticias.log'));
     })
     ->create();
     
