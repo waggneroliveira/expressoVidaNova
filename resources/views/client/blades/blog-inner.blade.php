@@ -1,7 +1,7 @@
 @extends('client.core.client')
 @section('content')
     <!-- News With Sidebar Start -->
-    <div class="col-12 p-0">
+    <div class="container">
         @php
             // Verifica se a imagem é do RSS (URL externa) ou manual (storage)
             if ($blogInner->path_image_thumbnail) {
@@ -20,7 +20,7 @@
         <img class="border img-fluid w-100 rounded-0 image-inner d-flex justify-content-center align-items-center"
         src="{{ $imagemUrl }}"
         alt="{{ $blogInner->title ? $blogInner->title : 'Sem imagem'}}"
-        style="aspect-ratio:1.91/1;object-fit: cover;max-height: 565px;">
+        style="aspect-ratio:1.91/1;object-fit: cover;height: 100%;">
     </div>
     <div class="container-fluid mb-5 blog-inn mt-4">
         <div class="container">
