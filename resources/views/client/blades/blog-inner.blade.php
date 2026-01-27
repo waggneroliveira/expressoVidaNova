@@ -211,7 +211,7 @@
 
                                             <div class="h-100 pe-2 d-flex flex-column justify-content-center" style="flex: 1;">
                                                 <a href="{{ route('blog-inner', ['slug' => $relacionado->slug]) }}" class="underline">
-                                                    <h3 class="h6 m-0 poppins-bold font-15 title-blue">
+                                                    <h3 class="h6 m-0 poppins-semiBold font-15 title-blue">
                                                         {{ substr(strip_tags($relacionado->title), 0, 70) }}...
                                                     </h3>
                                                 </a>
