@@ -314,7 +314,14 @@
                             </div>
                         </div>
                     </div>
-                @endif                  
+                @endif           
+                <style>
+                     @media (max-width:576px) {
+                        #tour_standings iframe, #tour_schedule iframe{
+                            height: 760px !important;
+                        }
+                     }
+                </style>       
                 <div class="col-lg-3 col-12" data-aos="fade-left" data-aos-delay="100">
                     @if ($blogRelacionados->count() > 0)                        
                         <!-- Popular News Start -->
