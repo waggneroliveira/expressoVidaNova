@@ -1,113 +1,65 @@
 <?php
-// cron-king.php - SEM shell_exec, compatível com KingHost
+// cron-simple.php - Assumindo que está na raiz do Laravel
 
-// 1. Primeiro descubra o caminho absoluto
-$scriptDir = __DIR__;
+// Define o timezone
+date_default_timezone_set('America/Sao_Paulo');
 
-echo "🔍 Iniciando cron...<br>\n";
-echo "📁 Diretório do script: " . $scriptDir . "<br>\n";
+echo "🔄 Inicializando cron Laravel...<br>\n";
 flush();
 
-// 2. Procura o Laravel nos caminhos comuns da KingHost
-$laravelPath = null;
-
-// Tenta encontrar o autoload.php
-$possibleLocations = [
-    $scriptDir,                                    // Mesmo diretório
-    dirname($scriptDir),                           // Diretório pai
-    $scriptDir . '/..',                            // Um nível acima
-    $_SERVER['DOCUMENT_ROOT'],                     // Document root
-    dirname($_SERVER['DOCUMENT_ROOT']),           // Pai do document root
-];
-
-foreach ($possibleLocations as $path) {
-    $realPath = realpath($path);
-    if ($realPath && file_exists($realPath . '/vendor/autoload.php')) {
-        $laravelPath = $realPath;
-        echo "✅ Laravel encontrado em: " . $laravelPath . "<br>\n";
-        break;
-    }
+// Tenta carregar o Laravel do diretório atual
+if (!file_exists('vendor/autoload.php')) {
+    die("❌ Autoload não encontrado. Este arquivo deve estar na raiz do Laravel.<br>\n");
 }
 
-if (!$laravelPath) {
-    // Tenta caminhos absolutos comuns
-    $commonPaths = [
-        '/home/' . (isset($_SERVER['USER']) ? $_SERVER['USER'] : '') . '/public_html',
-        '/home/' . (isset($_SERVER['USER']) ? $_SERVER['USER'] : '') . '/www',
-        '/var/www/html',
-        '/usr/home/' . (isset($_SERVER['USER']) ? $_SERVER['USER'] : '') . '/public_html',
-    ];
-    
-    foreach ($commonPaths as $path) {
-        if (file_exists($path . '/vendor/autoload.php')) {
-            $laravelPath = $path;
-            echo "✅ Laravel encontrado em: " . $laravelPath . "<br>\n";
-            break;
-        }
-    }
-}
+require 'vendor/autoload.php';
 
-if (!$laravelPath) {
-    die("❌ ERRO: Não consegui encontrar o Laravel. Verifique o caminho.<br>\n");
-}
-
-// 3. Carrega o Laravel
-chdir($laravelPath); // Muda para o diretório do Laravel
-
-require $laravelPath . '/vendor/autoload.php';
-
-// 4. Bootstrap da aplicação
 try {
-    $app = require_once $laravelPath . '/bootstrap/app.php';
-    
-    // Para console commands, precisamos do Console Kernel
+    $app = require_once 'bootstrap/app.php';
     $kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
     $kernel->bootstrap();
     
-    echo "✅ Laravel inicializado com sucesso<br>\n";
-    flush();
+    echo "✅ Laravel carregado<br>\n<br>\n";
     
-} catch (Exception $e) {
-    die("❌ Erro ao inicializar Laravel: " . $e->getMessage() . "<br>\n");
-}
-
-// 5. Executa os comandos via Artisan
-$commands = [
-    'rss:g1bahia',
-    'rss:govba', 
-    'rss:bahianoticias'
-];
-
-foreach ($commands as $command) {
-    echo "<br>\n🔄 Executando: " . $command . "...<br>\n";
-    flush();
+    // Lista de comandos para executar
+    $commands = [
+        'rss:g1bahia' => 'Coletando notícias G1 Bahia',
+        'rss:govba' => 'Coletando notícias Governo BA',
+        'rss:bahianoticias' => 'Coletando Bahia Notícias'
+    ];
     
-    try {
-        // Usa a fachada Artisan do Laravel
-        Illuminate\Support\Facades\Artisan::call($command);
+    $totalSucesso = 0;
+    
+    foreach ($commands as $cmd => $desc) {
+        echo "▶️ " . $desc . "...<br>\n";
+        flush();
         
-        // Pega a saída se houver
-        $output = Illuminate\Support\Facades\Artisan::output();
-        if (!empty(trim($output))) {
-            echo "📄 Saída: " . nl2br($output) . "<br>\n";
+        $start = microtime(true);
+        
+        try {
+            // Executa o comando
+            $exitCode = Illuminate\Support\Facades\Artisan::call($cmd);
+            
+            $tempo = round(microtime(true) - $start, 2);
+            
+            if ($exitCode === 0) {
+                echo "✅ Sucesso (" . $tempo . "s)<br>\n";
+                $totalSucesso++;
+            } else {
+                echo "⚠️ Comando retornou código: " . $exitCode . " (" . $tempo . "s)<br>\n";
+            }
+            
+        } catch (Throwable $e) {
+            echo "❌ Erro: " . $e->getMessage() . "<br>\n";
         }
         
-        echo "✅ " . $command . " executado com sucesso<br>\n";
-        
-        // Log no sistema do Laravel
-        Illuminate\Support\Facades\Log::info('Cron executado: ' . $command);
-        
-    } catch (Exception $e) {
-        echo "❌ Erro em " . $command . ": " . $e->getMessage() . "<br>\n";
-        Illuminate\Support\Facades\Log::error('Erro no cron ' . $command . ': ' . $e->getMessage());
+        echo "<br>\n";
+        flush();
     }
     
-    flush();
+    echo "📊 Resultado: " . $totalSucesso . "/" . count($commands) . " comandos executados com sucesso<br>\n";
+    echo "🏁 Finalizado em: " . date('H:i:s') . "<br>\n";
+    
+} catch (Exception $e) {
+    die("❌ Erro crítico: " . $e->getMessage() . "<br>\n");
 }
-
-// 6. Finalização
-echo "<br>\n🎉 TODOS os comandos concluídos!<br>\n";
-echo "⏰ Data/hora: " . date('d/m/Y H:i:s') . "<br>\n";
-
-// Log final
-Illuminate\Support\Facades\Log::info('Cron KingHost finalizado com sucesso');
