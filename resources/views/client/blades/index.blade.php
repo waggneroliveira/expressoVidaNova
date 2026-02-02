@@ -316,16 +316,16 @@
                             </div>
                             <div class="row justify-content-between px-3 mt-4">
                                 <div class="col-12 col-lg-7 border">
-                                    <div id="tour_standings"></div><script language="javascript">document.getElementById('tour_standings').innerHTML="<iframe src='https://www.aiscore.com/pt/tournament-brazilian-serie-a/r8lk2dil5t0736d/standings?isplugin=true'  height='1131' width='100%' scrolling='auto' border='0' frameborder='0'></iframe>";</script><style>body{margin:0;padding:0}</style>
+                                    <div id="tour_standings"></div><script defer language="javascript">document.getElementById('tour_standings').innerHTML="<iframe src='https://www.aiscore.com/pt/tournament-brazilian-serie-a/r8lk2dil5t0736d/standings?isplugin=true'  height='1131' width='100%' scrolling='auto' border='0' frameborder='0'></iframe>";</script><style>body{margin:0;padding:0}</style>
                                 </div>
                                 <div class="col-12 col-lg-5 border border-lg-no-start mt-3 mt-lg-0">
-                                    <div id="tour_schedule"></div><script language="javascript">document.getElementById('tour_schedule').innerHTML="<iframe src='https://www.aiscore.com/pt/tournament-brazilian-serie-a/r8lk2dil5t0736d/schedule?isplugin=true'  height='1131' width='100%' scrolling='auto' border='0' frameborder='0'></iframe>";</script><style>body{margin:0;padding:0}</style>
+                                    <div id="tour_schedule"></div><script defer language="javascript">document.getElementById('tour_schedule').innerHTML="<iframe src='https://www.aiscore.com/pt/tournament-brazilian-serie-a/r8lk2dil5t0736d/schedule?isplugin=true'  height='1131' width='100%' scrolling='auto' border='0' frameborder='0'></iframe>";</script><style>body{margin:0;padding:0}</style>
                                 </div>
                             </div>
                         </div>
                     </div>
                 @endif   
-                        
+
                 <style>
                      @media (max-width:576px) {
                         #tour_standings iframe, #tour_schedule iframe{
@@ -514,7 +514,7 @@
                         </div>
                     @endif
                     <div class="mb-4">
-                        <div id="fs-standings"></div> <script> (function (w,d,s,o,f,js,fjs) { w['fsStandingsEmbed']=o;w[o] = w[o] || function () { (w[o].q = w[o].q || []).push(arguments) }; js = d.createElement(s), fjs = d.getElementsByTagName(s)[0]; js.id = o; js.src = f; js.async = 1; fjs.parentNode.insertBefore(js, fjs); }(window, document, 'script', 'mw', 'https://cdn.footystats.org/embeds/standings.js')); mw('params', { leagueID: 16467 }); </script>
+                        <div id="fs-standings"></div> <script defer> (function (w,d,s,o,f,js,fjs) { w['fsStandingsEmbed']=o;w[o] = w[o] || function () { (w[o].q = w[o].q || []).push(arguments) }; js = d.createElement(s), fjs = d.getElementsByTagName(s)[0]; js.id = o; js.src = f; js.async = 1; fjs.parentNode.insertBefore(js, fjs); }(window, document, 'script', 'mw', 'https://cdn.footystats.org/embeds/standings.js')); mw('params', { leagueID: 16467 }); </script>
                     </div>
 
                     <!-- Todas as emergências em um único bloco -->
@@ -670,7 +670,7 @@
 }
 
 </style>
-<script>
+<script defer>
     document.addEventListener('DOMContentLoaded', function () {
         if (typeof Swiper === 'undefined') {
             console.error('Swiper não carregado');
@@ -828,7 +828,7 @@
     <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script><iframe src="//lightwidget.com/widgets/20fa691805e156d2906a413c0a7d2ed7.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden;"></iframe></div>
 </div> --}}
 
-<script>
+<script defer>
     const section = document.querySelector('section.video');
     if (section) {
         const wrapper = section.querySelector('.mySwiper .swiper-wrapper');
@@ -1023,7 +1023,7 @@
     }
 </script>
 
-<script>
+<script defer>
     document.addEventListener('DOMContentLoaded', function() {
         const categoryLinks = document.querySelectorAll('.category-filter');
         const newsContainer = document.getElementById('news-container');
@@ -1085,7 +1085,7 @@
         });
     });
 </script>
-<script>
+<script defer>
     document.addEventListener("DOMContentLoaded", function () {
         const btn = document.getElementById("btn-ver-mais");
         if (!btn) return;
