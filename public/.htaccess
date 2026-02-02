@@ -1,32 +1,37 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    <!-- RewriteBase /homologacao/ -->
 
-    # Redireciona requisições para index.php
+    # Redireciona requisições para index.php (Laravel)
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^ index.php [L]
 </IfModule>
 
-
-# Compressão Brotli (se disponível)
+# -------------------------
+# Compressão Brotli/GZIP
+# -------------------------
 <IfModule mod_brotli.c>
-  AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/xml text/css application/javascript application/json image/svg+xml
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/xml text/css application/javascript application/json image/svg+xml application/rss+xml
 </IfModule>
 
-# Compressão GZIP (melhora velocidade e economia de banda)
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
   AddOutputFilterByType DEFLATE application/javascript application/x-javascript application/json
-  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE image/svg+xml application/rss+xml
   AddOutputFilterByType DEFLATE font/woff2 font/woff
   Header append Vary User-Agent env=!dont-vary
 </IfModule>
 
-# Cache inteligente de arquivos estáticos
+# -------------------------
+# Cache inteligente
+# -------------------------
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresDefault "access plus 1 month"
+
+  # HTML / RSS (dinâmico) - cache curto
+  ExpiresByType text/html "access plus 5 minutes"
+  ExpiresByType application/rss+xml "access plus 5 minutes"
 
   # Imagens
   ExpiresByType image/webp "access plus 6 months"
@@ -40,7 +45,6 @@
   # Fontes
   ExpiresByType font/woff2 "access plus 1 year"
   ExpiresByType font/woff "access plus 1 year"
-  ExpiresByType application/font-woff2 "access plus 1 year"
 
   # CSS, JS
   ExpiresByType text/css "access plus 1 month"
@@ -48,14 +52,13 @@
   ExpiresByType application/json "access plus 1 month"
 </IfModule>
 
-# Headers para cache, segurança e performance
 <IfModule mod_headers.c>
-  # Cache-Control para HTML (cache leve)
-  <FilesMatch "\.(html)$">
-    Header set Cache-Control "public, max-age=600"
+  # Cache curto para HTML / RSS
+  <FilesMatch "\.(html|rss|xml)$">
+    Header set Cache-Control "public, max-age=300, must-revalidate"
   </FilesMatch>
 
-  # Cache-Control para demais arquivos
+  # Cache longo para arquivos estáticos
   <FilesMatch "\.(js|css|png|jpg|jpeg|gif|webp|svg|woff2?)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
@@ -65,7 +68,7 @@
     Header set Access-Control-Allow-Origin "*"
   </FilesMatch>
 
-  # Segurança extra
+  # Segurança moderna
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
@@ -73,19 +76,43 @@
   Header always set X-XSS-Protection "1; mode=block"
   Header set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
   Header unset X-Powered-By
-  # Cookies SameSite (se usar cookies)
   Header always edit Set-Cookie ^(.*)$ $1;SameSite=Lax
+  Header set Cross-Origin-Resource-Policy "same-origin"
 </IfModule>
 
+# -------------------------
+# Pré-carregamento de fontes críticas
+# -------------------------
+<IfModule mod_headers.c>
+  <FilesMatch "\.(woff2|woff)$">
+    Header add Link "</path-to-your-font.woff2>; rel=preload; as=font; type='font/woff2'; crossorigin"
+  </FilesMatch>
+</IfModule>
+
+# -------------------------
+# Lazy loading de imagens
+# -------------------------
+<IfModule mod_headers.c>
+  <FilesMatch "\.(png|jpg|jpeg|gif|webp|svg)$">
+    Header set loading "lazy"
+  </FilesMatch>
+</IfModule>
+
+# -------------------------
 # Evita listagem de diretórios
+# -------------------------
 Options -Indexes
 
+# -------------------------
 # Bloqueia arquivos sensíveis
+# -------------------------
 <FilesMatch "\.(htaccess|htpasswd|ini|phps|fla|psd|log|sh)$">
   Order Allow,Deny
   Deny from all
 </FilesMatch>
 
-# Remove ETag (para evitar conflitos de cache entre servidores)
+# -------------------------
+# Remove ETag
+# -------------------------
 FileETag None
 Header unset ETag
