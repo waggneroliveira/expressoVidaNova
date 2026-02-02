@@ -8,8 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="theme-color" content="#0d0d0d">
     <meta name="description" content="Expresso Vida Nova é o portal de notícias locais de Vida Nova e Lauro de Freitas. Informações do bairro, segurança, eventos e atualizações da região.">
-    <meta name="keywords" content="Expresso Vida Nova, Sindicato Bahia, agentes comunitários de saúde, agentes de combate às endemias, ACS Bahia, ACE Bahia, sindicato ACS ACE, saúde pública Bahia, trabalhadores da saúde Bahia, direitos dos agentes de saúde, sindicato saúde Bahia, categoria ACS ACE, luta sindical Bahia, representação sindical saúde, agentes comunitários Bahia, agentes endemias Bahia, sindicato dos agentes Bahia">
-    <meta name="google-site-verification" content="-bUd4PZJ-3xvnf7cOkcmNLV7jzTk5106hfB0mPtvhqE" />
+    <meta name="keywords" content="Expresso Vida Nova, Notícias Vida Nova, Notícias Lauro de Freitas, Portal de notícias Vida Nova, Jornal local Vida Nova, Jornal de Lauro de Freitas, Notícias do bairro Vida Nova, Acontece em Vida Nova, Notícias da região de Lauro de Freitas, Atualidades Vida Nova, Notícias Bahia região metropolitana, Comunidade de Vida Nova, Segurança em Vida Nova, Eventos em Lauro de Freitas, Bairro Vida Nova Lauro de Freitas, Informações locais Vida Nova, Notícias da comunidade de Vida Nova">
+    
     <title>Expresso Vida Nova</title>
     @if(isset($blogInner))
         <meta property="og:url" content="{{ url()->current() }}">
@@ -28,13 +28,13 @@
         <meta property="og:type" content="website">
         <meta property="og:title" content="Expresso Vida Nova">
         <meta property="og:description" content="Portal de notícias de Vida Nova e Lauro de Freitas. Expresso Vida Nova cobre segurança, eventos, serviços públicos e tudo o que acontece no bairro.">
-        <meta property="og:image" content="{{asset('build/client/images/compartilhamento.png')}}">
+        <meta property="og:image" content="{{asset('build/client/images/expressovidadnova.png')}}">
 
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:url" content="{{ url()->current() }}">
         <meta name="twitter:title" content="Expresso Vida Nova">
         <meta name="twitter:description" content="Portal de notícias de Vida Nova e Lauro de Freitas. Expresso Vida Nova cobre segurança, eventos, serviços públicos e tudo o que acontece no bairro.">
-        <meta name="twitter:image" content="{{asset('build/client/images/compartilhamento.png')}}">
+        <meta name="twitter:image" content="{{asset('build/client/images/expressovidadnova.png')}}">
     @endif
 
     
@@ -75,36 +75,32 @@
         {
             "@context": "https://schema.org",
             "@type": "Organization",
-            "@id": "##organization",
+            "@id": "#organization",
             "name": "Expresso Vida Nova",
             "legalName": "Expresso Vida Nova",
-            "url": "https://www.sindacsba.org.br",
-            "logo": "#assets/images/logo.png",
-            "image": "#assets/images/logo.png",
+            "url": "https://expressovidanova.com.br",
+            "logo": "assets/images/expressovidadnova.png",
+            "image": "assets/images/expressovidadnova.png",
             "description": "Expresso Vida Nova é o portal de notícias locais de Vida Nova e Lauro de Freitas. Informações do bairro, segurança, eventos e atualizações da região.",
-            "foundingDate": "2003",
-            "email": "sindacsbahia@gmail.com",
-            "telephone": "+55 71 3017-4112",
+            "foundingDate": "2019",
+            "email": "expressovidadnova24@gmail.com",
+            "telephone": "+55 71 98304-9469",
             "sameAs": [
-                "https://www.instagram.com/sindacsbahia",
-                "https://www.tiktok.com/@sindacsbahia",
-                "https://www.youtube.com/channel/UCG0q-E25LZ2Lx73N50tCD8Q",
-                "https://x.com/SindacsBahia",
-                "https://www.facebook.com/sindacsbahia.org.br"
+                "https://www.instagram.com/expressovidanova.com.br"
             ],
             "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "Rua Do Tesouro, 56 - Edif Santa Cruz Andar 7 Sala 700 - Comércio",
+                "streetAddress": "Caminho 10, 30 - Vida Nova",
                 "addressLocality": "Salvador",
                 "addressRegion": "BA",
-                "postalCode": "40026-028",
+                "postalCode": "Lauro de Freitas",
                 "addressCountry": "BR"
             },
             "contactPoint": {
                 "@type": "ContactPoint",
-                "telephone": "+55 71 3017-4112",
+                "telephone": "+55 71 98304-9469",
                 "contactType": "customer service",
-                "email": "sindacsbahia@gmail.com",
+                "email": "expressovidadnova24@gmail.com",
                 "areaServed": "BR",
                 "availableLanguage": ["pt", "en"]
             },
@@ -117,7 +113,7 @@
             "identifier": {
                 "@type": "PropertyValue",
                 "propertyID": "CNPJ",
-                "value": "06.953.941/0001-26"
+                "value": "35.439.433/0001-22"
             },
             "slogan": "Expresso Vida Nova",
             "keywords": [
