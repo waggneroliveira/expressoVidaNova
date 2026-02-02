@@ -247,11 +247,18 @@
                             </div>
                             <div class="d-flex flex-wrap m-n1">
                                 @foreach ($blogCategories as $category)
+                                    @php
+                                        $title = match(strtolower($category->title)) {
+                                            'justica' => 'Justiça',
+                                            'saude'   => 'Saúde',
+                                            'economia'=> 'Economia',
+                                            default   => $category->title,
+                                        };
+                                    @endphp
                                     <li class="nav-link">
                                         <a href="{{ route('blog', ['category' => $category->slug]) }}#news"
                                         class="btn btn-sm title-blue rounded-0 poppins-semiBold font-12 m-1 bg-blue-light">
-                                        {{-- active background-red --}}
-                                            {{ $category->title }}
+                                            {{ $title }}
                                         </a>
                                     </li>
                                 @endforeach

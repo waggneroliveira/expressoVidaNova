@@ -256,14 +256,23 @@
                                     <ul class="dropdown-menu" aria-labelledby="noticiasDropdown">
                                         @if ($blogCategories->count())
                                             @foreach ($blogCategories as $category)
+                                                @php
+                                                    // Corrige acentuação manualmente
+                                                    $title = match(strtolower($category->title)) {
+                                                        'justica' => 'Justiça',
+                                                        'saude'   => 'Saúde',
+                                                        default   => $category->title,
+                                                    };
+                                                @endphp
                                                 <li>
                                                     <a class="dropdown-item poppins-medium text-start font-15" 
                                                     href="{{ route('blog', ['category' => $category->slug]) }}#news">
-                                                        {{ $category->title }}
+                                                        {{ $title }}
                                                     </a>
                                                 </li>
                                             @endforeach
                                         @endif
+
                                     </ul>
                                 </li>
 

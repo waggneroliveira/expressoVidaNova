@@ -27,12 +27,20 @@
                                                    Todas
                                              </a>
                                              @foreach ($blogCategories as $blogCategory)
+                                                @php
+                                                   $title = match(strtolower($blogCategory->title)) {
+                                                         'justica' => 'Justiça',
+                                                         'saude'   => 'Saúde',
+                                                         default   => $blogCategory->title,
+                                                   };
+                                                @endphp
                                                 <a href="{{ route('blog', ['category' => $blogCategory->slug]) }}#news"
                                                    class="btn btn-sm btn-outline-secondary text-p poppins-medium font-14 m-1
                                                    {{ (request()->routeIs('blog') && request()->route('category') === $blogCategory->slug) ? 'active background-red' : '' }}">
-                                                   {{$blogCategory->title}}
+                                                   {{ $title }}
                                                 </a>
                                              @endforeach
+
                                           </div>
                                     </div>
                                  </div>

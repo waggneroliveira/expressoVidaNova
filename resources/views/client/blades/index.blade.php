@@ -271,12 +271,22 @@
                                 </li>
                                 
                                 @foreach($recentCategories as $index => $category)
+                                    @php
+                                        $title = match(strtolower($category->title)) {
+                                            'justica' => 'Justiça',
+                                            'saude'   => 'Saúde',
+                                            default   => $category->title,
+                                        };
+                                    @endphp
                                     <li class="py-0 px-1 px-sm-3 poppins-semiBold font-14 text-black bg-blue-light d-flex align-items-center justify-content-center">
-                                        <a href="javascript:void(0)" class="text-decoration-none text-black category-filter font-15 font-mob" data-category="{{ $category->slug }}">
-                                            {{ $category->title }}
+                                        <a href="javascript:void(0)" 
+                                        class="text-decoration-none text-black category-filter font-15 font-mob" 
+                                        data-category="{{ $category->slug }}">
+                                            {{ $title }}
                                         </a>
                                     </li>
                                 @endforeach
+
                             </ul>
                         </nav>
 
@@ -387,11 +397,18 @@
                             </div>
                             <div class="d-flex flex-wrap m-n1">
                                 @foreach ($blogCategories as $category)
+                                    @php
+                                        $title = match(strtolower($category->title)) {
+                                            'justica' => 'Justiça',
+                                            'saude'   => 'Saúde',
+                                            'economia'=> 'Economia',
+                                            default   => $category->title,
+                                        };
+                                    @endphp
                                     <li class="nav-link">
                                         <a href="{{ route('blog', ['category' => $category->slug]) }}#news"
                                         class="btn btn-sm title-blue rounded-0 poppins-semiBold font-12 m-1 bg-blue-light">
-                                        {{-- active background-red --}}
-                                            {{ $category->title }}
+                                            {{ $title }}
                                         </a>
                                     </li>
                                 @endforeach

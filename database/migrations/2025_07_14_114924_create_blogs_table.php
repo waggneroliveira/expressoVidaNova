@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('slug');
             $table->date('date');
             $table->longText('text')->nullable();
-            $table->string('path_image')->nullable();
-            $table->string('path_image_thumbnail')->nullable();
+            $table->text('path_image')->nullable();
+            $table->text('path_image_thumbnail')->nullable();
             $table->boolean('active')->default(0);
             $table->boolean('super_highlight')->default(0);
             $table->boolean('highlight')->default(0);
