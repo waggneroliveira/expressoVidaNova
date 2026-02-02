@@ -8,11 +8,11 @@
                         @if (!empty($announcement->link))
                             <a href="{{ $announcement->link }}" target="_blank" rel="nofollow noopener noreferrer">
                                 <img src="{{ asset('storage/' . $announcement->path_image) }}"
-                                     alt="Anuncio-{{ $announcement->id }}" class="w-100">
+                                     alt="Anuncio-{{ $announcement->id }}" class="w-100" loading="lazy">
                             </a>
                         @else
                             <img src="{{ asset('storage/' . $announcement->path_image) }}"
-                                 alt="Anuncio-{{ $announcement->id }}" class="w-100">
+                                 alt="Anuncio-{{ $announcement->id }}" class="w-100" loading="lazy">
                         @endif
                     </div>
                 </div>
@@ -31,11 +31,11 @@
                         @if (!empty($announcement->link))
                             <a href="{{ $announcement->link }}" target="_blank" rel="nofollow noopener noreferrer">
                                 <img src="{{ asset('storage/' . $announcement->path_image) }}"
-                                     alt="Anuncio-{{ $announcement->id }}" class="w-100">
+                                     alt="Anuncio-{{ $announcement->id }}" class="w-100" loading="lazy">
                             </a>
                         @else
                             <img src="{{ asset('storage/' . $announcement->path_image) }}"
-                                 alt="Anuncio-{{ $announcement->id }}" class="w-100">
+                                 alt="Anuncio-{{ $announcement->id }}" class="w-100" loading="lazy">
                         @endif
                     </div>
                 </div>

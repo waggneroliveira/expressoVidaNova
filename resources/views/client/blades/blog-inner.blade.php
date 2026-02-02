@@ -245,7 +245,7 @@
                             <div class="section-title mb-0 rounded-top-left cat-mt">
                                 <h4 class="mb-3 poppins-bold font-18 border-bottom title-blue pb-3 news">Categorias</h4>
                             </div>
-                            <div class="d-flex flex-wrap m-n1">
+                            <ul class="ps-0 d-flex flex-wrap m-n1">
                                 @foreach ($blogCategories as $category)
                                     @php
                                         $title = match(strtolower($category->title)) {
@@ -262,7 +262,7 @@
                                         </a>
                                     </li>
                                 @endforeach
-                            </div>
+                            </ul>
                         </div>
                     </div>
                     <!-- Tags End -->
@@ -344,9 +344,9 @@
                 @if ($viewMores->count() > 0) 
                     <div class="container border-bottom news mb-0">
                         <div class="d-flex flex-row justify-content-between align-items-center">
-                            <h2 class="section-title d-table w-auto m-0 mb-3 poppins-bold font-28 title-blue">
+                            <h3 class="section-title d-table w-auto m-0 mb-3 poppins-bold font-28 title-blue">
                                 Veja também
-                            </h2>
+                            </h3>
 
                             <!-- Navegação EXTERNA -->
                             <div class="d-flex justify-content-between align-items-center gap-3">

@@ -870,7 +870,6 @@
     <script src="{{ asset('build/admin/js/libs/dropify/js/dropify.min.js') }}"></script>
     <script src="{{ asset('build/admin/js/pages/form-fileuploads.init.js') }}"></script>
     <script src="{{ asset('build/client/css/bootstrap/js/bootstrap.bundle.js') }}"></script>
-    <script src="{{ asset('build/client/css/typed.js/typed.umd.js') }}"></script>
     <script src="{{ asset('build/client/lgpd/script.js') }}"></script>
     <script src="{{ asset('build/client/js/default.js') }}"></script>
 

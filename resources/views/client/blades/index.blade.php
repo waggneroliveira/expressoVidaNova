@@ -265,7 +265,7 @@
                         <nav class="mt-3">
                             <ul class="list-unstyled d-flex flex-row flex-wrap gap-2 gap-md-3 justify-content-start mb-0">
                                 <li class="py-0 py-sm-2 px-2 px-sm-3 poppins-semiBold font-14 text-white bg-blue-light background-red active">
-                                    <a href="javascript:void(0)" class="text-decoration-none text-white category-filter font-15 font-mob" data-category="todas">
+                                    <a href="#" class="text-decoration-none text-white category-filter font-15 font-mob" data-category="todas">
                                         Todas
                                     </a>
                                 </li>
@@ -279,7 +279,7 @@
                                         };
                                     @endphp
                                     <li class="py-0 px-1 px-sm-3 poppins-semiBold font-14 text-black bg-blue-light d-flex align-items-center justify-content-center">
-                                        <a href="javascript:void(0)" 
+                                        <a href="#" 
                                         class="text-decoration-none text-black category-filter font-15 font-mob" 
                                         data-category="{{ $category->slug }}">
                                             {{ $title }}
@@ -338,7 +338,7 @@
                         <div class="mb-3">
                             <div class="bg-white border p-3 rounded-1">
                                 <div class="section-title mb-4 rounded-top-left">
-                                    <h4 class="mb-3 poppins-bold font-18 pb-3 border-bottom title-blue news">Veja também</h4>
+                                    <h3 class="mb-3 poppins-bold font-18 pb-3 border-bottom title-blue news">Veja também</h3>
                                 </div>
                                 @foreach($blogRelacionados as $index => $relacionado)
                                     @php
@@ -395,7 +395,7 @@
                             <div class="section-title mb-0 rounded-top-left cat-mt">
                                 <h4 class="mb-3 poppins-bold font-18 border-bottom title-blue pb-3 news">Categorias</h4>
                             </div>
-                            <div class="d-flex flex-wrap m-n1">
+                            <ul class="ps-0 d-flex flex-wrap m-n1">
                                 @foreach ($blogCategories as $category)
                                     @php
                                         $title = match(strtolower($category->title)) {
@@ -412,7 +412,7 @@
                                         </a>
                                     </li>
                                 @endforeach
-                            </div>
+                            </ul>
                         </div>
                     </div>
                     <!-- Tags End -->
