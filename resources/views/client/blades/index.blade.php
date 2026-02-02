@@ -254,7 +254,7 @@
         <div class="container">
             <div class="row">
                 @if ($recentCategories->count() > 0)                    
-                    <div class="col-12 col-lg-9 animate-on-scroll mb-3" data-aos="fade-right" data-aos-delay="100">
+                    <div class="col-12 col-lg-9 animate-on-scroll mb-3" data-aos="fade-right" data-aos-delay="30">
                         <div class="border-bottom news mb-0">
                             <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-end">
                                 <h2 class="section-title d-table p-0 w-auto m-0 mb-3 poppins-bold font-28 title-blue">
@@ -332,7 +332,7 @@
                         }
                      }
                 </style>       
-                <div class="col-lg-3 col-12" data-aos="fade-left" data-aos-delay="100">
+                <div class="col-lg-3 col-12" data-aos="fade-left" data-aos-delay="30">
                     @if ($blogRelacionados->count() > 0)                        
                         <!-- Popular News Start -->
                         <div class="mb-3">
@@ -559,7 +559,7 @@
     </section>
 @endif
 @if ($blogNoBairros->count() > 0) 
-    <section id="no-bairro" data-aos="fade-up" data-aos-delay="100">
+    <section id="no-bairro" data-aos="fade-up" data-aos-delay="30">
         <div class="container border-bottom news mb-0 p-0">
             <div class="px-0 d-flex flex-row justify-content-between align-items-center w-100">
                 <h2 class="section-title d-table p-0 w-auto m-0 mb-3 poppins-bold font-28 title-blue">
@@ -694,7 +694,7 @@
 @if (!empty($videos) && $videos->count() > 0)
     <section class="video mt-0 mb-4">
         <div class="container">
-            <div class="border-bottom news m-auto ms-lg-0 mb-4 col-lg-8 col-11" data-aos="fade-up" data-aos-delay="100">
+            <div class="border-bottom news m-auto ms-lg-0 mb-4 col-lg-8 col-11" data-aos="fade-up" data-aos-delay="30">
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-end">
                     <h2 class="section-title d-table p-0 w-auto m-0 mb-3 poppins-bold font-28 title-blue">
                         Novidades em vídeo
@@ -703,7 +703,7 @@
             </div>
             <div class="content-video d-flex justify-content-center align-items-center">
                 <!-- Player -->
-                <div class="right col-8 bg-black d-flex justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="100">
+                <div class="right col-8 bg-black d-flex justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="30">
                     <iframe id="videoPlayer" class="w-100 h-100"
                             src=""
                             title="Vídeo"
@@ -712,7 +712,7 @@
                 </div>
 
                 <!-- Lista -->
-                <div class="left col-4 h-100 d-flex justify-content-center align-items-end flex-column position-relative grey-background" data-aos="fade-down" data-aos-delay="100">
+                <div class="left col-4 h-100 d-flex justify-content-center align-items-end flex-column position-relative grey-background" data-aos="fade-down" data-aos-delay="30">
                     <!-- Vídeo ativo fixo -->
                     <div id="activeVideoBox" class="w-100 shadow-video-current mb-3 d-none">
                         <div class="d-flex align-items-center justify-content-end">                           
@@ -758,7 +758,7 @@
 @endif
 
 @if ($events->count() > 0)                    
-    <div class="container mt-5" data-aos="fade-left" data-aos-delay="100">
+    <div class="container mt-5" data-aos="fade-left" data-aos-delay="30">
         <div class="border-bottom news mb-0">
             <div class="d-flex flex-row justify-content-between align-items-start align-items-md-center">
                 <h2 class="section-title d-table p-0 w-auto m-0 mb-3 poppins-bold font-28 title-blue">
