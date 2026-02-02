@@ -11,6 +11,7 @@
     <meta name="keywords" content="Expresso Vida Nova, Notícias Vida Nova, Notícias Lauro de Freitas, Portal de notícias Vida Nova, Jornal local Vida Nova, Jornal de Lauro de Freitas, Notícias do bairro Vida Nova, Acontece em Vida Nova, Notícias da região de Lauro de Freitas, Atualidades Vida Nova, Notícias Bahia região metropolitana, Comunidade de Vida Nova, Segurança em Vida Nova, Eventos em Lauro de Freitas, Bairro Vida Nova Lauro de Freitas, Informações locais Vida Nova, Notícias da comunidade de Vida Nova">
     
     <title>Expresso Vida Nova</title>
+    
     @if(isset($blogInner))
         <meta property="og:url" content="{{ url()->current() }}">
         <meta property="og:type" content="article">
