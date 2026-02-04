@@ -42,7 +42,7 @@
     <link rel="canonical" href="{{ url()->current() }}">
     <meta name="copyright" content="Direitos reservados WHI">
     <meta name="author" content="WHI">
-    <link rel="shortcut icon" href="#assets/images/favicon.svg">
+    <link rel="shortcut icon" href="#assets/images/expressovidadnova.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    
