@@ -138,6 +138,8 @@
             ]
         }
     </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6589229301985030"
+     crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="organization" hidden></div>
