@@ -745,7 +745,7 @@ a {
     right: 15px;
     bottom: -15px;
     z-index: 99999;
-    background-color: var(--background-red);
+    background-color: #c6e327;
     width: 44px;
     height: 44px;
     border-radius: 50px;
@@ -763,7 +763,7 @@ a {
 }
 
 .scroll-top:hover {
-    background-color: color-mix(in srgb, var(--background-red), transparent 20%);
+    background-color: color-mix(in srgb, #c6e327, transparent 20%);
     color: var(--contrast-color)
 }
 

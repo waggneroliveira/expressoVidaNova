@@ -146,7 +146,13 @@
     <header id="header" class="w-100 d-flex flex-column position p-0">   
         <div class="w-100 py-0">
             <div class="header-top py-2 mb-0 header-color">
-                <div class="container d-flex flex-wrap justify-content-center justify-content-lg-between align-items-center">                    
+                <div class="container d-flex flex-wrap justify-content-center justify-content-lg-between align-items-center">    
+                    <div class="logo-img d-block d-lg-none px-0 py-2 rounded-2 d-flex justify-content-start align-items-center w-auto">
+                        <a href="{{route('index')}}">
+                            <img src="{{asset('build/client/images/logo-blog.png')}}" alt="Expresso Vida Nova" title="Expresso Vida Nova" class="img-fluid" style="width: 100px;">
+                        </a>
+                    </div>
+
                     <p class="text-white poppins-regular text-center text-lg-start font-14 mb-0 col-12 col-lg-6">
                         Salvador, BA | {{ \Carbon\Carbon::now()->translatedFormat('l, d \d\e F \d\e Y') }}
                     </p>
