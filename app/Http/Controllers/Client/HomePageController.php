@@ -8,6 +8,7 @@ use App\Models\Announcement;
 use App\Models\BenefitTopic;
 use App\Models\Blog;
 use App\Models\BlogCategory;
+use App\Models\BlogExternoWhi;
 use App\Models\Contact;
 use App\Models\Event;
 use App\Models\Partner;
@@ -74,7 +75,7 @@ class HomePageController extends Controller
             }])
             ->orderBy('created_at', 'DESC')
             ->active()
-            ->limit(10)
+            ->limit(12)
             ->get();
 
         // Pegando os IDs para excluir
@@ -127,8 +128,9 @@ class HomePageController extends Controller
         );
 
         $standings = $service->standings();
-        
-        // dd($standings);
+
+        $blogsWhi = BlogExternoWhi::with('category')->orderby('date', 'desc')->limit(15)->get();
+
         return view('client.blades.index', compact(
             'latestNews', 
             'recentCategories', 
@@ -145,6 +147,7 @@ class HomePageController extends Controller
             'popUp', 
             'tempo', 
             'standings',
+            'blogsWhi',
             'blogNoBairros'
         ));
     }

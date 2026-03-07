@@ -7,10 +7,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="theme-color" content="#0d0d0d">
-    <meta name="description" content="Expresso Vida Nova é o portal de notícias locais de Vida Nova e Lauro de Freitas. Informações do bairro, segurança, eventos e atualizações da região.">
-    <meta name="keywords" content="Expresso Vida Nova, Notícias Vida Nova, Notícias Lauro de Freitas, Portal de notícias Vida Nova, Jornal local Vida Nova, Jornal de Lauro de Freitas, Notícias do bairro Vida Nova, Acontece em Vida Nova, Notícias da região de Lauro de Freitas, Atualidades Vida Nova, Notícias Bahia região metropolitana, Comunidade de Vida Nova, Segurança em Vida Nova, Eventos em Lauro de Freitas, Bairro Vida Nova Lauro de Freitas, Informações locais Vida Nova, Notícias da comunidade de Vida Nova">
+    <meta name="description" content="Pulso Notícias é o portal de notícias locais de Vida Nova e Lauro de Freitas. Informações do bairro, segurança, eventos e atualizações da região.">
+    <meta name="keywords" content="Pulso Notícias, Notícias Vida Nova, Notícias Lauro de Freitas, Portal de notícias Vida Nova, Jornal local Vida Nova, Jornal de Lauro de Freitas, Notícias do bairro Vida Nova, Acontece em Vida Nova, Notícias da região de Lauro de Freitas, Atualidades Vida Nova, Notícias Bahia região metropolitana, Comunidade de Vida Nova, Segurança em Vida Nova, Eventos em Lauro de Freitas, Bairro Vida Nova Lauro de Freitas, Informações locais Vida Nova, Notícias da comunidade de Vida Nova">
     
-    <title>Expresso Vida Nova</title>
+    <title>Pulso Notícias</title>
     
     @if(isset($blogInner))
         <meta property="og:url" content="{{ url()->current() }}">
@@ -27,14 +27,14 @@
     @else
         <meta property="og:url" content="{{ url()->current() }}">
         <meta property="og:type" content="website">
-        <meta property="og:title" content="Expresso Vida Nova">
-        <meta property="og:description" content="Portal de notícias de Vida Nova e Lauro de Freitas. Expresso Vida Nova cobre segurança, eventos, serviços públicos e tudo o que acontece no bairro.">
+        <meta property="og:title" content="Pulso Notícias">
+        <meta property="og:description" content="Portal de notícias de Vida Nova e Lauro de Freitas. Pulso Notícias cobre segurança, eventos, serviços públicos e tudo o que acontece no bairro.">
         <meta property="og:image" content="{{asset('build/client/images/logo-blog.png')}}">
 
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:url" content="{{ url()->current() }}">
-        <meta name="twitter:title" content="Expresso Vida Nova">
-        <meta name="twitter:description" content="Portal de notícias de Vida Nova e Lauro de Freitas. Expresso Vida Nova cobre segurança, eventos, serviços públicos e tudo o que acontece no bairro.">
+        <meta name="twitter:title" content="Pulso Notícias">
+        <meta name="twitter:description" content="Portal de notícias de Vida Nova e Lauro de Freitas. Pulso Notícias cobre segurança, eventos, serviços públicos e tudo o que acontece no bairro.">
         <meta name="twitter:image" content="{{asset('build/client/images/logo-blog.png')}}">
     @endif
 
@@ -77,12 +77,12 @@
             "@context": "https://schema.org",
             "@type": "Organization",
             "@id": "#organization",
-            "name": "Expresso Vida Nova",
-            "legalName": "Expresso Vida Nova",
+            "name": "Pulso Notícias",
+            "legalName": "Pulso Notícias",
             "url": "https://expressovidanova.com.br",
             "logo": "assets/images/logo-blog.png",
             "image": "assets/images/logo-blog.png",
-            "description": "Expresso Vida Nova é o portal de notícias locais de Vida Nova e Lauro de Freitas. Informações do bairro, segurança, eventos e atualizações da região.",
+            "description": "Pulso Notícias é o portal de notícias locais de Vida Nova e Lauro de Freitas. Informações do bairro, segurança, eventos e atualizações da região.",
             "foundingDate": "2019",
             "email": "expressovidadnova24@gmail.com",
             "telephone": "+55 71 98304-9469",
@@ -116,9 +116,9 @@
                 "propertyID": "CNPJ",
                 "value": "35.439.433/0001-22"
             },
-            "slogan": "Expresso Vida Nova",
+            "slogan": "Pulso Notícias",
             "keywords": [
-                "Expresso Vida Nova",
+                "Pulso Notícias",
                 "Notícias Vida Nova",
                 "Notícias Lauro de Freitas",
                 "Portal de notícias Vida Nova",
@@ -147,7 +147,7 @@
         <div class="w-100 py-0">
             <div class="header-top py-2 mb-0 header-color">
                 <div class="container d-flex flex-wrap justify-content-center justify-content-lg-between align-items-center">                    
-                    <p class="text-white poppins-medium text-center text-lg-start font-15 mb-0 col-12 col-lg-6">
+                    <p class="text-white poppins-regular text-center text-lg-start font-14 mb-0 col-12 col-lg-6">
                         Salvador, BA | {{ \Carbon\Carbon::now()->translatedFormat('l, d \d\e F \d\e Y') }}
                     </p>
 
@@ -202,7 +202,7 @@
                 <div class="d-flex col-12 justify-content-between align-items-center wrap-logo-and-login">
                     <div class="logo-img px-0 py-2 rounded-2 d-flex justify-content-start align-items-center w-auto">
                         <a href="{{route('index')}}">
-                            <img src="{{asset('build/client/images/logo-blog.png')}}" alt="Expresso Vida Nova" title="Expresso Vida Nova" class="img-fluid">
+                            <img src="{{asset('build/client/images/logo-blog.png')}}" alt="Pulso Notícias" title="Pulso Notícias" class="img-fluid">
                         </a>
                     </div>
 
@@ -567,7 +567,7 @@
             <button id="menu-close" aria-label="Fechar menu" class="col-2 btn-close-menu p-0 bg-transparent" type="button">&times;</button>
         </div>
         <div class="col-10 logo-img p-0 mb-2 rounded-2 d-flex justify-content-center align-items-center">
-            <img src="{{asset('build/client/images/logo-blog.png')}}" alt="Expresso Vida Nova" title="Expresso Vida Nova" class="img-fluid" style="width: 100px;">
+            <img src="{{asset('build/client/images/logo-blog.png')}}" alt="Pulso Notícias" title="Pulso Notícias" class="img-fluid" style="width: 100px;">
         </div>
         <div class="row justify-content-center gap-5">
             <nav class="mt-3">
@@ -698,7 +698,7 @@
         <div class="container pt-4 pb-3">
             <div class="sitemap d-flex flex-column flex-md-row justify-content-start gap-5 align-items-center">
                 <div class=logo>
-                    <img src="{{asset('build/client/images/logo-footer.png')}}" alt="Expresso Vida Nova" title="Expresso Vida Nova" loading="lazy">
+                    <img src="{{asset('build/client/images/logo-footer.png')}}" alt="Pulso Notícias" title="Pulso Notícias" loading="lazy">
                 </div>
                 <ul class="list-unstyled text-start d-flex flex-column flex-md-row justify-content-center align-items-center gap-4 col-12 col-lg-8 mb-0">
                     <li class="poppins-regular font-18 mb-3 font-mob"><a href="{{route('index')}}">Home</a></li>
@@ -776,7 +776,7 @@
                     <p id="footer-text" class="poppins-regular font-16 text-center text-lg-start text-white mb-0"></p>  
                     <script defer>
                         const currentYeaar = (new Date).getFullYear();
-                        document.getElementById("footer-text").innerHTML = `Copyright© ${currentYeaar} <span> Expresso Vida Nova todos os direitos reservados.</span>`
+                        document.getElementById("footer-text").innerHTML = `Copyright© ${currentYeaar} <span> Pulso Notícias todos os direitos reservados.</span>`
                     </script>
                 </div>
                 <div class=credits>

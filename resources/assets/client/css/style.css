@@ -1395,7 +1395,9 @@ h6 {
     width: 40px;
     height: 40px;
 }
-
+.btn-reset{
+    background: rgb(203 255 77 / 50) !important;
+}
 .btn-reset,
 .btn-close-menu,
 .share-button {

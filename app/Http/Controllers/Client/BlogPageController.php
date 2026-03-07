@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Client;
 
-use App\Models\Blog;
-use App\Models\PopUp;
-use App\Models\Contact;
-use App\Models\Announcement;
-use App\Models\BlogCategory;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Announcement;
+use App\Models\Blog;
+use App\Models\BlogCategory;
+use App\Models\BlogExternoWhi;
+use App\Models\Contact;
+use App\Models\PopUp;
+use Illuminate\Http\Request;
 
 class BlogPageController extends Controller
 {
@@ -104,7 +105,9 @@ class BlogPageController extends Controller
         $blogInner = Blog::with([
             'category',
             'comments' => function ($query) {
-                $query->where('active', 1)->orderBy('created_at', 'desc')->with('client');
+                $query->where('active', 1)
+                    ->orderBy('created_at', 'desc')
+                    ->with('client');
             }
         ])
         ->whereHas('category')
@@ -113,32 +116,51 @@ class BlogPageController extends Controller
         ->sorting()
         ->first();
 
+        $blogsWhi = null;
+
         if (!$blogInner) {
-            return view('client.errors.404');
+            $blogsWhi = BlogExternoWhi::with('category')
+                ->where('slug', $slug)
+                ->first();
+
+            if (!$blogsWhi) {
+                return view('client.errors.404');
+            }
+
+            // usa o blog externo como principal
+            $blogInner = $blogsWhi;
         }
 
-        // Buscar relacionados da mesma categoria
-        $blogRelacionados = Blog::whereHas('category', function ($query) use ($blogInner) {
-            $query->where('id', $blogInner->category->id);
-        })
-        ->where('id', '!=', $blogInner->id)
-        ->active()
-        ->sorting()
-        ->take(4)
-        ->get();
+        $blogRelacionados = collect();
+        if (!$blogsWhi && $blogInner->category) {
+            $blogRelacionados = Blog::whereHas('category', function ($query) use ($blogInner) {
+                    $query->where('id', $blogInner->category->id);
+                })
+                ->where('id', '!=', $blogInner->id)
+                ->active()
+                ->sorting()
+                ->take(4)
+                ->get();
+        }
+        // dd($blogsWhi);
+        $viewMores = collect();
+        if (!$blogsWhi && $blogInner->category) {
+            $viewMores = Blog::whereHas('category', function ($query) use ($blogInner) {
+                    $query->where('id', '<>', $blogInner->category->id);
+                })
+                ->active()
+                ->sorting()
+                ->get();
+        }
 
-        $viewMores = Blog::whereHas('category', function ($query) use ($blogInner) {
-            $query->where('id', '<>', $blogInner->category->id);
-        })
-        ->active()
-        ->sorting()
-        ->get();
+        $blogCategories = BlogCategory::whereHas('blogs')
+            ->active()
+            ->sorting()
+            ->get();
 
-        $blogCategories = BlogCategory::whereHas('blogs')->active()->sorting()->get();
         $announcements = Announcement::select(
             'exhibition',
             'link',
-            'exhibition',
             'path_image',
             'active',
             'sorting',
@@ -148,10 +170,10 @@ class BlogPageController extends Controller
         ->active()
         ->sorting()
         ->get();
+
         $announcementVerticals = Announcement::select(
             'exhibition',
             'link',
-            'exhibition',
             'path_image',
             'active',
             'sorting',
@@ -160,11 +182,22 @@ class BlogPageController extends Controller
         ->active()
         ->sorting()
         ->get();
+
         $contact = Contact::first();
-        // Compartilha a variável globalmente (para menu/header)
+
         view()->share('blogInner', $blogInner);
 
-        return view('client.blades.blog-inner', compact('contact', 'viewMores', 'announcementVerticals', 'announcements','blogInner', 'slug', 'blogCategories', 'blogRelacionados'));
+        return view('client.blades.blog-inner', compact(
+            'blogsWhi',
+            'contact',
+            'viewMores',
+            'announcementVerticals',
+            'announcements',
+            'blogInner',
+            'slug',
+            'blogCategories',
+            'blogRelacionados'
+        ));
     }
 
 }

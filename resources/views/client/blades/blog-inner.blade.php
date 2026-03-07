@@ -3,17 +3,30 @@
     <!-- News With Sidebar Start -->
     <div class="container">
         @php
-            // Verifica se a imagem é do RSS (URL externa) ou manual (storage)
+            use Illuminate\Support\Str;
+
             if ($blogInner->path_image_thumbnail) {
-                if (Str::startsWith($blogInner->path_image_thumbnail, ['http://', 'https://'])) {
-                    // Já é uma URL completa (RSS ou manual com URL externa)
+
+                // Se já for URL completa (RSS)
+                if (Str::startsWith($blogInner->path_image_thumbnail, ['http://','https://'])) {
+
                     $imagemUrl = $blogInner->path_image_thumbnail;
+
                 } else {
-                    // Precisa do asset() para o storage
-                    $imagemUrl = asset('storage/' . $blogInner->path_image_thumbnail);
+
+                    // Se vier do banco WHI
+                    if ($blogsWhi) {
+                        $imagemUrl = 'https://www.whi.dev.br/storage/' . $blogInner->path_image_thumbnail;
+                    } else {
+                        $imagemUrl = asset('storage/' . $blogInner->path_image_thumbnail);
+                    }
+
                 }
+
             } else {
+
                 $imagemUrl = 'https://placehold.co/600x400?text=Sem+imagem&font=poppins';
+
             }
         @endphp
         
@@ -21,6 +34,7 @@
         src="{{ $imagemUrl }}"
         alt="{{ $blogInner->title ? $blogInner->title : 'Sem imagem'}}"
         style="aspect-ratio:1.91/1;object-fit: cover;height: 100%;">
+        
     </div>
     <div class="container-fluid mb-5 blog-inn mt-4">
         <div class="container">
@@ -81,6 +95,21 @@
                                             Os conteúdos de terceiros pertencem integralmente aos seus respectivos
                                             autores e veículos. As publicações externas contêm apenas resumos informativos.
                                         </div>
+                                        @elseif($blogsWhi)
+                                        <small class="text-muted">
+                                            <b>Fonte:</b> Agência WHI
+                                            <br>
+                                            <a href="{{ 'https://www.whi.dev.br/blog/interna/' . $blogInner->slug }}" target="_blank" rel="noopener noreferrer" class="text-underline text-primary">
+                                                Leia a matéria completa no site original.
+                                            </a> 
+                                        </small>
+                                        <br>
+                                        <br>
+                                        <div class="alert alert-warning small" role="alert">
+                                            <strong>Aviso:</strong> Este site atua como agregador de notícias.
+                                            Os conteúdos de terceiros pertencem integralmente aos seus respectivos
+                                            autores e veículos. As publicações externas contêm apenas resumos informativos.
+                                        </div>
                                     @endif
                                 </div>                                
                             </div>                        
@@ -110,70 +139,72 @@
                     </div>
                     <!-- News Detail End -->
 
-                    <!-- Comment Form Start -->
-                    <div class="mb-0 mt-5">
-                        <div class="bg-white border border-top-0 p-4">
-                            <div class="section-title mb-0 rounded-top-left">
-                                <h4 class="m-0 poppins-bold font-25 title-blue">Deixe um comentário</h4>
+                    @if (!$blogsWhi)
+                        <!-- Comment Form Start -->                        
+                        <div class="mb-0 mt-5">
+                            <div class="bg-white border border-top-0 p-4">
+                                <div class="section-title mb-0 rounded-top-left">
+                                    <h4 class="m-0 poppins-bold font-25 title-blue">Deixe um comentário</h4>
+                                </div>
+                                <form id="commentForm">
+                                    @csrf
+                                    <input type="hidden" name="blog_id" value="{{ $blogInner->id }}">
+
+                                    <div class="mb-3">
+                                        <label for="message">Mensagem *</label>
+                                        <textarea id="message" name="comment" required cols="30" rows="5" class="form-control poppins-regular font-15"></textarea>
+                                    </div>
+                                                                    
+                                    <div class="mb-0">
+                                        <button type="submit" class="btn background-red rounded-3 poppins-medium text-white font-15">Comentar</button>
+                                    </div>
+                                </form>
+                                <div id="commentMessage" class="mt-3 poppins-regular font-15"></div>
                             </div>
-                            <form id="commentForm">
-                                @csrf
-                                <input type="hidden" name="blog_id" value="{{ $blogInner->id }}">
-
-                                <div class="mb-3">
-                                    <label for="message">Mensagem *</label>
-                                    <textarea id="message" name="comment" required cols="30" rows="5" class="form-control poppins-regular font-15"></textarea>
-                                </div>
-                                                                
-                                <div class="mb-0">
-                                    <button type="submit" class="btn background-red rounded-3 poppins-medium text-white font-15">Comentar</button>
-                                </div>
-                            </form>
-                            <div id="commentMessage" class="mt-3 poppins-regular font-15"></div>
                         </div>
-                    </div>
-                    <!-- Comment Form End -->
+                        <!-- Comment Form End -->
 
-                    <!-- Comment List Start -->
-                    @if (isset($blogInner->comments) && $blogInner->comments->count() > 0)                        
-                        <div class="mb-3 mt-3 comments">
-                            <div class="bg-white border p-4 comment-scroll">
-                                <div class="section-title mb-4 title-blue rounded-top-left">
-                                    <h4 class="m-0 poppins-bold font-25 title-blue">{{$blogInner->comments->count()}} Comentário(s)</h4>
-                                </div>
-                                @foreach ($blogInner->comments as $comment)
-                                    @php
-                                        \Carbon\Carbon::setLocale('pt_BR');
-                                        $dataFormatada = \Carbon\Carbon::parse($comment->date)->translatedFormat('d \d\e F \d\e Y');
-                                        $client = $comment->client;
-                                    @endphp
+                        <!-- Comment List Start -->
+                        @if (isset($blogInner->comments) && $blogInner->comments->count() > 0)                        
+                            <div class="mb-3 mt-3 comments">
+                                <div class="bg-white border p-4 comment-scroll">
+                                    <div class="section-title mb-4 title-blue rounded-top-left">
+                                        <h4 class="m-0 poppins-bold font-25 title-blue">{{$blogInner->comments->count()}} Comentário(s)</h4>
+                                    </div>
+                                    @foreach ($blogInner->comments as $comment)
+                                        @php
+                                            \Carbon\Carbon::setLocale('pt_BR');
+                                            $dataFormatada = \Carbon\Carbon::parse($comment->date)->translatedFormat('d \d\e F \d\e Y');
+                                            $client = $comment->client;
+                                        @endphp
 
-                                    @if ($client)
-                                        <div class="d-flex gap-2 flex-column mb-4 border p-3">
-                                            <div class="d-flex mb-0 gap-3">
-                                                <img src="{{ $client->path_image ? url($client->path_image) : asset('build/client/images/user.jpg') }}"
-                                                    alt="Imagem do cliente"
-                                                    class="img-fluid mr-3 mt-1 rounded-circle"
-                                                    style="width: 50px; height: 50px; object-fit: cover;">
-                                                <div class="d-flex flex-column col-10 comment">
-                                                    <h6 class="title-blue poppins-bold font-15 mb-0">{{ $client->name }}</h6>
-                                                    <small class="title-blue mb-0 poppins-regular font-12">
-                                                        {{ $dataFormatada }}
-                                                    </small>
-                                                    <div class="w-100 mt-3">
-                                                        <div class="comment-text">
-                                                            {!! $comment->comment !!}
+                                        @if ($client)
+                                            <div class="d-flex gap-2 flex-column mb-4 border p-3">
+                                                <div class="d-flex mb-0 gap-3">
+                                                    <img src="{{ $client->path_image ? url($client->path_image) : asset('build/client/images/user.jpg') }}"
+                                                        alt="Imagem do cliente"
+                                                        class="img-fluid mr-3 mt-1 rounded-circle"
+                                                        style="width: 50px; height: 50px; object-fit: cover;">
+                                                    <div class="d-flex flex-column col-10 comment">
+                                                        <h6 class="title-blue poppins-bold font-15 mb-0">{{ $client->name }}</h6>
+                                                        <small class="title-blue mb-0 poppins-regular font-12">
+                                                            {{ $dataFormatada }}
+                                                        </small>
+                                                        <div class="w-100 mt-3">
+                                                            <div class="comment-text">
+                                                                {!! $comment->comment !!}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    @endif
-                                @endforeach
+                                        @endif
+                                    @endforeach
+                                </div>
                             </div>
-                        </div>
+                        @endif
+                        <!-- Comment List End -->
                     @endif
-                    <!-- Comment List End -->
 
                     @if ($announcements->count())                        
                         <div class="mt-4">
