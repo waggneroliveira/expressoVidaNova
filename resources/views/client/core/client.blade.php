@@ -105,12 +105,6 @@
                 "areaServed": "BR",
                 "availableLanguage": ["Portuguese", "English"]
             },
-            "openingHoursSpecification": {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-                "opens": "09:00",
-                "closes": "18:00"
-            },
             "duns": "39.985.136/0001-33",
             "slogan": "Pulso Notícias",
             "keywords": [
@@ -769,7 +763,7 @@
                             @endif
                             @if (isset($contact) && $contact->link_tik_tok)
                                 <li class="li d-flex justify-content-start align-items-center rounded-circle">
-                                    <a href="{{$contact->link_tik_tok}}a" rel="nofollow noopener noreferrer" target="_blank">
+                                    <a href="{{$contact->link_tik_tok}}" rel="nofollow noopener noreferrer" target="_blank">
                                         <img src="{{asset('build/client/images/tiktok.svg')}}" alt="Tiktok">
                                     </a>
                                 </li>
@@ -785,8 +779,8 @@
                     </script>
                 </div>
                 <div class=credits>
-                    <a href="https://www.whi.dev.br/" target=_blank rel="noopener noreferrer">
-                        <img src="{{asset('build/client/images/developed.svg')}}"  alt="WHI - Web de Alta Inovação" title="WHI - Web de Alta Inovação" loading=lazy>
+                    <a href="https://www.whi.dev.br/" target="_blank" rel="noopener noreferrer">
+                        <img src="{{asset('build/client/images/developed.svg')}}"  alt="WHI - Web de Alta Inovação" title="WHI - Web de Alta Inovação" loading="lazy">
                     </a>
                 </div>
             </div>
