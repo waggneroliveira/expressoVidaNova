@@ -8,8 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="theme-color" content="#0d0d0d">
     <meta name="description" content="Pulso Notícias é um portal de notícias com informações atualizadas sobre política, economia, tecnologia, esportes e os principais acontecimentos do Brasil e do mundo.">
-    <meta name="keywords" content="Pulso Notícias é um portal de notícias com informações atualizadas sobre política, economia, tecnologia, esportes e os principais acontecimentos do Brasil e do mundo.">
-    
+    <meta name="keywords" content="portal de notícias, notícias do Brasil, notícias da Bahia, notícias de Salvador, últimas notícias">
     <title>Pulso Notícias</title>
     
     @if(isset($blogInner))
@@ -66,7 +65,7 @@
     <link href="{{ asset('build/client/lgpd/style.css') }}" rel="stylesheet" type="text/css" />
 
     <link href="{{ asset('build/client/css/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
-    <link rel="preload" href="{{ asset('build/client/css/bootstrap-icons/bootstrap-icons.css') }}" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="{{ asset('build/client/css/bootstrap-icons/bootstrap-icons.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link href="{{ asset('build/client/css/style.css') }}" rel="stylesheet" type="text/css" />
     
     <script defer src="https://cdn.userway.org/widget.js" data-account="qSpdtrySSt"></script>
