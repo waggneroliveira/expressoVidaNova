@@ -45,7 +45,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" onload='this.onload=null,this.rel="stylesheet"'>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" onload="this.onload=null,this.rel='stylesheet'">
     <noscript>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
     </noscript>
@@ -696,7 +696,7 @@
     <footer id="footer" class="footer position-relative dark-background">
         <div class="container pt-4 pb-3">
             <div class="sitemap d-flex flex-column flex-md-row justify-content-start gap-5 align-items-center">
-                <div class=logo>
+                <div class="logo">
                     <img src="{{asset('build/client/images/logo-footer.png')}}" alt="Pulso Notícias" title="Pulso Notícias" loading="lazy">
                 </div>
                 <ul class="list-unstyled text-start d-flex flex-column flex-md-row justify-content-center align-items-center gap-4 col-12 col-lg-8 mb-0">
